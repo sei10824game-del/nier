@@ -1,0 +1,20 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+[[mods]]
+modId="nierautomata"
+version="${file.jarVersion}"
+displayName="NieR:Automata Units"
+description='''All combat units of NieR:Automata as Minecraft entities.'''
+[[dependencies.nierautomata]]
+modId="forge"
+mandatory=true
+versionRange="[47,)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.nierautomata]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.20.1,1.21)"
+ordering="NONE"
+side="BOTH"
