@@ -1,3 +1,9 @@
 {
+ "entity.nierautomata.a2": "Attacker Android Type A",
+ "entity.nierautomata.yorha_2b": "Battle Android Type B",
+ "entity.nierautomata.yorha_9s": "Scanner Android Type S",
+ "item.nierautomata.a2_spawn_egg": "Attacker Android Type A Spawn Egg",
+ "item.nierautomata.yorha_2b_spawn_egg": "Battle Android Type B Spawn Egg",
+ "item.nierautomata.yorha_9s_spawn_egg": "Scanner Android Type S Spawn Egg",
  "itemGroup.nierautomata": "NieR:Automata Units"
 }

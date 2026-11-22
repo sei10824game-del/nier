@@ -1,3 +1,9 @@
 {
+ "entity.nierautomata.a2": "攻撃型アンドロイド A",
+ "entity.nierautomata.yorha_2b": "戦闘型アンドロイド B",
+ "entity.nierautomata.yorha_9s": "スキャナー型アンドロイド S",
+ "item.nierautomata.a2_spawn_egg": "攻撃型アンドロイド A スポーンエッグ",
+ "item.nierautomata.yorha_2b_spawn_egg": "戦闘型アンドロイド B スポーンエッグ",
+ "item.nierautomata.yorha_9s_spawn_egg": "スキャナー型アンドロイド S スポーンエッグ",
  "itemGroup.nierautomata": "ニーア オートマタ ユニット"
 }
