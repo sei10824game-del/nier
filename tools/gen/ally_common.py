@@ -48,9 +48,9 @@ BLACK, CLOTH, SKIN, PALE, DARKSKIN = (24, 24, 28), (34, 34, 40), (236, 208, 186)
 
 def ally_yorha_soldier():
     t = Tex(128, 128, 11)
-    humanoid(t, SKIN, BLACK, BLACK, (16, 16, 18), (60, 60, 66), (80, 80, 90), gloves=(20, 20, 22), trim=(180, 170, 150))
-    t.box(48, 16, 9, 4, 9, (70, 70, 76)); t.box(48, 0, 9, 3, 2, (70, 70, 76))          # short ash-grey hair
-    t.box(84, 16, 8, 2, 1, (14, 14, 16)); t.face(84, 16, 8, 2, 1, 'front', 0, 0, 8, 1, (60, 60, 70))   # visor
+    humanoid(t, SKIN, BLACK, BLACK, (16, 16, 18), (232, 232, 240), (80, 80, 90), gloves=(20, 20, 22), trim=(235, 235, 240))
+    t.box(48, 16, 9, 4, 9, (232, 232, 240)); t.box(48, 0, 9, 3, 2, (232, 232, 240))          # white hair
+    t.box(84, 16, 8, 2, 1, (10, 10, 12)); t.face(84, 16, 8, 2, 1, 'front', 0, 0, 8, 2, (10, 10, 12))   # blindfold
     t.box(0, 64, 9, 7, 5, CLOTH); band(t, 0, 64, 9, 7, 5, 0, 1, (180, 170, 150))      # coat skirt
     t.box(28, 64, 9, 3, 5, (20, 20, 24))                                               # collar
     pod(t); sword(t); spear(t, (40, 40, 44)); rifle(t)
@@ -59,7 +59,7 @@ def ally_yorha_soldier():
 def ally_yorha_2e():
     t = Tex(128, 128, 12)
     humanoid(t, PALE, BLACK, BLACK, (12, 12, 14), (40, 40, 46), (180, 40, 40), gloves=(18, 18, 20), trim=(120, 30, 30))
-    t.box(48, 16, 9, 5, 9, (28, 28, 32)); t.box(48, 0, 9, 4, 3, (28, 28, 32))          # hood
+    t.box(48, 16, 9, 5, 9, (232, 232, 240)); t.box(48, 0, 9, 4, 3, (232, 232, 240))          # white hair
     t.box(84, 16, 8, 2, 1, (10, 10, 12)); t.face(84, 16, 8, 2, 1, 'front', 0, 0, 8, 1, (200, 30, 30))  # red visor slit
     t.box(0, 64, 9, 6, 5, (30, 30, 36)); band(t, 0, 64, 9, 6, 5, 5, 6, (150, 30, 30))
     t.box(28, 64, 8, 9, 1, (26, 26, 30)); t.face(28, 64, 8, 9, 1, 'back', 0, 8, 8, 1, (150, 30, 30))
@@ -186,8 +186,8 @@ def pod_unit(body, dark, eye):
     t.box(0, 24, 2, 2, 3, dark); t.box(16, 24, 1, 7, 8, body); t.box(36, 24, 4, 1, 1, eye)
     return t
 
-def ally_pod(): return pod_unit((200, 186, 150), (90, 80, 64), (240, 230, 200))
-def ally_pod_153(): return pod_unit((150, 150, 156), (50, 50, 56), (220, 220, 240))
+def ally_pod(): return pod_unit((70, 72, 80), (36, 38, 44), (255, 150, 60))
+def ally_pod_153(): return pod_unit((70, 72, 80), (36, 38, 44), (120, 200, 255))
 
 def build(name):
     globals()[name]().save(os.path.join(OUT, name + '.png'))
