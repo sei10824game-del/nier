@@ -78,12 +78,26 @@ ARCH['tank'] = (256, 128, [
     P('boom', 'crane', (0, -10, 0), [B(-1, -1, 0, 2, 2, 14, 'dark')]),
     P('hammer', 'boom', (0, 0, 13), [B(-0.5, 0, -0.5, 1, 5, 1, 'dark'), B(-3, 5, -3, 6, 5, 6, 'steel')]),
 ])
+
+def _multileg():
+    parts = [P('body', 'root', (0, 12, 0), [B(-5, -3, -5, 10, 6, 10, 'plate', ('front', 1, 1, 8, 1, 'dark'), ('front', 4, 3, 2, 2, 'steel')), B(-6, 3, -6, 12, 1, 12, 'dark')]),
+             P('head', 'body', (0, -3, 0), [B(-3.5, -7, -3.5, 7, 7, 7, 'plate', *EYE1(7, 2)), B(-2.5, -8, -2.5, 5, 1, 5, 'plate')])]
+    for side, sx in (('R', -1), ('L', 1)):
+        for i, z in enumerate((-3.5, -1.2, 1.2, 3.5)):
+            n = f'leg{side}{i}'
+            parts.append(P(n, 'body', (sx * 5, 3, z), [B(-0.5, 0, -0.5, 1, 5, 1, 'dark'), B(-1, 4, -1, 2, 2, 2, 'steel')], rot=(0, 0, sx * -1.0 * 1.0)))
+            parts.append(P(f'low{side}{i}', n, (0, 5, 0), [B(-0.5, 0, -0.5, 1, 7, 1, 'dark'), B(-1, 6, -1, 2, 1, 2, 'steel')], rot=(0, 0, sx * 1.0)))
+        parts.append(P(f'arm{side}', 'body', (sx * 5, -1, 0), [B(-0.5 if sx > 0 else -3, -1, -1, 3, 2, 2, 'dark')]))
+        parts.append(P(f'panel{side}', f'arm{side}', (sx * 3, 0, 0), [B(-0.5, -8, -3.5, 1, 16, 7, 'plate', ('front', 0, 0, 1, 1, 'dark'))]))
+    return parts
+ARCH['multileg'] = (128, 64, _multileg())
 ARCH['sphere'] = (64, 64, [
     P('ball', 'root', (0, 18, 0), [B(-6, -6, -6, 12, 12, 12, 'plate', ('front', 0, 5, 12, 2, 'dark'), ('front', 4, 4, 4, 4, 'dark'), ('front', 5, 5, 2, 2, 'eye')),
                                    B(-6.5, -1, -6.5, 13, 2, 13, 'dark')]),
     P('rightFin', 'ball', (-6, 0, 0), [B(-1, -3, -3, 1, 6, 6, 'steel')]),
     P('leftFin', 'ball', (6, 0, 0), [B(0, -3, -3, 1, 6, 6, 'steel')]),
     P('topFin', 'ball', (0, -6, 0), [B(-3, -1, -1, 6, 1, 2, 'steel')]),
+    P('drill', 'ball', (0, -6, 0), [B(-3, -7, -3, 6, 7, 6, 'dark'), B(-2, -11, -2, 4, 4, 4, 'steel'), B(-1, -13, -1, 2, 2, 2, 'steel')]),
 ])
 
 SKINS = {  # plate, dark, steel, eye, glow
@@ -168,6 +182,7 @@ NAMES = {
     'machine_flyer': ('Machine Flyer', '飛行型機械生命体'),
     'machine_small_goliath': ('Small Goliath Biped', '小型超大型二足'), 'machine_medium_goliath': ('Goliath Biped', '超大型二足'),
     'machine_large_goliath': ('Large Goliath Biped', '大型超大型二足'), 'machine_goliath_tank': ('Goliath Tank', '超大型戦車'),
+    'machine_multileg': ('Medium Multi-Leg', '中型多脚'), 'machine_drill_sphere': ('Drill Sphere', 'ドリル球体'),
     'machine_sphere': ('Sphere', '球体'), 'machine_hacked_sphere': ('Hacked Sphere', 'ハッキング球体'),
 }
 os.makedirs(RES + '/lang/parts', exist_ok=True)

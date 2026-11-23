@@ -35,6 +35,7 @@ public final class MachineClient {
         e.registerLayerDefinition(layer(Arch.GOLIATH), MachineGeo::goliath);
         e.registerLayerDefinition(layer(Arch.TANK), MachineGeo::tank);
         e.registerLayerDefinition(layer(Arch.SPHERE), MachineGeo::sphere);
+        e.registerLayerDefinition(layer(Arch.MULTILEG), MachineGeo::multileg);
     }
 
     public static void renderers(MachineModule m, EntityRenderersEvent.RegisterRenderers e) {
@@ -51,6 +52,7 @@ public final class MachineClient {
             case GOLIATH -> new GoliathModel(root);
             case TANK -> new TankModel(root);
             case SPHERE -> new SphereModel(root);
+            case MULTILEG -> new MultiLegModel(root);
         };
     }
 

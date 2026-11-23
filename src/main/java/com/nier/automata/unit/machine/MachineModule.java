@@ -29,6 +29,7 @@ public class MachineModule extends UnitModule<MachineUnit> {
             case GOLIATH -> new GoliathUnit(t, l, v);
             case TANK -> new TankUnit(t, l, v);
             case SPHERE -> new SphereUnit(t, l, v);
+            case MULTILEG -> new MultiLegUnit(t, l, v);
         };
     }
     @Override public EntityType.Builder<MachineUnit> builder() {

@@ -14,7 +14,7 @@ import net.minecraft.world.phys.Vec3;
 
 /** Sphere machine: rolling ram, bounce slam, orb burst, fin spin; overheats (form 1) and self-destructs at low HP. */
 public class SphereUnit extends MachineUnit {
-    public static final int ROLL = 1, BOUNCE = 2, BURST = 3, FIN_SPIN = 4, SELF_DESTRUCT = 5;
+    public static final int ROLL = 1, BOUNCE = 2, BURST = 3, FIN_SPIN = 4, SELF_DESTRUCT = 5, DRILL = 6;
     private Skill selfDestruct;
 
     public SphereUnit(EntityType<? extends NierUnit> t, Level l, MachineVariant v) { super(t, l, v); }
@@ -43,6 +43,12 @@ public class SphereUnit extends MachineUnit {
         l.add(new Skill(FIN_SPIN, "Fin Spin", 30, 50, 0, 2.2 * s, (u, t, k) -> {
             if (k >= 6 && k <= 25) { if (t != null) dash(0.12); if (k % 5 == 1) { area(position(), 1.8 * s, dmg(0.7), 0.6, false); sound(SoundEvents.PLAYER_ATTACK_SWEEP, 0.6f, 1.6f); } }
         }).weight(2));
+        l.add(new Skill(DRILL, "Drill Dive", 44, 70, 3, 12, (u, t, k) -> {
+            if (k < 14 && k % 3 == 0) fx(CHARGE_FX, at(0, 1.2 * s, 0), 3, 0.3 * s, 0);
+            if (k == 14) { leap(targetPos(t), 12, 0.75); sound(SoundEvents.IRON_GOLEM_ATTACK, 1f, 1.4f); }
+            if (k >= 14 && k < 28) { swing(1.6 * s, 360, dmg(1.6), 0.5, true); if (k % 3 == 0) fx(ParticleTypes.CRIT, at(0, 1.4 * s, 0), 3, 0.4, 0.1); }
+            if (!landed && k >= 24 && onGround()) { landed = true; area(position(), 2.0 * s, dmg(2.0), 1.0, true); dust(position(), 18, 0.5); sound(SoundEvents.GENERIC_EXPLODE, 0.4f, 1.8f); }
+        }).weight(4).when(u -> v.weapon() == MachineVariant.Weapon.DRILL));
         l.add(selfDestruct = new Skill(SELF_DESTRUCT, "Self-Destruct", 50, 0, 0, 999, (u, t, k) -> {
             if (k == 0) { setForm(1); sound(SoundEvents.CREEPER_PRIMED, 1f, 0.6f); }
             fx(ParticleTypes.LARGE_SMOKE, at(0, 0.8 * s, 0), 1, 0.2, 0.02);
