@@ -25,16 +25,26 @@ public class HegelModel extends NierModel<HegelUnit> {
 
     static LayerDefinition create() {
         MeshDefinition mesh = new MeshDefinition();
-        PartDefinition core = mesh.getRoot().addOrReplaceChild("core", CubeListBuilder.create().texOffs(0, 0).addBox(-6, -6, -6, 12, 12, 12)
-                .texOffs(48, 0).addBox(-2, -2, -7, 4, 4, 1), PartPose.offset(0, 10, 0));
+        PartDefinition core = mesh.getRoot().addOrReplaceChild("core", CubeListBuilder.create()
+                .texOffs(0, 0).addBox(-6, -4, -4, 12, 8, 8).texOffs(40, 0).addBox(-4, -6, -4, 8, 12, 8).texOffs(72, 0).addBox(-4, -4, -6, 8, 8, 12)
+                .texOffs(0, 24).addBox(-2, -2, -7, 4, 4, 1), PartPose.offset(0, 10, 0));   // cream sphere (3 crossed boxes)
+        for (int k = 0; k < 4; k++) {   // spindly black claw legs around the core
+            float a = k * Mth.PI / 2 + Mth.PI / 4;
+            core.addOrReplaceChild("cleg" + k, CubeListBuilder.create().texOffs(0, 90).addBox(-0.5f, 0, -0.5f, 1, 9, 1).texOffs(8, 90).addBox(-1, 9, -1, 2, 3, 2),
+                    PartPose.offsetAndRotation(Mth.sin(a) * 5, 3, -Mth.cos(a) * 5, Mth.cos(a) * 0.5f, 0, -Mth.sin(a) * 0.5f));
+        }
         PartDefinition ring = mesh.getRoot().addOrReplaceChild("ring", CubeListBuilder.create(), PartPose.offset(0, 10, 0));
         for (int i = 0; i < 8; i++) {
             float a = i * Mth.PI / 4;
-            ring.addOrReplaceChild("seg" + i, CubeListBuilder.create().texOffs(0, 24).addBox(-4, -4, -4, 8, 8, 8)
-                    .texOffs(32, 24).addBox(-1, -1, -4.5f, 2, 2, 1), PartPose.offsetAndRotation(Mth.sin(a) * R, 0, -Mth.cos(a) * R, 0, -a, 0));
+            PartDefinition sg = ring.addOrReplaceChild("seg" + i, CubeListBuilder.create()
+                    .texOffs(0, 40).addBox(-4, -3, -3, 8, 6, 6).texOffs(28, 40).addBox(-3, -4, -3, 6, 8, 6).texOffs(52, 40).addBox(-3, -3, -4, 6, 6, 8)
+                    .texOffs(16, 24).addBox(-1, -1, -4.5f, 2, 2, 1), PartPose.offsetAndRotation(Mth.sin(a) * R, 0, -Mth.cos(a) * R, 0, -a, 0));
+            sg.addOrReplaceChild("piston", CubeListBuilder.create().texOffs(16, 90).addBox(-1.5f, 3, -1.5f, 3, 5, 3), PartPose.ZERO);
+            sg.addOrReplaceChild("legA", CubeListBuilder.create().texOffs(0, 90).addBox(-0.5f, 0, -0.5f, 1, 7, 1), PartPose.offsetAndRotation(-3.5f, 1, 0, 0, 0, 0.7f));
+            sg.addOrReplaceChild("legB", CubeListBuilder.create().texOffs(0, 90).addBox(-0.5f, 0, -0.5f, 1, 7, 1), PartPose.offsetAndRotation(3.5f, 1, 0, 0, 0, -0.7f));
         }
-        core.addOrReplaceChild("plate", CubeListBuilder.create().texOffs(0, 40).addBox(-8, -1, -8, 16, 2, 16), PartPose.offset(0, 6, 0));
-        return LayerDefinition.create(mesh, 64, 64);
+        core.addOrReplaceChild("plate", CubeListBuilder.create().texOffs(0, 64).addBox(-8, -1, -8, 16, 2, 16), PartPose.offset(0, 6, 0));
+        return LayerDefinition.create(mesh, 128, 128);
     }
 
     private static final String[] SEG = {"seg0", "seg1", "seg2", "seg3", "seg4", "seg5", "seg6", "seg7"};
