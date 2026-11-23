@@ -11,7 +11,7 @@ ROOT = os.path.join(os.path.dirname(__file__), '..', '..')
 RES = os.path.join(ROOT, 'src/main/resources/assets/nierautomata')
 
 # part = (name, parent, pivot, rot, [box = (x,y,z,w,h,d, mat, [deco=(face,x,y,w,h,mat)])])
-EYE1 = lambda w, y=2: [('front', (w - 3) // 2, y, 3, 3, 'white'), ('front', (w - 3) // 2 + 1, y + 1, 1, 1, 'eye')]
+EYE1 = lambda w, y=2: [('front', 1, y, 3, 3, 'white'), ('front', 2, y + 1, 1, 1, 'eye'), ('front', w - 4, y, 3, 3, 'white'), ('front', w - 3, y + 1, 1, 1, 'eye')]
 def P(name, parent, pivot, boxes, rot=(0, 0, 0)): return (name, parent, pivot, rot, boxes)
 def B(x, y, z, w, h, d, mat, *deco): return (x, y, z, w, h, d, mat, list(deco))
 EYES2 = lambda w, y=3, s=2, inset=1: [('front', inset, y, s, s, 'eye'), ('front', w - inset - s, y, s, s, 'eye')]
@@ -87,7 +87,7 @@ ARCH['sphere'] = (64, 64, [
 ])
 
 SKINS = {  # plate, dark, steel, eye, glow
-    '': ((198, 184, 150), (92, 82, 66), (170, 168, 160), (255, 48, 32), (255, 150, 40)),
+    '': ((188, 180, 166), (104, 96, 86), (170, 168, 160), (255, 48, 32), (255, 150, 40)),
     '_gold': ((222, 176, 58), (112, 84, 30), (240, 220, 150), (255, 60, 30), (255, 230, 120)),
     '_hacked': ((128, 120, 104), (52, 56, 60), (150, 160, 170), (70, 230, 255), (90, 200, 255)),
     '_burn': ((176, 76, 44), (70, 34, 26), (200, 110, 80), (255, 220, 70), (255, 200, 60)),
