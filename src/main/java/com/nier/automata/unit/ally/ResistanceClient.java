@@ -21,11 +21,11 @@ public final class ResistanceClient {
     public static LayerDefinition layer() {
         MeshDefinition m = new MeshDefinition();
         AllyModel.Parts p = AllyModel.humanoid(m, false, -1.3f);
-        p.head().addOrReplaceChild("bandana", CubeListBuilder.create().texOffs(48, 16).addBox(-4.5f, -8.5f, -4.5f, 9, 3, 9)
+        p.head().addOrReplaceChild("bandana", CubeListBuilder.create().texOffs(48, 16).addBox(-5, -9, -5, 10, 8, 10)
                 .texOffs(48, 0).addBox(-1, -7, 4.5f, 2, 5, 1), PartPose.ZERO);
         p.torso().addOrReplaceChild("jacket", CubeListBuilder.create().texOffs(0, 64).addBox(-4.5f, -12.3f, -2.5f, 9, 13, 5), PartPose.ZERO);
         p.torso().addOrReplaceChild("scarf", CubeListBuilder.create().texOffs(28, 64).addBox(-4.5f, -12.6f, -2.8f, 9, 2, 5.6f), PartPose.ZERO);
-        p.torso().addOrReplaceChild("pouch", CubeListBuilder.create().texOffs(84, 16).addBox(-4.8f, -2, -3, 3, 3, 2), PartPose.ZERO);
+        p.torso().addOrReplaceChild("pouch", CubeListBuilder.create().texOffs(100, 16).addBox(-4.8f, -2, -3, 3, 3, 2), PartPose.ZERO);
         p.weapon().addOrReplaceChild("spear", AllyModel.spear(), PartPose.ZERO);
         p.weapon().addOrReplaceChild("gun", AllyModel.rifle(), PartPose.ZERO);
         return LayerDefinition.create(m, 128, 128);

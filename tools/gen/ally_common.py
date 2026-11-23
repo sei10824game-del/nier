@@ -80,39 +80,50 @@ def ally_commander():
     sword(t, (220, 220, 230), (240, 240, 240), silver)
     return t
 
-def operator(t, robe, accent, hair):
-    humanoid(t, PALE, robe, robe, (20, 20, 24), hair, (60, 60, 70), gloves=robe, trim=accent)
-    t.box(48, 16, 9, 9, 9, robe); t.face(48, 16, 9, 9, 9, 'front', 0, 0, 9, 9, (0, 0, 0, 0))   # veil, open face
-    t.face(48, 16, 9, 9, 9, 'front', 0, 0, 9, 2, robe); t.face(48, 16, 9, 9, 9, 'front', 0, 5, 9, 4, robe)
-    t.face(48, 16, 9, 9, 9, 'front', 0, 4, 9, 1, accent)
+def operator(t, hair, shade):
+    black, leather, gold = (22, 20, 22), (52, 40, 38), (206, 168, 80)
+    humanoid(t, PALE, leather, black, (18, 16, 18), hair, (150, 70, 70), gloves=black, trim=gold)
+    t.box(48, 16, 9, 9, 9, hair)                                                      # hair box + mask veil
+    t.face(48, 16, 9, 9, 9, 'front', 0, 0, 9, 9, (0, 0, 0, 0))
+    t.face(48, 16, 9, 9, 9, 'front', 0, 0, 9, 1, black)                               # black hairband
+    t.face(48, 16, 9, 9, 9, 'front', 0, 5, 9, 4, black)                               # face mask / high collar
+    for f in ('left', 'right', 'back'): t.face(48, 16, 9, 9, 9, f, 0, 5, 9, 4, black); t.face(48, 16, 9, 9, 9, f, 0, 0, 9, 1, black)
     t.box(48, 0, 1, 3, 2, (60, 60, 66)); t.box(54, 0, 1, 1, 3, (60, 60, 66))           # headset
-    t.box(0, 64, 9, 11, 6, robe); band(t, 0, 64, 9, 11, 6, 9, 10, accent)
-    pod(t, (170, 170, 176))
+    t.box(0, 64, 9, 11, 6, leather); t.face(0, 64, 9, 11, 6, 'front', 3, 2, 3, 3, gold); t.face(0, 64, 9, 11, 6, 'front', 4, 3, 1, 1, (40, 70, 120))
+    band(t, 0, 64, 9, 11, 6, 9, 10, black)
+    pod(t, (70, 72, 80), (40, 42, 50))
     return t
 
-def ally_operator_6o(): return operator(Tex(128, 128, 14), (32, 30, 36), (230, 200, 150), (230, 200, 130))
-def ally_operator_21o(): return operator(Tex(128, 128, 15), (24, 24, 28), (120, 120, 140), (40, 40, 44))
+def ally_operator_6o(): return operator(Tex(128, 128, 14), (238, 230, 202), 0)
+def ally_operator_21o(): return operator(Tex(128, 128, 15), (218, 212, 192), 0)
 
 def ally_resistance_soldier():
     t = Tex(128, 128, 16)
-    olive, khaki = (84, 90, 56), (150, 130, 90)
-    humanoid(t, (214, 172, 140), olive, (90, 80, 62), (60, 44, 30), (70, 50, 36), (60, 90, 60), gloves=(70, 56, 40))
-    t.box(48, 16, 9, 3, 9, (150, 50, 40)); t.box(48, 0, 2, 5, 1, (150, 50, 40))        # red bandana + tails
-    t.box(0, 64, 9, 13, 5, olive); band(t, 0, 64, 9, 13, 5, 10, 11, (60, 44, 30))       # jacket + belt
-    t.face(0, 64, 9, 13, 5, 'front', 2, 3, 2, 2, khaki); t.face(0, 64, 9, 13, 5, 'front', 6, 3, 2, 2, khaki)
-    t.box(28, 64, 9, 2, 6, khaki)                                                      # scarf
-    t.box(84, 16, 3, 3, 2, (70, 56, 40))
+    orange, dark = (190, 118, 54), (110, 62, 34)
+    humanoid(t, (236, 208, 184), orange, (112, 110, 118), (60, 44, 30), (26, 24, 32), (60, 170, 170), gloves=(70, 56, 40))
+    t.box(48, 16, 10, 8, 10, orange, noise=6)                                          # hooded cloak
+    t.face(48, 16, 10, 8, 10, 'front', 1, 2, 8, 6, (0, 0, 0, 0))                       # open face
+    t.face(48, 16, 10, 8, 10, 'front', 0, 0, 10, 2, dark)
+    t.box(48, 0, 2, 5, 1, orange)
+    t.box(0, 64, 9, 13, 5, orange, noise=6); band(t, 0, 64, 9, 13, 5, 10, 11, dark)    # cloak/jacket
+    t.rect(0, 64 + 5 + 4, 28, 3, (150, 40, 34))                                        # blood stain
+    t.box(28, 64, 9, 2, 6, (226, 214, 190))                                            # scarf
+    t.box(100, 16, 3, 3, 2, (70, 56, 40))
     spear(t); rifle(t, (70, 56, 40), (90, 90, 96))
     return t
 
 def ally_anemone():
     t = Tex(128, 128, 17)
-    coat = (44, 44, 50)
-    humanoid(t, DARKSKIN, (60, 70, 60), (40, 40, 44), (24, 24, 26), (20, 18, 18), (70, 150, 90), gloves=(30, 30, 30), trim=(110, 140, 100))
-    t.box(48, 16, 9, 4, 9, (20, 18, 18)); t.box(48, 0, 3, 6, 2, (20, 18, 18))          # hair + tie
-    t.box(0, 64, 9, 10, 5, coat); band(t, 0, 64, 9, 10, 5, 0, 1, (30, 30, 34))
-    t.box(32, 64, 10, 4, 6, (110, 110, 104))                                           # grey shoulder cape
-    sword(t, (190, 190, 196), (60, 40, 30), (90, 90, 96)); rifle(t, (50, 54, 48))
+    cream, olive, navy, gold, khaki = (234, 228, 208), (96, 104, 60), (58, 62, 100), (206, 168, 80), (120, 114, 98)
+    humanoid(t, DARKSKIN, cream, khaki, (24, 24, 26), (30, 32, 52), (70, 110, 150), gloves=(24, 24, 26), trim=gold)
+    for u in (24, 36): band(t, u, 32, 3, 12, 3, 4, 6, (20, 20, 22))                   # knee pads
+    t.box(48, 16, 9, 4, 9, olive); band(t, 48, 16, 9, 4, 9, 3, 4, gold)                 # olive head wrap + gold band
+    t.box(48, 0, 3, 6, 2, olive)
+    t.box(0, 64, 9, 10, 5, cream)                                                       # tunic
+    t.face(0, 64, 9, 10, 5, 'back', 0, 0, 9, 10, navy); t.face(0, 64, 9, 10, 5, 'left', 0, 0, 5, 10, navy); t.face(0, 64, 9, 10, 5, 'right', 0, 0, 5, 10, navy)   # navy cloak
+    band(t, 0, 64, 9, 10, 5, 5, 7, (20, 20, 22)); t.face(0, 64, 9, 10, 5, 'front', 3, 5, 3, 2, gold)   # belt + buckle
+    t.box(32, 64, 10, 4, 6, olive); band(t, 32, 64, 10, 4, 6, 3, 4, gold)               # olive mantle
+    sword(t, (190, 190, 196), (60, 40, 30), (90, 90, 96)); rifle(t, (150, 110, 60), (60, 60, 64))
     return t
 
 def ally_jackass():
