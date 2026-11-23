@@ -27,18 +27,21 @@ public class GrunModel extends NierModel<GrunUnit> {
 
     static LayerDefinition create() {
         MeshDefinition mesh = new MeshDefinition();
-        PartDefinition base = mesh.getRoot().addOrReplaceChild("base", CubeListBuilder.create().texOffs(68, 48).addBox(-8, -10, -6, 16, 10, 12), PartPose.offset(0, 24, 0));
-        PartDefinition head = base.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-10, -14, -8, 20, 14, 16), PartPose.offset(0, -10, 0));
+        PartDefinition base = mesh.getRoot().addOrReplaceChild("base", CubeListBuilder.create().texOffs(68, 48).addBox(-8, -20, -6, 16, 20, 12), PartPose.offset(0, 24, 0));
+        PartDefinition head = base.addOrReplaceChild("head", CubeListBuilder.create().texOffs(0, 0).addBox(-10, -14, -8, 20, 14, 16), PartPose.offset(0, -20, 0));
         head.addOrReplaceChild("core", CubeListBuilder.create().texOffs(72, 0).addBox(-3, -3, -1, 6, 6, 1), PartPose.offset(0, -9, -8));
         float[][] lp = {{-8, -5}, {8, -5}, {-8, 5}, {8, 5}};
         for (int i = 0; i < 4; i++)
             head.addOrReplaceChild(LASERS[i], CubeListBuilder.create().texOffs(72, 8).addBox(-1.5f, -5, -1.5f, 3, 5, 3), PartPose.offset(lp[i][0], -14, lp[i][1]));
         PartDefinition jaw = head.addOrReplaceChild("jaw", CubeListBuilder.create().texOffs(0, 30).addBox(-8, 0, -12, 16, 3, 12), PartPose.offset(0, -1, 4));
         jaw.addOrReplaceChild("maw", CubeListBuilder.create().texOffs(56, 30).addBox(-6, -1.5f, -11, 12, 1, 9), PartPose.ZERO);
-        PartDefinition ra = head.addOrReplaceChild("rightArm", CubeListBuilder.create().texOffs(0, 48).addBox(-6, -2, -4, 6, 12, 8), PartPose.offsetAndRotation(-10, -10, 0, -0.4f, 0, 0.3f));
-        PartDefinition la = head.addOrReplaceChild("leftArm", CubeListBuilder.create().texOffs(0, 76).addBox(0, -2, -4, 6, 12, 8), PartPose.offsetAndRotation(10, -10, 0, -0.4f, 0, -0.3f));
-        ra.addOrReplaceChild("rightHand", CubeListBuilder.create().texOffs(28, 48).addBox(-5, 0, -5, 10, 6, 10), PartPose.offset(-3, 10, 0));
-        la.addOrReplaceChild("leftHand", CubeListBuilder.create().texOffs(28, 76).addBox(-5, 0, -5, 10, 6, 10), PartPose.offset(3, 10, 0));
+        PartDefinition ra = head.addOrReplaceChild("rightArm", CubeListBuilder.create().texOffs(0, 48).addBox(-2, -2, -2, 4, 24, 4), PartPose.offsetAndRotation(-10, -10, 0, -0.4f, 0, 0.3f));
+        PartDefinition la = head.addOrReplaceChild("leftArm", CubeListBuilder.create().texOffs(0, 76).addBox(-2, -2, -2, 4, 24, 4), PartPose.offsetAndRotation(10, -10, 0, -0.4f, 0, -0.3f));
+        ra.addOrReplaceChild("rightHand", CubeListBuilder.create().texOffs(28, 48).addBox(-5, 0, -5, 10, 6, 10), PartPose.offset(0, 22, 0));
+        la.addOrReplaceChild("leftHand", CubeListBuilder.create().texOffs(28, 76).addBox(-5, 0, -5, 10, 6, 10), PartPose.offset(0, 22, 0));
+        head.addOrReplaceChild("rightArm2", CubeListBuilder.create().texOffs(0, 48).addBox(-2, -2, -2, 4, 24, 4), PartPose.offsetAndRotation(-10, -4, 3, 0.1f, 0, 0.25f));
+        head.addOrReplaceChild("leftArm2", CubeListBuilder.create().texOffs(0, 76).addBox(-2, -2, -2, 4, 24, 4), PartPose.offsetAndRotation(10, -4, 3, 0.1f, 0, -0.25f));
+        head.addOrReplaceChild("stack", CubeListBuilder.create().texOffs(72, 8).addBox(-1.5f, -18, -1.5f, 3, 4, 3), PartPose.ZERO);
         return LayerDefinition.create(mesh, 128, 128);
     }
 
