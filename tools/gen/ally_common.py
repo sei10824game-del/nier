@@ -68,15 +68,16 @@ def ally_yorha_2e():
 
 def ally_commander():
     t = Tex(128, 128, 13)
-    white, gold = (236, 234, 228), (200, 160, 64)
-    humanoid(t, PALE, white, (40, 40, 44), (30, 30, 34), (225, 225, 230), (70, 90, 120), gloves=(245, 245, 245), trim=gold)
-    t.box(48, 16, 9, 2, 9, white); t.box(48, 0, 8, 1, 2, (30, 30, 34))                  # cap + brim
-    t.face(48, 16, 9, 2, 9, 'front', 0, 0, 9, 1, gold)
-    t.box(84, 16, 8, 9, 2, (225, 225, 230))                                            # long pale hair at back
-    t.box(0, 64, 9, 11, 5, white); band(t, 0, 64, 9, 11, 5, 10, 11, gold)               # coat
-    t.face(0, 64, 9, 11, 5, 'front', 4, 0, 1, 11, gold)
-    t.box(32, 64, 3, 1, 4, gold)
-    sword(t, (220, 220, 230), (240, 240, 240), gold)
+    white, silver, blonde, black = (240, 238, 234), (200, 200, 208), (236, 218, 168), (24, 24, 28)
+    humanoid(t, PALE, white, white, (236, 232, 228), blonde, (110, 140, 190), gloves=(245, 245, 245), trim=silver)
+    t.box(48, 16, 9, 2, 9, black); t.box(48, 0, 8, 1, 2, black)                         # black headband / bow
+    t.box(84, 16, 8, 9, 2, blonde)                                                     # long blonde hair at back
+    band(t, 16, 16, 8, 12, 4, 0, 2, black)                                             # black high collar
+    t.face(16, 16, 8, 12, 4, 'front', 3, 3, 2, 1, black); t.face(16, 16, 8, 12, 4, 'front', 3, 3, 1, 3, black); t.face(16, 16, 8, 12, 4, 'front', 4, 5, 1, 1, black)   # chest cross
+    t.box(0, 64, 9, 11, 5, white); band(t, 0, 64, 9, 11, 5, 10, 11, silver)             # long white dress
+    t.face(0, 64, 9, 11, 5, 'front', 4, 0, 1, 11, silver)
+    t.box(32, 64, 3, 1, 4, silver)
+    sword(t, (220, 220, 230), (240, 240, 240), silver)
     return t
 
 def operator(t, robe, accent, hair):
