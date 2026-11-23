@@ -50,7 +50,7 @@
  "entity.nierautomata.machine_small_stubby_spear": "小型短足 (槍)",
  "entity.nierautomata.machine_small_stubby_staff": "小型短足 (杖)",
  "entity.nierautomata.machine_sphere": "球体",
- "entity.nierautomata.yorha_2b": "戦闘型アンドロイド B",
+ "entity.nierautomata.yorha_2b": "ヨルハ二号B型",
  "entity.nierautomata.yorha_9s": "スキャナー型アンドロイド S",
  "item.nierautomata.a2_spawn_egg": "攻撃型アンドロイド A スポーンエッグ",
  "item.nierautomata.ally_anemone_spawn_egg": "アネモネのスポーンエッグ",
@@ -102,7 +102,7 @@
  "item.nierautomata.machine_small_stubby_spear_spawn_egg": "小型短足 (槍)のスポーンエッグ",
  "item.nierautomata.machine_small_stubby_staff_spawn_egg": "小型短足 (杖)のスポーンエッグ",
  "item.nierautomata.machine_sphere_spawn_egg": "球体のスポーンエッグ",
- "item.nierautomata.yorha_2b_spawn_egg": "戦闘型アンドロイド B スポーンエッグ",
+ "item.nierautomata.yorha_2b_spawn_egg": "ヨルハ二号B型 スポーンエッグ",
  "item.nierautomata.yorha_9s_spawn_egg": "スキャナー型アンドロイド S スポーンエッグ",
  "itemGroup.nierautomata": "ニーア オートマタ ユニット"
 }

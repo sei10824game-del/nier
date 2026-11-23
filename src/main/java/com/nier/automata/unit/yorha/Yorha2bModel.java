@@ -28,10 +28,15 @@ public class Yorha2bModel extends AndroidModel<Yorha2bUnit> {
         base(r);
         PartDefinition torso = r.getChild("torso"), head = torso.getChild("head");
         head.addOrReplaceChild("hairCap", CubeListBuilder.create().texOffs(8, 32).addBox(-4.5f, -8.5f, -4.5f, 9, 4, 9)
-                .texOffs(44, 32).addBox(-4.5f, -5.2f, -4.6f, 9, 2, 1), PartPose.ZERO);      // hair cap + visor band
-        head.addOrReplaceChild("braid", CubeListBuilder.create().texOffs(0, 32).addBox(-1, 0, 0, 2, 12, 2), PartPose.offsetAndRotation(0, -4, 4, 0.15f, 0, 0));
-        torso.addOrReplaceChild("coatFront", CubeListBuilder.create().texOffs(64, 32).addBox(-4.5f, 0, -0.5f, 9, 7, 1), PartPose.offset(0, 0, -2.2f));
-        torso.addOrReplaceChild("coatBack", CubeListBuilder.create().texOffs(84, 32).addBox(-4.5f, 0, -0.5f, 9, 8, 1), PartPose.offset(0, 0, 2.2f));
+                .texOffs(44, 32).addBox(-4.5f, -5.5f, -4.6f, 9, 3, 1), PartPose.ZERO);      // white bob top + black blindfold
+        head.addOrReplaceChild("bobBack", CubeListBuilder.create().texOffs(0, 96).addBox(-4.5f, -6, 4, 9, 6, 1), PartPose.ZERO);
+        head.addOrReplaceChild("bobR", CubeListBuilder.create().texOffs(24, 96).addBox(-5, -6, -4.5f, 1, 6, 9), PartPose.ZERO);
+        head.addOrReplaceChild("bobL", CubeListBuilder.create().texOffs(48, 96).addBox(4, -6, -4.5f, 1, 6, 9), PartPose.ZERO);
+        head.addOrReplaceChild("braid", CubeListBuilder.create().texOffs(0, 32).addBox(-1, 0, 0, 2, 1, 2), PartPose.offsetAndRotation(0, -4, 4, 0, 0, 0));
+        torso.addOrReplaceChild("coatFront", CubeListBuilder.create().texOffs(64, 32).addBox(-5, 0, -0.5f, 10, 5, 1), PartPose.offset(0, 0, -2.4f));
+        torso.addOrReplaceChild("coatBack", CubeListBuilder.create().texOffs(88, 32).addBox(-5, 0, -0.5f, 10, 5, 1), PartPose.offset(0, 0, 2.4f));
+        torso.addOrReplaceChild("skirtR", CubeListBuilder.create().texOffs(100, 96).addBox(-0.5f, 0, -2.5f, 1, 5, 5), PartPose.offset(-5, 0, 0));
+        torso.addOrReplaceChild("skirtL", CubeListBuilder.create().texOffs(100, 110).addBox(-0.5f, 0, -2.5f, 1, 5, 5), PartPose.offset(5, 0, 0));
         torso.addOrReplaceChild("backBlade", CubeListBuilder.create().texOffs(84, 48).addBox(-2, -14, 0, 4, 24, 1), PartPose.offsetAndRotation(0, -6, 2.6f, 0, 0, 0.6f));
         torso.getChild("rightArm").getChild("rightWeapon").addOrReplaceChild("blade", sword(0, 48, 14), PartPose.ZERO);
         CubeListBuilder great = CubeListBuilder.create().texOffs(32, 48).addBox(-0.5f, -0.5f, -1, 1, 1, 4)
