@@ -30,7 +30,7 @@ public class NierAutomata {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         for (UnitModule m : Modules.ALL) {
             m.type = ENTITIES.register(m.id(), () -> m.builder().build(MODID + ":" + m.id()));
-            ITEMS.register(m.id() + "_spawn_egg", () -> new SpawnEggItem((EntityType) m.type.get(), m.eggPrimary(), m.eggSecondary(), new Item.Properties()));
+            ITEMS.register(m.id() + "_spawn_egg", () -> new net.minecraftforge.common.ForgeSpawnEggItem(() -> (EntityType) m.type.get(), m.eggPrimary(), m.eggSecondary(), new Item.Properties()));
             m.registerExtra(ENTITIES);
         }
         RegistryObject<CreativeModeTab> tab = TABS.register("units", () -> CreativeModeTab.builder()
