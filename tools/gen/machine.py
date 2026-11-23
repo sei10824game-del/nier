@@ -55,7 +55,7 @@ ARCH['flyer'] = (64, 64, [
 ARCH['goliath'] = (128, 128, [
     P('body', 'root', (0, 10, 0), [B(-8, -14, -6, 16, 14, 12, 'plate', ('front', 3, 3, 10, 4, 'dark'), ('front', 6, 8, 4, 3, 'glow')),
                                    B(-6, 0, -5, 12, 3, 10, 'dark'), B(-5, -12, 6, 10, 10, 4, 'dark', ('back', 3, 7, 4, 3, 'glow'))]),
-    P('head', 'body', (0, -14, -1), [B(-4, -5, -5, 8, 5, 8, 'plate', ('front', 1, 1, 6, 2, 'dark'), ('front', 2, 1, 1, 2, 'eye'), ('front', 5, 1, 1, 2, 'eye'))]),
+    P('head', 'body', (0, -14, -1), [B(-4, -5, -5, 8, 5, 8, 'plate', ('front', 1, 1, 6, 2, 'dark'))]),
     P('rightPod', 'body', (-8, -14, 1), [B(-4, -4, -4, 4, 4, 8, 'dark', ('front', 1, 1, 2, 2, 'glow'))]),
     P('leftPod', 'body', (8, -14, 1), [B(0, -4, -4, 4, 4, 8, 'dark', ('front', 1, 1, 2, 2, 'glow'))]),
     P('rightArm', 'body', (-9, -11, 0), [B(-4, -2, -3, 5, 11, 6, 'plate')]),
@@ -93,6 +93,8 @@ SKINS = {  # plate, dark, steel, eye, glow
     '_burn': ((176, 76, 44), (70, 34, 26), (200, 110, 80), (255, 220, 70), (255, 200, 60)),
 }
 
+ARCH_BASE = {'goliath': ((150, 104, 74), (82, 62, 48), (150, 140, 128), (255, 48, 32), (255, 150, 40)),
+             'tank': ((190, 170, 128), (98, 86, 62), (160, 154, 140), (255, 48, 32), (255, 150, 40))}
 NEED = {'_gold': ('stubby',), '_hacked': ('stubby', 'biped', 'sphere'), '_burn': ('stubby', 'sphere')}
 
 def pack(w, boxes):
@@ -131,6 +133,7 @@ for arch, (W, H, parts) in ARCH.items():
     java.append('    }')
     for suffix, (plate, dark, steel, eye, glow) in SKINS.items():
         if suffix and arch not in NEED[suffix]: continue
+        if not suffix and arch in ARCH_BASE: plate, dark, steel, eye, glow = ARCH_BASE[arch]
         mats = {'plate': plate, 'dark': dark, 'steel': steel, 'eye': eye, 'glow': glow, 'white': (238, 234, 222)}
         t = Tex(W, H, seed=len(arch) * 7919)
         for pi, (name, parent, pv, rot, boxes) in enumerate(parts):
