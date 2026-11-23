@@ -6,6 +6,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 
 public final class ClientSetup {
     static void init(IEventBus bus) {
+        if (System.getProperty("nier.preview") != null) net.minecraftforge.common.MinecraftForge.EVENT_BUS.addListener(com.nier.automata.client.PreviewDriver::onTick);
         bus.addListener((EntityRenderersEvent.RegisterLayerDefinitions e) -> { for (UnitModule<?> m : Modules.ALL) m.registerLayers(e); });
         bus.addListener((EntityRenderersEvent.RegisterRenderers e) -> { for (UnitModule<?> m : Modules.ALL) m.registerRenderers(e); });
     }

@@ -32,6 +32,7 @@ public class RedGirlsModel extends NierModel<RedGirlsUnit> {
             PartDefinition h = g.addOrReplaceChild("head" + s, CubeListBuilder.create().texOffs(0, 0).addBox(-2.5f, -5, -2.5f, 5, 5, 5)
                     .texOffs(20, 0).addBox(-3, -5.5f, 1, 6, 11, 2).texOffs(36, 0).addBox(2.5f, -4.5f, -2, 1, 9, 4).texOffs(36, 0).addBox(-3.5f, -4.5f, -2, 1, 9, 4)
                     .texOffs(20, 40).addBox(-3, -4.5f, -3, 6, 1, 6), PartPose.offset(0, -7, 0));   // long black hair + red headband
+            h.addOrReplaceChild("halo" + s, CubeListBuilder.create().texOffs(0, 48).addBox(-3.5f, -0.5f, -3.5f, 7, 1, 7), PartPose.offset(0, -7.5f, 0));
             g.addOrReplaceChild("armR" + s, CubeListBuilder.create().texOffs(24, 16).addBox(-1, 0, -1, 2, 7, 2).texOffs(0, 40).addBox(-1.5f, -0.5f, -1.5f, 3, 3, 3), PartPose.offset(-3, -6.5f, 0));
             g.addOrReplaceChild("armL" + s, CubeListBuilder.create().texOffs(32, 16).addBox(-1, 0, -1, 2, 7, 2).texOffs(0, 40).addBox(-1.5f, -0.5f, -1.5f, 3, 3, 3), PartPose.offset(3, -6.5f, 0));
         }
