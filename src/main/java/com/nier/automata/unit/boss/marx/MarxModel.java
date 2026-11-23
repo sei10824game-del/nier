@@ -26,8 +26,12 @@ public class MarxModel extends NierModel<MarxUnit> {
     static LayerDefinition create() {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition ch = mesh.getRoot().addOrReplaceChild("chassis", CubeListBuilder.create().texOffs(0, 0).addBox(-9, -10, -11, 18, 6, 22)
-                .texOffs(0, 28).addBox(-12, -6, -12, 4, 6, 24).texOffs(0, 28).addBox(8, -6, -12, 4, 6, 24), PartPose.offset(0, 24, 0));
+                .texOffs(0, 28).addBox(-12, -4, -12, 24, 2, 24).texOffs(0, 28).addBox(-12, -2, -12, 24, 2, 24)
+                .texOffs(0, 104).addBox(-10, -6, -10, 20, 2, 20), PartPose.offset(0, 24, 0));   // stepped grey base
         PartDefinition tu = ch.addOrReplaceChild("turret", CubeListBuilder.create().texOffs(0, 58).addBox(-7, -8, -6, 14, 8, 12), PartPose.offset(0, -10, 0));
+        tu.addOrReplaceChild("towerA", CubeListBuilder.create().texOffs(64, 104).addBox(2, -24, 2, 4, 16, 4), PartPose.ZERO);
+        tu.addOrReplaceChild("towerB", CubeListBuilder.create().texOffs(64, 104).addBox(-6, -24, 2, 4, 16, 4), PartPose.ZERO);
+        tu.addOrReplaceChild("conveyor", CubeListBuilder.create().texOffs(76, 40).addBox(-2, -2, 0, 4, 4, 22), PartPose.offset(0, -4, 6));
         tu.addOrReplaceChild("cab", CubeListBuilder.create().texOffs(52, 58).addBox(-3, -6, -3, 6, 6, 6), PartPose.offset(-3, -8, 1));
         PartDefinition boom = tu.addOrReplaceChild("boom", CubeListBuilder.create().texOffs(0, 80).addBox(-2, -2, -20, 4, 4, 20),
                 PartPose.offsetAndRotation(2, -5, -5, BOOM_REST, 0, 0));
