@@ -24,17 +24,27 @@ public class SimoneModel extends NierModel<SimoneUnit> {
 
     static LayerDefinition create() {
         MeshDefinition mesh = new MeshDefinition();
-        PartDefinition body = mesh.getRoot().addOrReplaceChild("body", CubeListBuilder.create(), PartPose.offset(0, 10, 0));
-        body.addOrReplaceChild("skirt", CubeListBuilder.create().texOffs(0, 0).addBox(-6, 0, -6, 12, 4, 12)
-                .texOffs(0, 16).addBox(-8, 4, -8, 16, 5, 16).texOffs(0, 37).addBox(-10, 9, -10, 20, 5, 20), PartPose.ZERO);
+        PartDefinition body = mesh.getRoot().addOrReplaceChild("body", CubeListBuilder.create(), PartPose.offset(0, 4, 0));
+        body.addOrReplaceChild("skirt", CubeListBuilder.create().texOffs(0, 0).addBox(-6, 0, -6, 12, 5, 12)
+                .texOffs(0, 16).addBox(-8, 5, -8, 16, 5, 16).texOffs(0, 37).addBox(-10, 10, -10, 20, 5, 20)
+                .texOffs(0, 130).addBox(-12, 15, -12, 24, 5, 24), PartPose.ZERO);
         PartDefinition torso = body.addOrReplaceChild("torso", CubeListBuilder.create().texOffs(48, 0).addBox(-3, -10, -2, 6, 10, 4), PartPose.ZERO);
         torso.addOrReplaceChild("head", CubeListBuilder.create().texOffs(68, 0).addBox(-3, -6, -3, 6, 6, 6)
-                .texOffs(92, 0).addBox(-4, -9, -1, 8, 3, 2), PartPose.offset(0, -10, 0));
+                .texOffs(92, 0).addBox(-4, -9, -1, 8, 3, 2).texOffs(0, 190).addBox(-7, -14, 2, 14, 2, 1)
+                .texOffs(40, 190).addBox(-3.5f, -6, 3, 7, 14, 1), PartPose.offset(0, -10, 0));
         torso.addOrReplaceChild("rightArm", CubeListBuilder.create().texOffs(80, 16).addBox(-1, -1, -1, 2, 16, 2), PartPose.offset(-4, -9, 0));
         torso.addOrReplaceChild("leftArm", CubeListBuilder.create().texOffs(88, 16).addBox(-1, -1, -1, 2, 16, 2), PartPose.offset(4, -9, 0));
+        body.addOrReplaceChild("clothA", CubeListBuilder.create().texOffs(0, 160).addBox(-10, -1, -10, 20, 3, 20), PartPose.offsetAndRotation(0, 4, 0, 0.12f, 0, 0.08f));
+        body.addOrReplaceChild("clothB", CubeListBuilder.create().texOffs(0, 160).addBox(-10, -1, -10, 20, 3, 20), PartPose.offsetAndRotation(0, 10, 0, -0.1f, 0.5f, -0.1f));
+        CubeListBuilder corpse = CubeListBuilder.create().texOffs(100, 130).addBox(-1, 0, -0.5f, 2, 8, 1);
+        torso.addOrReplaceChild("hangR", corpse, PartPose.offset(-12, -20, 0)); torso.addOrReplaceChild("hangL", corpse, PartPose.offset(12, -20, 0));
+        body.addOrReplaceChild("c1", corpse, PartPose.offsetAndRotation(-5, 2, -9, -1.2f, 0, 0)); body.addOrReplaceChild("c2", corpse, PartPose.offsetAndRotation(5, 2, -9, -1.2f, 0, 0));
+        body.addOrReplaceChild("c3", corpse, PartPose.offsetAndRotation(-11, 6, -3, 0, 0, 1.2f)); body.addOrReplaceChild("c4", corpse, PartPose.offsetAndRotation(11, 6, -3, 0, 0, -1.2f));
+        torso.addOrReplaceChild("shoulderR", CubeListBuilder.create().texOffs(60, 190).addBox(-2, -2, -2, 4, 4, 4), PartPose.offset(-6, -9, 0));
+        torso.addOrReplaceChild("shoulderL", CubeListBuilder.create().texOffs(60, 190).addBox(-2, -2, -2, 4, 4, 4), PartPose.offset(6, -9, 0));
         torso.addOrReplaceChild("wings", CubeListBuilder.create().texOffs(0, 62).addBox(-14, -8, 0, 12, 16, 1)
                 .texOffs(0, 62).addBox(2, -8, 0, 12, 16, 1), PartPose.offset(0, -6, 2.5f));
-        return LayerDefinition.create(mesh, 128, 128);
+        return LayerDefinition.create(mesh, 128, 256);
     }
 
     public SimoneModel(ModelPart root) {
