@@ -104,7 +104,8 @@ def _quad():
     return parts
 ARCH['quad'] = (128, 128, _quad())
 ARCH['sphere'] = (128, 128, [
-    P('ball', 'root', (0, 18, 0), [B(-6, -6, -6, 12, 12, 12, 'plate', ('front', 0, 5, 12, 2, 'dark'), ('front', 4, 4, 4, 4, 'dark'), ('front', 5, 5, 2, 2, 'eye')),
+    P('ball', 'root', (0, 18, 0), [B(-6, -4, -4, 12, 8, 8, 'plate'), B(-4, -6, -4, 8, 12, 8, 'plate'),
+                                   B(-4, -4, -6, 8, 8, 12, 'plate', ('front', 0, 3, 8, 2, 'dark'), ('front', 1, 1, 6, 6, 'dark'), ('front', 2, 2, 4, 4, 'white'), ('front', 3, 3, 2, 2, 'eye')),
                                    B(-6.5, -1, -6.5, 13, 2, 13, 'dark')]),
     P('rightFin', 'ball', (-6, 0, 0), [B(-1, -3, -3, 1, 6, 6, 'steel')]),
     P('leftFin', 'ball', (6, 0, 0), [B(0, -3, -3, 1, 6, 6, 'steel')]),
