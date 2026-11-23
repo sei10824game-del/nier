@@ -92,6 +92,17 @@ def _multileg():
         parts.append(P(f'panel{side}', f'arm{side}', (sx * 3, 0, 0), [B(-0.5, -8, -3.5, 1, 16, 7, 'plate', ('front', 0, 0, 1, 1, 'dark'))]))
     return parts
 ARCH['multileg'] = (128, 64, _multileg())
+def _quad():
+    parts = [P('body', 'root', (0, 12, 0), [B(-4, -3, -7, 8, 6, 14, 'plate', ('top', 2, 4, 4, 1, 'dark')), B(-5, 3, -6, 10, 1, 12, 'dark')]),
+             P('head', 'body', (0, -1, -7), [B(-3, -4, -5, 6, 6, 6, 'plate', *EYE1(6, 1)), B(-2, 0, -7, 4, 2, 2, 'dark')]),
+             P('tail', 'body', (0, -2, 7), [B(-0.5, -1, 0, 1, 2, 5, 'dark'), B(-0.5, -4, 4, 1, 6, 6, 'steel')])]
+    for side, sx in (('R', -1), ('L', 1)):
+        for i, z in enumerate((-5, 5)):
+            n = f'leg{side}{i}'
+            parts.append(P(n, 'body', (sx * 4, 3, z), [B(-1, 0, -1, 2, 5, 2, 'dark')], rot=(0, 0, sx * -0.3)))
+            parts.append(P(f'low{side}{i}', n, (0, 5, 0), [B(-0.5, 0, -0.5, 1, 6, 1, 'dark'), B(-1.5, 5, -2, 3, 1, 4, 'steel')], rot=(0, 0, sx * 0.3)))
+    return parts
+ARCH['quad'] = (128, 128, _quad())
 ARCH['sphere'] = (128, 128, [
     P('ball', 'root', (0, 18, 0), [B(-6, -6, -6, 12, 12, 12, 'plate', ('front', 0, 5, 12, 2, 'dark'), ('front', 4, 4, 4, 4, 'dark'), ('front', 5, 5, 2, 2, 'eye')),
                                    B(-6.5, -1, -6.5, 13, 2, 13, 'dark')]),
@@ -186,6 +197,7 @@ NAMES = {
     'machine_large_goliath': ('Large Goliath Biped', '大型超大型二足'), 'machine_goliath_tank': ('Goliath Tank', '超大型戦車'),
     'machine_multileg': ('Medium Multi-Leg', '中型多脚'), 'machine_drill_sphere': ('Drill Sphere', 'ドリル球体'),
     'machine_small_exploder': ('Small Exploder', '小型自爆型'), 'machine_saw_sphere': ('Saw Sphere', '丸ノコ球体'),
+    'machine_medium_quadruped': ('Medium Quadruped', '中型四足'),
     'machine_sphere': ('Sphere', '球体'), 'machine_hacked_sphere': ('Hacked Sphere', 'ハッキング球体'),
 }
 os.makedirs(RES + '/lang/parts', exist_ok=True)

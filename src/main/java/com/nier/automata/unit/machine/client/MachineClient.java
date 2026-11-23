@@ -36,6 +36,7 @@ public final class MachineClient {
         e.registerLayerDefinition(layer(Arch.TANK), MachineGeo::tank);
         e.registerLayerDefinition(layer(Arch.SPHERE), MachineGeo::sphere);
         e.registerLayerDefinition(layer(Arch.MULTILEG), MachineGeo::multileg);
+        e.registerLayerDefinition(layer(Arch.QUAD), MachineGeo::quad);
     }
 
     public static void renderers(MachineModule m, EntityRenderersEvent.RegisterRenderers e) {
@@ -53,6 +54,7 @@ public final class MachineClient {
             case TANK -> new TankModel(root);
             case SPHERE -> new SphereModel(root);
             case MULTILEG -> new MultiLegModel(root);
+            case QUAD -> new QuadModel(root);
         };
     }
 
