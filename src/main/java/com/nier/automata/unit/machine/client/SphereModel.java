@@ -55,6 +55,14 @@ public class SphereModel extends NierModel<MachineUnit> {
             .bone("rightFin").rot(0, 0, 0, 0).rot(14, 0, 0, 0.9f).rot(30, 0, 0, 0.9f).rot(44, 0, 0, 0)
             .bone("leftFin").rot(0, 0, 0, 0).rot(14, 0, 0, -0.9f).rot(30, 0, 0, -0.9f).rot(44, 0, 0, 0).done());
 
+        // Saw Rush: blade spools up while the ball tilts forward 0-9, charges with the saw whirling and the ball tilting into the cut
+        clip(SAW, AnimClip.of(40).blend(3)
+            .bone("ball").rot(0, 0, 0, 0).rot(9, -0.5f, 0, 0).rot(12, 0.5f, 0, 0, OUT).rot(32, 0.5f, 0, 0).rot(40, 0, 0, 0)
+                .pos(0, 0, 0, 0).pos(9, 0, 1.2f, 1).pos(12, 0, 0, -1, OUT).pos(40, 0, 0, 0)
+            .bone("saw").rot(0, 0, 0, 0).rot(9, 0, 8 * PI, 0, IN).rot(40, 0, 40 * PI, 0, LINEAR)
+            .bone("rightFin").rot(0, 0, 0, 0).rot(10, 0, 0, 0.9f).rot(32, 0, 0, 0.9f).rot(40, 0, 0, 0)
+            .bone("leftFin").rot(0, 0, 0, 0).rot(10, 0, 0, -0.9f).rot(32, 0, 0, -0.9f).rot(40, 0, 0, 0).done());
+
         // Self-Destruct: overheating shudder while rushing 0-39, swelling 40-49
         AnimClip sd = AnimClip.of(50).blend(2);
         AnimClip.Bone b = sd.bone("ball").pos(0, 0, 0, 0).scale(0, 1, 1, 1).scale(39, 1.05f, 1.05f, 1.05f).scale(49, 1.5f, 1.5f, 1.5f);
@@ -73,6 +81,9 @@ public class SphereModel extends NierModel<MachineUnit> {
         bone("topFin").xRot = Mth.sin(age * 0.18f) * 0.1f;
         boolean drill = e.v.weapon() == com.nier.automata.unit.machine.MachineVariant.Weapon.DRILL;
         bone("drill").xScale = bone("drill").yScale = bone("drill").zScale = drill ? 1 : 0;
+        boolean saw = e.v.weapon() == com.nier.automata.unit.machine.MachineVariant.Weapon.SAW;
+        bone("saw").xScale = bone("saw").yScale = bone("saw").zScale = saw ? 1 : 0;
+        if (saw && e.getSkillId() == 0) bone("saw").yRot = age * 0.4f;
         if (drill && e.getSkillId() == 0) bone("drill").yRot = age * 0.4f;
     }
 }

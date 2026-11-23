@@ -131,7 +131,7 @@ public class StubbyUnit extends MachineUnit {
             }).weight(2));
             default -> {}
         }
-        if (w == Weapon.NONE && v.small()) l.add(selfDestruct = new Skill(SELF_DESTRUCT, "Self-Destruct", 50, 0, 0, 999, (u, t, k) -> {
+        if ((w == Weapon.NONE || w == Weapon.BOMB) && v.small()) l.add(selfDestruct = new Skill(SELF_DESTRUCT, "Self-Destruct", 50, 0, 0, 999, (u, t, k) -> {
             if (k == 0) { setForm(1); sound(SoundEvents.CREEPER_PRIMED, 1f, 0.8f); }
             fx(ParticleTypes.LARGE_SMOKE, at(0, 1.4, 0), 1, 0.2, 0.02);
             if (k < 40 && t != null) getNavigation().moveTo(t, 1.6);
@@ -156,6 +156,7 @@ public class StubbyUnit extends MachineUnit {
     }
 
     @Override @Nullable protected Skill forcedSkill() {
+        if (v.weapon() == Weapon.BOMB && getTarget() != null && distanceTo(getTarget()) < 3.2) return selfDestruct;
         return selfDestruct != null && getHealth() < getMaxHealth() * 0.3f ? selfDestruct : null;
     }
 }

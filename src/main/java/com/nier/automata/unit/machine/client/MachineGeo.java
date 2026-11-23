@@ -6,22 +6,23 @@ import net.minecraft.client.model.geom.builders.*;
 
 public final class MachineGeo {
     private MachineGeo() {}
-    public static final String[] STUBBY_PATHS = {"body", "body/head", "body/rightArm", "body/leftArm", "rightLeg", "leftLeg", "body/rightArm/weapon", "body/rightArm/weapon/axe", "body/rightArm/weapon/spear", "body/rightArm/weapon/hammer", "body/rightArm/weapon/staff", "body/leftArm/shield"};
+    public static final String[] STUBBY_PATHS = {"body", "body/head", "body/head/bomb", "body/rightArm", "body/leftArm", "rightLeg", "leftLeg", "body/rightArm/weapon", "body/rightArm/weapon/axe", "body/rightArm/weapon/spear", "body/rightArm/weapon/hammer", "body/rightArm/weapon/staff", "body/leftArm/shield"};
     public static LayerDefinition stubby() {
         MeshDefinition mesh = new MeshDefinition(); PartDefinition root = mesh.getRoot();
-        PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(30, 23).addBox(-4F, -7F, -3.5F, 8F, 7F, 7F).texOffs(44, 38).addBox(-4.5F, -3F, -4F, 9F, 2F, 8F), PartPose.offsetAndRotation(0F, 18F, 0F, 0F, 0F, 0F));
-        PartDefinition head = body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(82, 0).addBox(-4.5F, -8F, -4.5F, 9F, 8F, 9F).texOffs(44, 49).addBox(-3F, -9F, -3F, 6F, 1F, 6F).texOffs(88, 23).addBox(-5F, -2F, -5F, 10F, 1F, 10F), PartPose.offsetAndRotation(0F, -7F, 0F, 0F, 0F, 0F));
-        PartDefinition rightArm = body.addOrReplaceChild("rightArm", CubeListBuilder.create().texOffs(0, 38).addBox(-2.5F, -1F, -1.5F, 3F, 8F, 3F).texOffs(68, 49).addBox(-3F, 7F, -2F, 4F, 3F, 4F), PartPose.offsetAndRotation(-4.5F, -6F, 0F, 0F, 0F, 0F));
-        PartDefinition leftArm = body.addOrReplaceChild("leftArm", CubeListBuilder.create().texOffs(12, 38).addBox(-0.5F, -1F, -1.5F, 3F, 8F, 3F).texOffs(84, 49).addBox(-1F, 7F, -2F, 4F, 3F, 4F), PartPose.offsetAndRotation(4.5F, -6F, 0F, 0F, 0F, 0F));
-        PartDefinition rightLeg = root.addOrReplaceChild("rightLeg", CubeListBuilder.create().texOffs(100, 49).addBox(-1.5F, 0F, -1.5F, 3F, 4F, 3F).texOffs(0, 49).addBox(-2.5F, 4F, -3F, 5F, 2F, 6F), PartPose.offsetAndRotation(-2F, 18F, 0F, 0F, 0F, 0F));
-        PartDefinition leftLeg = root.addOrReplaceChild("leftLeg", CubeListBuilder.create().texOffs(112, 49).addBox(-1.5F, 0F, -1.5F, 3F, 4F, 3F).texOffs(22, 49).addBox(-2.5F, 4F, -3F, 5F, 2F, 6F), PartPose.offsetAndRotation(2F, 18F, 0F, 0F, 0F, 0F));
+        PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(30, 23).addBox(-4F, -7F, -3.5F, 8F, 7F, 7F).texOffs(84, 38).addBox(-4.5F, -3F, -4F, 9F, 2F, 8F), PartPose.offsetAndRotation(0F, 18F, 0F, 0F, 0F, 0F));
+        PartDefinition head = body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(82, 0).addBox(-4.5F, -8F, -4.5F, 9F, 8F, 9F).texOffs(76, 49).addBox(-3F, -9F, -3F, 6F, 1F, 6F).texOffs(0, 38).addBox(-5F, -2F, -5F, 10F, 1F, 10F), PartPose.offsetAndRotation(0F, -7F, 0F, 0F, 0F, 0F));
+        PartDefinition bomb = head.addOrReplaceChild("bomb", CubeListBuilder.create().texOffs(60, 23).addBox(-4F, -6F, -4F, 8F, 6F, 8F).texOffs(72, 59).addBox(-0.5F, -9F, -0.5F, 1F, 3F, 1F), PartPose.offsetAndRotation(0F, -8F, 0F, 0F, 0F, 0F));
+        PartDefinition rightArm = body.addOrReplaceChild("rightArm", CubeListBuilder.create().texOffs(40, 38).addBox(-2.5F, -1F, -1.5F, 3F, 8F, 3F).texOffs(100, 49).addBox(-3F, 7F, -2F, 4F, 3F, 4F), PartPose.offsetAndRotation(-4.5F, -6F, 0F, 0F, 0F, 0F));
+        PartDefinition leftArm = body.addOrReplaceChild("leftArm", CubeListBuilder.create().texOffs(52, 38).addBox(-0.5F, -1F, -1.5F, 3F, 8F, 3F).texOffs(0, 59).addBox(-1F, 7F, -2F, 4F, 3F, 4F), PartPose.offsetAndRotation(4.5F, -6F, 0F, 0F, 0F, 0F));
+        PartDefinition rightLeg = root.addOrReplaceChild("rightLeg", CubeListBuilder.create().texOffs(16, 59).addBox(-1.5F, 0F, -1.5F, 3F, 4F, 3F).texOffs(32, 49).addBox(-2.5F, 4F, -3F, 5F, 2F, 6F), PartPose.offsetAndRotation(-2F, 18F, 0F, 0F, 0F, 0F));
+        PartDefinition leftLeg = root.addOrReplaceChild("leftLeg", CubeListBuilder.create().texOffs(28, 59).addBox(-1.5F, 0F, -1.5F, 3F, 4F, 3F).texOffs(54, 49).addBox(-2.5F, 4F, -3F, 5F, 2F, 6F), PartPose.offsetAndRotation(2F, 18F, 0F, 0F, 0F, 0F));
         PartDefinition weapon = rightArm.addOrReplaceChild("weapon", CubeListBuilder.create(), PartPose.offsetAndRotation(-1F, 8.5F, 0F, 0F, 0F, 0F));
-        PartDefinition axe = weapon.addOrReplaceChild("axe", CubeListBuilder.create().texOffs(0, 23).addBox(-0.5F, -0.5F, -12F, 1F, 1F, 14F).texOffs(78, 38).addBox(-0.5F, -5.5F, -13F, 1F, 5F, 5F).texOffs(24, 57).addBox(-0.5F, 0.5F, -12.5F, 1F, 2F, 3F), PartPose.offsetAndRotation(0F, 0F, 0F, 0F, 0F, 0F));
-        PartDefinition spear = weapon.addOrReplaceChild("spear", CubeListBuilder.create().texOffs(0, 0).addBox(-0.5F, -0.5F, -18F, 1F, 1F, 22F).texOffs(0, 57).addBox(-1F, -1F, -22F, 2F, 2F, 4F), PartPose.offsetAndRotation(0F, 0F, 0F, 0F, 0F, 0F));
-        PartDefinition hammer = weapon.addOrReplaceChild("hammer", CubeListBuilder.create().texOffs(60, 23).addBox(-0.5F, -0.5F, -11F, 1F, 1F, 13F).texOffs(90, 38).addBox(-2.5F, -2.5F, -15F, 5F, 5F, 5F), PartPose.offsetAndRotation(0F, 0F, 0F, 0F, 0F, 0F));
-        PartDefinition staff = weapon.addOrReplaceChild("staff", CubeListBuilder.create().texOffs(46, 0).addBox(-0.5F, -0.5F, -14F, 1F, 1F, 17F).texOffs(12, 57).addBox(-1.5F, -1.5F, -17F, 3F, 3F, 3F), PartPose.offsetAndRotation(0F, 0F, 0F, 0F, 0F, 0F));
-        PartDefinition shield = leftArm.addOrReplaceChild("shield", CubeListBuilder.create().texOffs(24, 38).addBox(-4F, -5F, -1.5F, 9F, 10F, 1F), PartPose.offsetAndRotation(1F, 5F, -2F, 0F, 0F, 0F));
-        return LayerDefinition.create(mesh, 128, 64);
+        PartDefinition axe = weapon.addOrReplaceChild("axe", CubeListBuilder.create().texOffs(0, 23).addBox(-0.5F, -0.5F, -12F, 1F, 1F, 14F).texOffs(0, 49).addBox(-0.5F, -5.5F, -13F, 1F, 5F, 5F).texOffs(64, 59).addBox(-0.5F, 0.5F, -12.5F, 1F, 2F, 3F), PartPose.offsetAndRotation(0F, 0F, 0F, 0F, 0F, 0F));
+        PartDefinition spear = weapon.addOrReplaceChild("spear", CubeListBuilder.create().texOffs(0, 0).addBox(-0.5F, -0.5F, -18F, 1F, 1F, 22F).texOffs(40, 59).addBox(-1F, -1F, -22F, 2F, 2F, 4F), PartPose.offsetAndRotation(0F, 0F, 0F, 0F, 0F, 0F));
+        PartDefinition hammer = weapon.addOrReplaceChild("hammer", CubeListBuilder.create().texOffs(92, 23).addBox(-0.5F, -0.5F, -11F, 1F, 1F, 13F).texOffs(12, 49).addBox(-2.5F, -2.5F, -15F, 5F, 5F, 5F), PartPose.offsetAndRotation(0F, 0F, 0F, 0F, 0F, 0F));
+        PartDefinition staff = weapon.addOrReplaceChild("staff", CubeListBuilder.create().texOffs(46, 0).addBox(-0.5F, -0.5F, -14F, 1F, 1F, 17F).texOffs(52, 59).addBox(-1.5F, -1.5F, -17F, 3F, 3F, 3F), PartPose.offsetAndRotation(0F, 0F, 0F, 0F, 0F, 0F));
+        PartDefinition shield = leftArm.addOrReplaceChild("shield", CubeListBuilder.create().texOffs(64, 38).addBox(-4F, -5F, -1.5F, 9F, 10F, 1F), PartPose.offsetAndRotation(1F, 5F, -2F, 0F, 0F, 0F));
+        return LayerDefinition.create(mesh, 128, 128);
     }
     public static final String[] BIPED_PATHS = {"body", "body/head", "body/rightArm", "body/leftArm", "rightLeg", "leftLeg", "body/rightArm/club", "body/leftArm/shield"};
     public static LayerDefinition biped() {
@@ -106,14 +107,15 @@ public final class MachineGeo {
         PartDefinition panelL = armL.addOrReplaceChild("panelL", CubeListBuilder.create().texOffs(16, 0).addBox(-0.5F, -8F, -3.5F, 1F, 16F, 7F), PartPose.offsetAndRotation(3F, 0F, 0F, 0F, 0F, 0F));
         return LayerDefinition.create(mesh, 128, 64);
     }
-    public static final String[] SPHERE_PATHS = {"ball", "ball/rightFin", "ball/leftFin", "ball/topFin", "ball/drill"};
+    public static final String[] SPHERE_PATHS = {"ball", "ball/rightFin", "ball/leftFin", "ball/topFin", "ball/saw", "ball/drill"};
     public static LayerDefinition sphere() {
         MeshDefinition mesh = new MeshDefinition(); PartDefinition root = mesh.getRoot();
-        PartDefinition ball = root.addOrReplaceChild("ball", CubeListBuilder.create().texOffs(0, 0).addBox(-6F, -6F, -6F, 12F, 12F, 12F).texOffs(0, 24).addBox(-6.5F, -1F, -6.5F, 13F, 2F, 13F), PartPose.offsetAndRotation(0F, 18F, 0F, 0F, 0F, 0F));
-        PartDefinition rightFin = ball.addOrReplaceChild("rightFin", CubeListBuilder.create().texOffs(24, 39).addBox(-1F, -3F, -3F, 1F, 6F, 6F), PartPose.offsetAndRotation(-6F, 0F, 0F, 0F, 0F, 0F));
-        PartDefinition leftFin = ball.addOrReplaceChild("leftFin", CubeListBuilder.create().texOffs(38, 39).addBox(0F, -3F, -3F, 1F, 6F, 6F), PartPose.offsetAndRotation(6F, 0F, 0F, 0F, 0F, 0F));
-        PartDefinition topFin = ball.addOrReplaceChild("topFin", CubeListBuilder.create().texOffs(24, 52).addBox(-3F, -1F, -1F, 6F, 1F, 2F), PartPose.offsetAndRotation(0F, -6F, 0F, 0F, 0F, 0F));
-        PartDefinition drill = ball.addOrReplaceChild("drill", CubeListBuilder.create().texOffs(0, 39).addBox(-3F, -7F, -3F, 6F, 7F, 6F).texOffs(0, 52).addBox(-2F, -11F, -2F, 4F, 4F, 4F).texOffs(16, 52).addBox(-1F, -13F, -1F, 2F, 2F, 2F), PartPose.offsetAndRotation(0F, -6F, 0F, 0F, 0F, 0F));
-        return LayerDefinition.create(mesh, 64, 64);
+        PartDefinition ball = root.addOrReplaceChild("ball", CubeListBuilder.create().texOffs(0, 0).addBox(-6F, -6F, -6F, 12F, 12F, 12F).texOffs(48, 0).addBox(-6.5F, -1F, -6.5F, 13F, 2F, 13F), PartPose.offsetAndRotation(0F, 18F, 0F, 0F, 0F, 0F));
+        PartDefinition rightFin = ball.addOrReplaceChild("rightFin", CubeListBuilder.create().texOffs(80, 24).addBox(-1F, -3F, -3F, 1F, 6F, 6F), PartPose.offsetAndRotation(-6F, 0F, 0F, 0F, 0F, 0F));
+        PartDefinition leftFin = ball.addOrReplaceChild("leftFin", CubeListBuilder.create().texOffs(94, 24).addBox(0F, -3F, -3F, 1F, 6F, 6F), PartPose.offsetAndRotation(6F, 0F, 0F, 0F, 0F, 0F));
+        PartDefinition topFin = ball.addOrReplaceChild("topFin", CubeListBuilder.create().texOffs(24, 39).addBox(-3F, -1F, -1F, 6F, 1F, 2F), PartPose.offsetAndRotation(0F, -6F, 0F, 0F, 0F, 0F));
+        PartDefinition saw = ball.addOrReplaceChild("saw", CubeListBuilder.create().texOffs(0, 24).addBox(-7F, -2F, -7F, 14F, 1F, 14F).texOffs(108, 24).addBox(-1.5F, -7F, -1.5F, 3F, 5F, 3F).texOffs(40, 39).addBox(-8F, -2F, -1F, 1F, 1F, 2F).texOffs(46, 39).addBox(7F, -2F, -1F, 1F, 1F, 2F).texOffs(52, 39).addBox(-1F, -2F, -8F, 2F, 1F, 1F).texOffs(58, 39).addBox(-1F, -2F, 7F, 2F, 1F, 1F), PartPose.offsetAndRotation(0F, -6F, 0F, 0F, 0F, 0F));
+        PartDefinition drill = ball.addOrReplaceChild("drill", CubeListBuilder.create().texOffs(56, 24).addBox(-3F, -7F, -3F, 6F, 7F, 6F).texOffs(0, 39).addBox(-2F, -11F, -2F, 4F, 4F, 4F).texOffs(16, 39).addBox(-1F, -13F, -1F, 2F, 2F, 2F), PartPose.offsetAndRotation(0F, -6F, 0F, 0F, 0F, 0F));
+        return LayerDefinition.create(mesh, 128, 128);
     }
 }

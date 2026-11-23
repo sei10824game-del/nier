@@ -186,7 +186,7 @@ public class StubbyModel extends NierModel<MachineUnit> {
 
     @Override protected void idle(MachineUnit e, float ls, float la, float age, float headYaw, float headPitch) {
         Weapon w = e.v.weapon();
-        bone("axe").visible = w == Weapon.AXE; bone("spear").visible = w == Weapon.SPEAR;
+        bone("bomb").visible = w == Weapon.BOMB; bone("axe").visible = w == Weapon.AXE; bone("spear").visible = w == Weapon.SPEAR;
         bone("hammer").visible = w == Weapon.HAMMER; bone("staff").visible = w == Weapon.STAFF; bone("shield").visible = w == Weapon.SHIELD;
         float c = Mth.cos(ls * 0.9f) * 1.1f * la;
         bone("rightLeg").xRot = c; bone("leftLeg").xRot = -c;

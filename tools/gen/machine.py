@@ -17,10 +17,11 @@ def B(x, y, z, w, h, d, mat, *deco): return (x, y, z, w, h, d, mat, list(deco))
 EYES2 = lambda w, y=3, s=2, inset=1: [('front', inset, y, s, s, 'eye'), ('front', w - inset - s, y, s, s, 'eye')]
 
 ARCH = {}
-ARCH['stubby'] = (128, 64, [
+ARCH['stubby'] = (128, 128, [
     P('body', 'root', (0, 18, 0), [B(-4, -7, -3.5, 8, 7, 7, 'plate', ('front', 3, 2, 2, 2, 'steel'), ('front', 3, 3, 2, 1, 'dark'), ('front', 4, 2, 1, 2, 'dark')), B(-4.5, -3, -4, 9, 2, 8, 'dark')]),
     P('head', 'body', (0, -7, 0), [B(-4.5, -8, -4.5, 9, 8, 9, 'plate', *EYE1(9, 2), ('front', 1, 6, 1, 1, 'steel')),
                                    B(-3, -9, -3, 6, 1, 6, 'plate'), B(-5, -2, -5, 10, 1, 10, 'dark')]),
+    P('bomb', 'head', (0, -8, 0), [B(-4, -6, -4, 8, 6, 8, 'dark', ('front', 0, 2, 8, 2, 'eye'), ('left', 0, 2, 8, 2, 'eye'), ('right', 0, 2, 8, 2, 'eye'), ('back', 0, 2, 8, 2, 'eye')), B(-0.5, -9, -0.5, 1, 3, 1, 'steel')]),
     P('rightArm', 'body', (-4.5, -6, 0), [B(-2.5, -1, -1.5, 3, 8, 3, 'dark'), B(-3, 7, -2, 4, 3, 4, 'plate')]),
     P('leftArm', 'body', (4.5, -6, 0), [B(-0.5, -1, -1.5, 3, 8, 3, 'dark'), B(-1, 7, -2, 4, 3, 4, 'plate')]),
     P('rightLeg', 'root', (-2, 18, 0), [B(-1.5, 0, -1.5, 3, 4, 3, 'dark'), B(-2.5, 4, -3, 5, 2, 6, 'plate', ('top', 1, 1, 3, 1, 'dark'))]),
@@ -91,12 +92,13 @@ def _multileg():
         parts.append(P(f'panel{side}', f'arm{side}', (sx * 3, 0, 0), [B(-0.5, -8, -3.5, 1, 16, 7, 'plate', ('front', 0, 0, 1, 1, 'dark'))]))
     return parts
 ARCH['multileg'] = (128, 64, _multileg())
-ARCH['sphere'] = (64, 64, [
+ARCH['sphere'] = (128, 128, [
     P('ball', 'root', (0, 18, 0), [B(-6, -6, -6, 12, 12, 12, 'plate', ('front', 0, 5, 12, 2, 'dark'), ('front', 4, 4, 4, 4, 'dark'), ('front', 5, 5, 2, 2, 'eye')),
                                    B(-6.5, -1, -6.5, 13, 2, 13, 'dark')]),
     P('rightFin', 'ball', (-6, 0, 0), [B(-1, -3, -3, 1, 6, 6, 'steel')]),
     P('leftFin', 'ball', (6, 0, 0), [B(0, -3, -3, 1, 6, 6, 'steel')]),
     P('topFin', 'ball', (0, -6, 0), [B(-3, -1, -1, 6, 1, 2, 'steel')]),
+    P('saw', 'ball', (0, -6, 0), [B(-7, -2, -7, 14, 1, 14, 'steel'), B(-1.5, -7, -1.5, 3, 5, 3, 'dark'), B(-8, -2, -1, 1, 1, 2, 'dark'), B(7, -2, -1, 1, 1, 2, 'dark'), B(-1, -2, -8, 2, 1, 1, 'dark'), B(-1, -2, 7, 2, 1, 1, 'dark')]),
     P('drill', 'ball', (0, -6, 0), [B(-3, -7, -3, 6, 7, 6, 'dark'), B(-2, -11, -2, 4, 4, 4, 'steel'), B(-1, -13, -1, 2, 2, 2, 'steel')]),
 ])
 
@@ -183,6 +185,7 @@ NAMES = {
     'machine_small_goliath': ('Small Goliath Biped', '小型超大型二足'), 'machine_medium_goliath': ('Goliath Biped', '超大型二足'),
     'machine_large_goliath': ('Large Goliath Biped', '大型超大型二足'), 'machine_goliath_tank': ('Goliath Tank', '超大型戦車'),
     'machine_multileg': ('Medium Multi-Leg', '中型多脚'), 'machine_drill_sphere': ('Drill Sphere', 'ドリル球体'),
+    'machine_small_exploder': ('Small Exploder', '小型自爆型'), 'machine_saw_sphere': ('Saw Sphere', '丸ノコ球体'),
     'machine_sphere': ('Sphere', '球体'), 'machine_hacked_sphere': ('Hacked Sphere', 'ハッキング球体'),
 }
 os.makedirs(RES + '/lang/parts', exist_ok=True)

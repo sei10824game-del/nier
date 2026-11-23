@@ -14,7 +14,7 @@ import net.minecraft.world.phys.Vec3;
 
 /** Sphere machine: rolling ram, bounce slam, orb burst, fin spin; overheats (form 1) and self-destructs at low HP. */
 public class SphereUnit extends MachineUnit {
-    public static final int ROLL = 1, BOUNCE = 2, BURST = 3, FIN_SPIN = 4, SELF_DESTRUCT = 5, DRILL = 6;
+    public static final int ROLL = 1, BOUNCE = 2, BURST = 3, FIN_SPIN = 4, SELF_DESTRUCT = 5, DRILL = 6, SAW = 7;
     private Skill selfDestruct;
 
     public SphereUnit(EntityType<? extends NierUnit> t, Level l, MachineVariant v) { super(t, l, v); }
@@ -49,6 +49,10 @@ public class SphereUnit extends MachineUnit {
             if (k >= 14 && k < 28) { swing(1.6 * s, 360, dmg(1.6), 0.5, true); if (k % 3 == 0) fx(ParticleTypes.CRIT, at(0, 1.4 * s, 0), 3, 0.4, 0.1); }
             if (!landed && k >= 24 && onGround()) { landed = true; area(position(), 2.0 * s, dmg(2.0), 1.0, true); dust(position(), 18, 0.5); sound(SoundEvents.GENERIC_EXPLODE, 0.4f, 1.8f); }
         }).weight(4).when(u -> v.weapon() == MachineVariant.Weapon.DRILL));
+        l.add(new Skill(SAW, "Saw Rush", 40, 60, 2, 14, (u, t, k) -> {
+            if (k < 10 && k % 3 == 0) fx(ParticleTypes.CRIT, at(0, 1.3 * s, 0), 4, 0.5 * s, 0.2);
+            if (k >= 10 && k < 32) { dash(0.5); swing(1.7 * s, 140, dmg(1.2), 0.6, false); if (k % 4 == 0) { fx(ParticleTypes.CRIT, at(1.2 * s, 0.6 * s, 0), 5, 0.4, 0.2); sound(SoundEvents.GRINDSTONE_USE, 0.8f, 1.6f); } }
+        }).weight(4).when(u -> v.weapon() == MachineVariant.Weapon.SAW));
         l.add(selfDestruct = new Skill(SELF_DESTRUCT, "Self-Destruct", 50, 0, 0, 999, (u, t, k) -> {
             if (k == 0) { setForm(1); sound(SoundEvents.CREEPER_PRIMED, 1f, 0.6f); }
             fx(ParticleTypes.LARGE_SMOKE, at(0, 0.8 * s, 0), 1, 0.2, 0.02);
