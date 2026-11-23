@@ -128,12 +128,14 @@ def ally_anemone():
 
 def ally_jackass():
     t = Tex(128, 128, 18)
-    humanoid(t, (226, 190, 160), (120, 80, 50), (70, 64, 56), (50, 36, 24), (170, 60, 40), (60, 120, 160), gloves=(50, 40, 30))
-    t.box(48, 16, 9, 5, 9, (170, 60, 40))                                              # red hair
-    t.box(84, 16, 9, 2, 1, (40, 40, 40)); t.face(84, 16, 9, 2, 1, 'front', 1, 0, 3, 2, (200, 160, 60)); t.face(84, 16, 9, 2, 1, 'front', 5, 0, 3, 2, (200, 160, 60))
-    t.box(0, 64, 9, 9, 5, (90, 84, 60))                                                # tool vest
-    for x in (1, 4, 7): t.face(0, 64, 9, 9, 5, 'front', x, 4, 2, 3, (170, 40, 30))     # strapped charges
-    t.box(0, 80, 3, 3, 16, (80, 90, 60)); band(t, 0, 80, 3, 3, 16, 0, 1, (200, 160, 60))
+    tan, navy, scarf, glove = (156, 126, 78), (30, 34, 62), (52, 104, 104), (80, 52, 36)
+    humanoid(t, (240, 214, 190), tan, (84, 80, 76), (60, 44, 34), navy, (130, 150, 170), gloves=glove)
+    t.box(48, 16, 9, 5, 9, navy)                                                       # short navy hair
+    t.face(48, 16, 9, 5, 9, 'front', 0, 3, 4, 2, navy)                                  # long fringe over one eye
+    t.box(84, 16, 9, 2, 1, navy); t.face(84, 16, 9, 2, 1, 'front', 0, 0, 4, 2, navy)
+    t.box(0, 64, 9, 9, 5, tan); band(t, 0, 64, 9, 9, 5, 0, 3, scarf)                    # tan coat + teal scarf
+    t.face(0, 64, 9, 9, 5, 'front', 3, 3, 3, 6, scarf)
+    t.box(0, 80, 3, 3, 16, (84, 90, 70)); band(t, 0, 80, 3, 3, 16, 0, 1, (200, 160, 60))
     t.face(0, 80, 3, 3, 16, 'front', 0, 0, 3, 3, (20, 20, 20))                        # launcher tube + bore
     return t
 
@@ -167,21 +169,27 @@ def twin(t, trim, hair):
 def ally_devola(): return twin(Tex(128, 128, 20), (214, 40, 50), (186, 28, 34))
 def ally_popola(): return twin(Tex(128, 128, 21), (214, 40, 50), (176, 24, 30))
 
-def emil_head(t, skin=(232, 226, 210)):
-    t.box(0, 0, 12, 12, 12, skin)
-    t.face(0, 0, 12, 12, 12, 'front', 1, 3, 4, 3, (60, 56, 50)); t.face(0, 0, 12, 12, 12, 'front', 7, 3, 4, 3, (60, 56, 50))
-    t.box(48, 0, 3, 1, 1, (255, 220, 90)); t.box(64, 0, 4, 4, 4, skin)
-    t.face(64, 0, 4, 4, 4, 'front', 0, 1, 4, 1, (255, 220, 90))
+def emil_head(t, skin=(204, 200, 188)):
+    t.box(0, 0, 12, 12, 12, skin, noise=5)
+    dark, teeth = (48, 44, 40), (240, 238, 228)
+    for ex in (1, 7):                                                   # concentric ringed eyes
+        t.face(0, 0, 12, 12, 12, 'front', ex, 2, 4, 4, dark); t.face(0, 0, 12, 12, 12, 'front', ex + 1, 3, 2, 2, (226, 226, 218)); t.face(0, 0, 12, 12, 12, 'front', ex + 1, 3, 1, 1, (120, 130, 140))
+    t.face(0, 0, 12, 12, 12, 'front', 1, 7, 10, 3, dark)                # wide toothy grin
+    for x in range(2, 10, 2): t.face(0, 0, 12, 12, 12, 'front', x, 7, 1, 1, teeth); t.face(0, 0, 12, 12, 12, 'front', x, 9, 1, 1, teeth)
+    t.face(0, 0, 12, 12, 12, 'front', 1, 8, 10, 1, teeth)
+    t.box(48, 0, 3, 1, 1, dark); t.box(64, 0, 4, 4, 4, skin)
+    t.face(64, 0, 4, 4, 4, 'front', 0, 1, 4, 1, dark)
 
 def ally_emil():
     t = Tex(128, 128, 22)
     emil_head(t)
-    cloak = (60, 56, 70)
-    t.box(0, 24, 7, 7, 5, cloak); t.box(24, 24, 9, 4, 6, (90, 70, 100))
-    t.box(0, 40, 2, 7, 2, cloak); t.box(8, 40, 2, 7, 2, cloak); t.box(16, 40, 2, 6, 2, (40, 36, 44))
-    wood, metal = (130, 96, 60), (90, 90, 96)
-    t.box(0, 64, 10, 3, 14, wood); t.box(48, 64, 10, 6, 2, wood); t.box(72, 64, 12, 1, 1, metal)
-    t.box(0, 84, 1, 4, 4, (40, 40, 40)); t.box(12, 84, 12, 1, 1, metal)
+    teal, red, strap = (70, 112, 122), (176, 46, 50), (44, 40, 40)
+    t.box(0, 24, 7, 7, 5, teal); t.box(24, 24, 9, 4, 6, red)
+    t.box(0, 40, 2, 7, 2, teal); t.box(8, 40, 2, 7, 2, teal); t.box(16, 40, 2, 6, 2, strap)
+    t.box(0, 64, 10, 3, 14, teal, noise=6); t.face(0, 64, 10, 3, 14, 'front', 3, 0, 4, 3, (240, 200, 70))   # vehicle body + headlight
+    t.box(48, 64, 10, 6, 2, red, noise=6); t.face(48, 64, 10, 6, 2, 'front', 4, 0, 2, 6, strap)           # red bundle + strap
+    t.box(72, 64, 12, 1, 1, strap)
+    t.box(0, 84, 1, 4, 4, strap); t.box(12, 84, 12, 1, 1, (90, 90, 96))
     return t
 
 def ally_emil_hacked():
