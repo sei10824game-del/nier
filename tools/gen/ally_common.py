@@ -139,30 +139,33 @@ def ally_jackass():
 
 def ally_pascal():
     t = Tex(128, 128, 19)
-    plate, dark, lens = (138, 176, 168), (70, 90, 88), (240, 170, 50)
-    t.box(0, 0, 10, 6, 10, plate); t.box(40, 0, 8, 2, 8, plate)
-    t.box(72, 0, 3, 3, 1, lens); t.face(72, 0, 3, 3, 1, 'front', 1, 1, 1, 1, (255, 240, 180))
+    plate, dark, lens, joint = (146, 100, 68), (84, 58, 42), (70, 190, 255), (84, 100, 116)
+    t.box(0, 0, 10, 6, 10, plate); t.box(40, 0, 8, 2, 8, dark)                         # cylindrical head + cap
+    t.box(72, 0, 3, 3, 1, lens); t.face(72, 0, 3, 3, 1, 'front', 1, 1, 1, 1, (230, 250, 255))   # blue eyes
+    t.face(0, 0, 10, 6, 10, 'front', 3, 4, 4, 1, dark)                                 # mouth grille
     t.box(0, 16, 10, 11, 8, plate); band(t, 0, 16, 10, 11, 8, 5, 6, dark)
-    t.box(36, 16, 3, 9, 3, dark); t.box(48, 16, 4, 3, 4, plate)
-    t.box(36, 32, 3, 9, 3, dark); t.box(48, 32, 4, 2, 5, plate)
-    t.box(0, 64, 12, 6, 10, (190, 120, 70))                                            # patterned poncho
-    for x in range(0, 44, 4): t.rect(x, 64 + 10 + 3, 2, 2, (230, 200, 120))
+    t.face(0, 16, 10, 11, 8, 'front', 4, 3, 3, 3, (214, 176, 84)); t.face(0, 16, 10, 11, 8, 'front', 5, 4, 1, 1, (40, 30, 24))   # chest gauge
+    t.box(36, 16, 3, 9, 3, joint); t.box(48, 16, 4, 3, 4, plate)
+    t.box(36, 32, 3, 9, 3, joint); t.box(48, 32, 4, 2, 5, plate)
+    t.box(0, 64, 12, 6, 10, dark)                                                      # back exhaust / shoulder plating
+    for x in range(0, 44, 4): t.rect(x, 64 + 10 + 3, 2, 2, (200, 160, 80))
     return t
 
 def twin(t, trim, hair):
-    robe = (36, 30, 36)
-    humanoid(t, PALE, robe, robe, (30, 24, 28), hair, trim, gloves=robe, trim=trim)
-    t.box(48, 16, 9, 8, 9, robe); t.face(48, 16, 9, 8, 9, 'front', 1, 3, 7, 5, (0, 0, 0, 0))   # hood, open face
-    t.face(48, 16, 9, 8, 9, 'front', 0, 2, 9, 1, trim)
-    t.box(48, 0, 9, 6, 3, hair)                                                        # long hair out of the hood
-    t.box(0, 64, 9, 13, 6, robe); band(t, 0, 64, 9, 13, 6, 11, 13, trim)
-    t.box(32, 64, 10, 6, 6, (50, 40, 48)); band(t, 32, 64, 10, 6, 6, 5, 6, trim)
-    for i in range(12):                                                                # rune ring (0-thickness top face)
+    white, black, redp = (240, 238, 234), (24, 22, 26), (150, 28, 36)
+    humanoid(t, PALE, white, redp, (96, 66, 44), hair, (150, 200, 150), gloves=black, trim=black)
+    t.box(48, 16, 9, 8, 9, hair, noise=6); t.face(48, 16, 9, 8, 9, 'front', 1, 3, 7, 5, (0, 0, 0, 0))   # red hair, open face
+    t.face(48, 16, 9, 8, 9, 'front', 0, 0, 9, 3, hair)
+    t.box(48, 0, 9, 6, 3, hair, noise=6)                                               # long hair behind
+    t.box(0, 64, 9, 13, 6, white); band(t, 0, 64, 9, 13, 6, 0, 1, black)               # white long open coat
+    t.face(0, 64, 9, 13, 6, 'front', 3, 0, 3, 13, redp)
+    t.box(32, 64, 10, 6, 6, black); band(t, 32, 64, 10, 6, 6, 5, 6, (60, 60, 66))      # black puffed collar/shoulders
+    for i in range(12):
         t.rect(12 + i, 84, 1, 1, trim); t.rect(12 + i, 95, 1, 1, trim); t.rect(12, 84 + i, 1, 1, trim); t.rect(23, 84 + i, 1, 1, trim)
     return t
 
-def ally_devola(): return twin(Tex(128, 128, 20), (200, 40, 50), (140, 50, 40))
-def ally_popola(): return twin(Tex(128, 128, 21), (110, 80, 220), (120, 60, 50))
+def ally_devola(): return twin(Tex(128, 128, 20), (214, 40, 50), (186, 28, 34))
+def ally_popola(): return twin(Tex(128, 128, 21), (214, 40, 50), (176, 24, 30))
 
 def emil_head(t, skin=(232, 226, 210)):
     t.box(0, 0, 12, 12, 12, skin)

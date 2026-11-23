@@ -7,9 +7,9 @@ def paint(rage):
     PLATE, DARK, STEEL, SKIN = (58, 54, 58), (24, 22, 24), (120, 118, 122), (196, 182, 170)
     GLOW = (255, 50, 30) if rage else (230, 40, 40)
     TAT = (20, 18, 22)
-    t.box(0, 0, 8, 8, 8, SKIN, top=(40, 36, 38))                    # head: dark cropped crest
-    for f in ('right', 'left', 'back'): t.face(0, 0, 8, 8, 8, f, 0, 0, 8, 3, (40, 36, 38))
-    t.face(0, 0, 8, 8, 8, 'front', 0, 0, 8, 1, (40, 36, 38))
+    t.box(0, 0, 8, 8, 8, SKIN, top=(196, 196, 208))                    # head: dark cropped crest
+    for f in ('right', 'left', 'back'): t.face(0, 0, 8, 8, 8, f, 0, 0, 8, 3, (196, 196, 208))
+    t.face(0, 0, 8, 8, 8, 'front', 0, 0, 8, 1, (196, 196, 208))
     t.face(0, 0, 8, 8, 8, 'front', 1, 3, 2, 1, GLOW); t.face(0, 0, 8, 8, 8, 'front', 5, 3, 2, 1, GLOW)
     t.face(0, 0, 8, 8, 8, 'front', 2, 6, 4, 1, (120, 90, 90))
     t.box(16, 16, 10, 12, 6, SKIN)                                  # torso: shirtless

@@ -3,7 +3,7 @@ from boxtex import Tex
 OUT = os.path.join(os.path.dirname(__file__), '../../src/main/resources/assets/nierautomata/textures/entity/boss_adam.png')
 t = Tex(64, 64, seed=11)
 COAT, DARK, SKIN, RED, GOLD = (238, 238, 242), (22, 20, 24), (222, 212, 202), (235, 40, 55), (200, 200, 208)
-CROWN = (26, 22, 28)
+CROWN = (214, 214, 226)
 t.box(0, 0, 8, 8, 8, SKIN, top=CROWN)                       # head with a platinum plated crown
 for f in ('right', 'left', 'back'): t.face(0, 0, 8, 8, 8, f, 0, 0, 8, 4, CROWN)
 t.face(0, 0, 8, 8, 8, 'front', 0, 0, 8, 2, CROWN)
