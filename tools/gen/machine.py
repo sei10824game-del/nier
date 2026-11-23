@@ -11,19 +11,20 @@ ROOT = os.path.join(os.path.dirname(__file__), '..', '..')
 RES = os.path.join(ROOT, 'src/main/resources/assets/nierautomata')
 
 # part = (name, parent, pivot, rot, [box = (x,y,z,w,h,d, mat, [deco=(face,x,y,w,h,mat)])])
+EYE1 = lambda w, y=2: [('front', (w - 3) // 2, y, 3, 3, 'white'), ('front', (w - 3) // 2 + 1, y + 1, 1, 1, 'eye')]
 def P(name, parent, pivot, boxes, rot=(0, 0, 0)): return (name, parent, pivot, rot, boxes)
 def B(x, y, z, w, h, d, mat, *deco): return (x, y, z, w, h, d, mat, list(deco))
 EYES2 = lambda w, y=3, s=2, inset=1: [('front', inset, y, s, s, 'eye'), ('front', w - inset - s, y, s, s, 'eye')]
 
 ARCH = {}
 ARCH['stubby'] = (128, 64, [
-    P('body', 'root', (0, 18, 0), [B(-4, -7, -3.5, 8, 7, 7, 'plate', ('front', 2, 1, 4, 1, 'dark')), B(-4.5, -3, -4, 9, 2, 8, 'dark')]),
-    P('head', 'body', (0, -7, 0), [B(-4.5, -8, -4.5, 9, 8, 9, 'plate', ('front', 0, 2, 9, 4, 'dark'), *EYES2(9, 3, 2, 1)),
+    P('body', 'root', (0, 18, 0), [B(-4, -7, -3.5, 8, 7, 7, 'plate', ('front', 3, 2, 2, 2, 'steel'), ('front', 3, 3, 2, 1, 'dark'), ('front', 4, 2, 1, 2, 'dark')), B(-4.5, -3, -4, 9, 2, 8, 'dark')]),
+    P('head', 'body', (0, -7, 0), [B(-4.5, -8, -4.5, 9, 8, 9, 'plate', *EYE1(9, 2), ('front', 1, 6, 1, 1, 'steel')),
                                    B(-3, -9, -3, 6, 1, 6, 'plate'), B(-5, -2, -5, 10, 1, 10, 'dark')]),
     P('rightArm', 'body', (-4.5, -6, 0), [B(-2.5, -1, -1.5, 3, 8, 3, 'dark'), B(-3, 7, -2, 4, 3, 4, 'plate')]),
     P('leftArm', 'body', (4.5, -6, 0), [B(-0.5, -1, -1.5, 3, 8, 3, 'dark'), B(-1, 7, -2, 4, 3, 4, 'plate')]),
-    P('rightLeg', 'root', (-2, 18, 0), [B(-1.5, 0, -1.5, 3, 4, 3, 'dark'), B(-2, 4, -2.5, 4, 2, 4, 'plate')]),
-    P('leftLeg', 'root', (2, 18, 0), [B(-1.5, 0, -1.5, 3, 4, 3, 'dark'), B(-2, 4, -2.5, 4, 2, 4, 'plate')]),
+    P('rightLeg', 'root', (-2, 18, 0), [B(-1.5, 0, -1.5, 3, 4, 3, 'dark'), B(-2.5, 4, -3, 5, 2, 6, 'plate', ('top', 1, 1, 3, 1, 'dark'))]),
+    P('leftLeg', 'root', (2, 18, 0), [B(-1.5, 0, -1.5, 3, 4, 3, 'dark'), B(-2.5, 4, -3, 5, 2, 6, 'plate', ('top', 1, 1, 3, 1, 'dark'))]),
     P('weapon', 'rightArm', (-1, 8.5, 0), []),
     P('axe', 'weapon', (0, 0, 0), [B(-0.5, -0.5, -12, 1, 1, 14, 'dark'), B(-0.5, -5.5, -13, 1, 5, 5, 'steel'), B(-0.5, 0.5, -12.5, 1, 2, 3, 'steel')]),
     P('spear', 'weapon', (0, 0, 0), [B(-0.5, -0.5, -18, 1, 1, 22, 'dark'), B(-1, -1, -22, 2, 2, 4, 'steel')]),
@@ -33,7 +34,7 @@ ARCH['stubby'] = (128, 64, [
 ])
 ARCH['biped'] = (128, 64, [
     P('body', 'root', (0, 12, 0), [B(-3, -1, -2, 6, 3, 4, 'dark'), B(-4, -11, -3, 8, 10, 6, 'plate', ('front', 1, 2, 6, 2, 'dark'), ('front', 3, 5, 2, 3, 'dark'))]),
-    P('head', 'body', (0, -11, 0), [B(-4, -7, -4, 8, 7, 8, 'plate', ('front', 0, 2, 8, 3, 'dark'), *EYES2(8, 2, 2, 1)), B(-3, -8, -3, 6, 1, 6, 'plate')]),
+    P('head', 'body', (0, -11, 0), [B(-4, -7, -4, 8, 7, 8, 'plate', *EYE1(8, 2)), B(-3, -8, -3, 6, 1, 6, 'plate')]),
     P('rightArm', 'body', (-5, -10, 0), [B(-1.5, -1, -1, 2, 12, 2, 'dark'), B(-2.5, -2, -2, 3, 3, 4, 'plate'), B(-2, 11, -1.5, 3, 3, 3, 'plate')]),
     P('leftArm', 'body', (5, -10, 0), [B(-0.5, -1, -1, 2, 12, 2, 'dark'), B(-0.5, -2, -2, 3, 3, 4, 'plate'), B(-1, 11, -1.5, 3, 3, 3, 'plate')]),
     P('rightLeg', 'root', (-2, 12, 0), [B(-1, 0, -1, 2, 11, 2, 'dark'), B(-1.5, 4, -1.5, 3, 3, 3, 'plate'), B(-1.5, 10, -2.5, 3, 2, 4, 'plate')]),
@@ -42,7 +43,7 @@ ARCH['biped'] = (128, 64, [
     P('shield', 'leftArm', (0.5, 8, -1.5), [B(-5, -6, -1, 11, 13, 1, 'plate', ('front', 4, 4, 3, 5, 'dark'), ('front', 5, 6, 1, 1, 'eye'))]),
 ])
 ARCH['flyer'] = (64, 64, [
-    P('body', 'root', (0, 12, 0), [B(-4, -4, -4, 8, 8, 8, 'plate', ('front', 0, 2, 8, 3, 'dark'), *EYES2(8, 2, 2, 1)), B(-1, 4, -4, 2, 2, 4, 'dark')]),
+    P('body', 'root', (0, 12, 0), [B(-4, -4, -4, 8, 8, 8, 'plate', *EYE1(8, 2)), B(-1, 4, -4, 2, 2, 4, 'dark')]),
     P('rightWing', 'body', (-4, -1, 0), [B(-6, -0.5, -1, 6, 1, 2, 'dark'), B(-8, -1.5, -1.5, 3, 3, 3, 'plate')]),
     P('rightRotor', 'rightWing', (-6.5, -2, 0), [B(-5, -0.5, -1, 10, 1, 2, 'steel'), B(-1, -0.5, -5, 2, 1, 10, 'steel')]),
     P('leftWing', 'body', (4, -1, 0), [B(0, -0.5, -1, 6, 1, 2, 'dark'), B(5, -1.5, -1.5, 3, 3, 3, 'plate')]),
@@ -86,7 +87,7 @@ ARCH['sphere'] = (64, 64, [
 ])
 
 SKINS = {  # plate, dark, steel, eye, glow
-    '': ((146, 116, 82), (64, 58, 52), (150, 148, 140), (255, 48, 32), (255, 150, 40)),
+    '': ((198, 184, 150), (92, 82, 66), (170, 168, 160), (255, 48, 32), (255, 150, 40)),
     '_gold': ((222, 176, 58), (112, 84, 30), (240, 220, 150), (255, 60, 30), (255, 230, 120)),
     '_hacked': ((128, 120, 104), (52, 56, 60), (150, 160, 170), (70, 230, 255), (90, 200, 255)),
     '_burn': ((176, 76, 44), (70, 34, 26), (200, 110, 80), (255, 220, 70), (255, 200, 60)),
@@ -130,7 +131,7 @@ for arch, (W, H, parts) in ARCH.items():
     java.append('    }')
     for suffix, (plate, dark, steel, eye, glow) in SKINS.items():
         if suffix and arch not in NEED[suffix]: continue
-        mats = {'plate': plate, 'dark': dark, 'steel': steel, 'eye': eye, 'glow': glow}
+        mats = {'plate': plate, 'dark': dark, 'steel': steel, 'eye': eye, 'glow': glow, 'white': (238, 234, 222)}
         t = Tex(W, H, seed=len(arch) * 7919)
         for pi, (name, parent, pv, rot, boxes) in enumerate(parts):
             for bi, b in enumerate(boxes):
