@@ -25,9 +25,9 @@ def paint(exposed):
         t.box(28, v, 10, 6, 10, DARK, noise=6)
         for x in range(0, 10, 3): t.face(28, v, 10, 6, 10, 'front', x, 3, 2, 3, (90, 96, 100))   # fingers
     t.box(68, 48, 16, 20, 12, HULL, noise=8)                                # ringed torso
-for y in range(2, 20, 3):
-    for f, w in (('front', 16), ('back', 16), ('left', 12), ('right', 12)): t.face(68, 48, 16, 20, 12, f, 0, y, w, 1, DARK)
-for y in (4, 9, 14): t.face(68, 48, 16, 20, 12, 'front', 7, y, 2, 2, (255, 210, 40))   # yellow lamps
+    for y in range(2, 20, 3):
+        for f, w in (('front', 16), ('back', 16), ('left', 12), ('right', 12)): t.face(68, 48, 16, 20, 12, f, 0, y, w, 1, DARK)
+    for y in (4, 9, 14): t.face(68, 48, 16, 20, 12, 'front', 7, y, 2, 2, (255, 210, 40))   # yellow lamps
     return t
 
 paint(False).save(D + 'boss_grun.png')
