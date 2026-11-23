@@ -1,5 +1,5 @@
 {
- "entity.nierautomata.a2": "攻撃型アンドロイド A",
+ "entity.nierautomata.a2": "A2",
  "entity.nierautomata.ally_anemone": "アネモネ",
  "entity.nierautomata.ally_commander": "ヨルハ司令官",
  "entity.nierautomata.ally_devola": "デボル",
@@ -51,8 +51,8 @@
  "entity.nierautomata.machine_small_stubby_staff": "小型短足 (杖)",
  "entity.nierautomata.machine_sphere": "球体",
  "entity.nierautomata.yorha_2b": "ヨルハ二号B型",
- "entity.nierautomata.yorha_9s": "スキャナー型アンドロイド S",
- "item.nierautomata.a2_spawn_egg": "攻撃型アンドロイド A スポーンエッグ",
+ "entity.nierautomata.yorha_9s": "ヨルハ九号S型",
+ "item.nierautomata.a2_spawn_egg": "A2 スポーンエッグ",
  "item.nierautomata.ally_anemone_spawn_egg": "アネモネのスポーンエッグ",
  "item.nierautomata.ally_commander_spawn_egg": "ヨルハ司令官のスポーンエッグ",
  "item.nierautomata.ally_devola_spawn_egg": "デボルのスポーンエッグ",
@@ -103,6 +103,6 @@
  "item.nierautomata.machine_small_stubby_staff_spawn_egg": "小型短足 (杖)のスポーンエッグ",
  "item.nierautomata.machine_sphere_spawn_egg": "球体のスポーンエッグ",
  "item.nierautomata.yorha_2b_spawn_egg": "ヨルハ二号B型 スポーンエッグ",
- "item.nierautomata.yorha_9s_spawn_egg": "スキャナー型アンドロイド S スポーンエッグ",
+ "item.nierautomata.yorha_9s_spawn_egg": "ヨルハ九号S型 スポーンエッグ",
  "itemGroup.nierautomata": "ニーア オートマタ ユニット"
 }

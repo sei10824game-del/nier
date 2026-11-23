@@ -1,5 +1,5 @@
 {
- "entity.nierautomata.a2": "Attacker Android Type A",
+ "entity.nierautomata.a2": "A2",
  "entity.nierautomata.ally_anemone": "Anemone",
  "entity.nierautomata.ally_commander": "YoRHa Commander",
  "entity.nierautomata.ally_devola": "Devola",
@@ -51,8 +51,8 @@
  "entity.nierautomata.machine_small_stubby_staff": "Small Stubby (Staff)",
  "entity.nierautomata.machine_sphere": "Sphere",
  "entity.nierautomata.yorha_2b": "YoRHa No.2 Type B",
- "entity.nierautomata.yorha_9s": "Scanner Android Type S",
- "item.nierautomata.a2_spawn_egg": "Attacker Android Type A Spawn Egg",
+ "entity.nierautomata.yorha_9s": "YoRHa No.9 Type S",
+ "item.nierautomata.a2_spawn_egg": "A2 Spawn Egg",
  "item.nierautomata.ally_anemone_spawn_egg": "Anemone Spawn Egg",
  "item.nierautomata.ally_commander_spawn_egg": "YoRHa Commander Spawn Egg",
  "item.nierautomata.ally_devola_spawn_egg": "Devola Spawn Egg",
@@ -103,6 +103,6 @@
  "item.nierautomata.machine_small_stubby_staff_spawn_egg": "Small Stubby (Staff) Spawn Egg",
  "item.nierautomata.machine_sphere_spawn_egg": "Sphere Spawn Egg",
  "item.nierautomata.yorha_2b_spawn_egg": "Battle Android Type B Spawn Egg",
- "item.nierautomata.yorha_9s_spawn_egg": "Scanner Android Type S Spawn Egg",
+ "item.nierautomata.yorha_9s_spawn_egg": "YoRHa No.9 Type S Spawn Egg",
  "itemGroup.nierautomata": "NieR:Automata Units"
 }
