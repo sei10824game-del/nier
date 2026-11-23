@@ -28,14 +28,18 @@ public class EngelsModel extends NierModel<EngelsUnit> {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition body = mesh.getRoot().addOrReplaceChild("body", CubeListBuilder.create(), PartPose.offset(0, 8, 0));
         PartDefinition torso = body.addOrReplaceChild("torso", CubeListBuilder.create().texOffs(0, 0).addBox(-8, -20, -6, 16, 20, 12)
-                .texOffs(88, 0).addBox(-6, -26, 2, 3, 6, 3).texOffs(88, 9).addBox(3, -26, 2, 3, 6, 3), PartPose.ZERO);
-        torso.addOrReplaceChild("head", CubeListBuilder.create().texOffs(56, 0).addBox(-4, -5, -4, 8, 5, 8), PartPose.offset(0, -20, -3));
-        PartDefinition ra = torso.addOrReplaceChild("rightArm", CubeListBuilder.create().texOffs(0, 32).addBox(-6, -2, -3, 6, 14, 6), PartPose.offset(-8, -16, 0));
-        PartDefinition la = torso.addOrReplaceChild("leftArm", CubeListBuilder.create().texOffs(0, 56).addBox(0, -2, -3, 6, 14, 6), PartPose.offset(8, -16, 0));
-        ra.addOrReplaceChild("rightWheel", wheel(24, 32), PartPose.offset(-3, 14, 0));
-        la.addOrReplaceChild("leftWheel", wheel(24, 56), PartPose.offset(3, 14, 0));
+                .texOffs(88, 0).addBox(-6, -26, 2, 3, 6, 3).texOffs(88, 9).addBox(3, -26, 2, 3, 6, 3)
+                .texOffs(0, 106).addBox(-10, -22, -8, 20, 2, 16).texOffs(0, 106).addBox(-9, -9, -7, 18, 2, 14), PartPose.ZERO);   // top deck + ring layer
+        torso.addOrReplaceChild("boomR", CubeListBuilder.create().texOffs(72, 50).addBox(-18, -1, -1, 18, 2, 2), PartPose.offsetAndRotation(-7, -23, 0, 0, 0, 0.5f));
+        torso.addOrReplaceChild("boomL", CubeListBuilder.create().texOffs(72, 72).addBox(0, -1, -1, 18, 2, 2), PartPose.offsetAndRotation(7, -23, 0, 0, 0, -0.5f));
+        torso.addOrReplaceChild("head", CubeListBuilder.create().texOffs(56, 0).addBox(-4, -5, -4, 8, 5, 8), PartPose.offset(0, -11, -5));
+        PartDefinition ra = torso.addOrReplaceChild("rightArm", CubeListBuilder.create().texOffs(0, 32).addBox(-6, -2, -3, 6, 22, 6), PartPose.offset(-8, -16, 0));
+        PartDefinition la = torso.addOrReplaceChild("leftArm", CubeListBuilder.create().texOffs(72, 84).addBox(0, -2, -3, 6, 22, 6), PartPose.offset(8, -16, 0));
+        ra.addOrReplaceChild("rightWheel", wheel(24, 32), PartPose.offset(-3, 22, 0));
+        la.addOrReplaceChild("leftWheel", wheel(24, 56), PartPose.offset(3, 22, 0));
         body.addOrReplaceChild("rightLeg", CubeListBuilder.create().texOffs(0, 80).addBox(-3.5f, 0, -4, 7, 16, 8), PartPose.offset(-4.5f, 0, 0));
         body.addOrReplaceChild("leftLeg", CubeListBuilder.create().texOffs(32, 80).addBox(-3.5f, 0, -4, 7, 16, 8), PartPose.offset(4.5f, 0, 0));
+        for (String side : new String[]{"rightLeg", "leftLeg"}) body.getChild(side).addOrReplaceChild("foot", CubeListBuilder.create().texOffs(84, 112).addBox(-5, 16, -6, 10, 3, 12), PartPose.ZERO);
         return LayerDefinition.create(mesh, 128, 128);
     }
     /** Bucket wheel spinning about X with four buckets on its rim. */
