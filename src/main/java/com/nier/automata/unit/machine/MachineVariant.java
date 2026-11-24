@@ -9,7 +9,7 @@ public record MachineVariant(String id, String name, Arch arch, Size size, Weapo
     public enum Size { SMALL, MEDIUM, LARGE }
     public enum Weapon { NONE, AXE, SPEAR, HAMMER, STAFF, SHIELD, CLUB, MISSILE, DRILL, SAW, BOMB }
     public enum Skin {
-        RUST(""), GOLD("_gold"), HACKED("_hacked");
+        RUST(""), GOLD("_gold"), HACKED("_hacked"), RAMPAGE("_rampage");
         public final String suffix;
         Skin(String s) { suffix = s; }
     }
