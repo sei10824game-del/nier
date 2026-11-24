@@ -10,11 +10,12 @@ public record MachineVariant(String id, String name, Arch arch, Size size, Weapo
     public enum Weapon { NONE, AXE, SPEAR, HAMMER, STAFF, SHIELD, CLUB, MISSILE, DRILL, SAW, BOMB, LINK, GUN }
     public enum Skin {
         RUST(""), GOLD("_gold"), HACKED("_hacked"), RAMPAGE("_rampage"), KOSHI("_koshi"), ROSHI("_roshi"),
-        BRONZE("_bronze"), BLOOD("_blood"), GRAVE("_grave"), CLOWN("_clown"), DYING("_dying"), MONSTER("_monster"), ANIMAL("_animal");
+        BRONZE("_bronze"), BLOOD("_blood"), GRAVE("_grave"), CLOWN("_clown"), DYING("_dying"), MONSTER("_monster"), ANIMAL("_animal"), SAMURAI("_samurai"), FLIGHT_W("_flightw"), FLIGHT_B("_flightb");
         public final String suffix;
         Skin(String s) { suffix = s; }
     }
-    public Faction faction() { return skin == Skin.HACKED ? Faction.ANDROID : Faction.MACHINE; }
+    public Faction faction() { return skin == Skin.HACKED || flight() ? Faction.ANDROID : Faction.MACHINE; }
+    public boolean flight() { return skin == Skin.FLIGHT_W || skin == Skin.FLIGHT_B; }
     public boolean electric() { return skin == Skin.KOSHI || skin == Skin.ROSHI; }
     public boolean small() { return size == Size.SMALL; }
     public boolean large() { return size == Size.LARGE; }
