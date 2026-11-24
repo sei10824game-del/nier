@@ -10,7 +10,7 @@ public record MachineVariant(String id, String name, Arch arch, Size size, Weapo
     public enum Weapon { NONE, AXE, SPEAR, HAMMER, STAFF, SHIELD, CLUB, MISSILE, DRILL, SAW, BOMB, LINK, GUN }
     public enum Skin {
         RUST(""), GOLD("_gold"), HACKED("_hacked"), RAMPAGE("_rampage"), KOSHI("_koshi"), ROSHI("_roshi"),
-        BRONZE("_bronze"), BLOOD("_blood"), GRAVE("_grave"), CLOWN("_clown"), DYING("_dying"), MONSTER("_monster"), ANIMAL("_animal"), SAMURAI("_samurai"), FLIGHT_W("_flightw"), FLIGHT_B("_flightb"), BLUE("_blue"), PALE("_pale"), TIER("_tier"), REVERSE("_reverse"), SHADE("_shade"), WOLF("_wolf"), SCORPION("_scorpion"), SILVER("_silver"), ROC("_roc"), JACK("_jack"), LOUISE("_louise"), STONE("_stone"), WENDY("_wendy"), HOOK("_hook");
+        BRONZE("_bronze"), BLOOD("_blood"), GRAVE("_grave"), CLOWN("_clown"), DYING("_dying"), MONSTER("_monster"), ANIMAL("_animal"), SAMURAI("_samurai"), FLIGHT_W("_flightw"), FLIGHT_B("_flightb"), BLUE("_blue"), PALE("_pale"), TIER("_tier"), REVERSE("_reverse"), SHADE("_shade"), WOLF("_wolf"), SCORPION("_scorpion"), SILVER("_silver"), ROC("_roc"), JACK("_jack"), LOUISE("_louise"), STONE("_stone"), WENDY("_wendy"), HOOK("_hook"), GEPPETTO("_geppetto");
         public final String suffix;
         Skin(String s) { suffix = s; }
     }
