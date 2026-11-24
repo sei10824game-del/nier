@@ -88,6 +88,12 @@ def ally_nier_father():
 def ally_kaine():
     t = _hum(43, (240, 214, 196), (50, 62, 98), (240, 240, 244), (30, 30, 40), (236, 236, 242), (200, 70, 80), (44, 50, 80), (60, 76, 120), long_=True)
     band(t, 24, 32, 3, 12, 3, 2, 12, (240, 240, 244)); band(t, 36, 32, 3, 12, 3, 4, 12, (240, 240, 244)); return t
+def _shadow(seed, skin):
+    t = _hum(seed, skin, (38, 42, 40), (34, 36, 40), (24, 24, 28), (52, 60, 52), (130, 150, 150), (30, 30, 34), (70, 80, 70))
+    band(t, 16, 16, 8, 12, 4, 0, 3, (60, 70, 60)); return t
+def ally_shadowlord_brother(): return _shadow(45, (236, 214, 196))
+def ally_shadowlord_father(): return _shadow(46, (214, 188, 166))
+
 def ally_emil_replicant():
     return _hum(44, (240, 214, 190), (110, 70, 150), (90, 56, 124), (60, 40, 80), (120, 84, 60), (60, 40, 60), (230, 230, 236), (210, 170, 90), blind=(14, 12, 18))
 
@@ -269,7 +275,7 @@ def ally_pod_153(): return pod_unit((70, 72, 80), (36, 38, 44), (120, 200, 255))
 def build(name):
     globals()[name]().save(os.path.join(OUT, name + '.png'))
 
-ALL = ['ally_grimoire_weiss', 'ally_grimoire_noir', 'ally_grimoire_rubrum', 'ally_nier_brother', 'ally_nier_father', 'ally_kaine', 'ally_emil_replicant', 'ally_yorha_soldier', 'ally_yorha_8b', 'ally_yorha_22b', 'ally_yorha_64b', 'ally_yorha_heavy', 'ally_yorha_2e', 'ally_commander', 'ally_operator_6o', 'ally_operator_21o', 'ally_resistance_soldier',
+ALL = ['ally_shadowlord_brother', 'ally_shadowlord_father', 'ally_grimoire_weiss', 'ally_grimoire_noir', 'ally_grimoire_rubrum', 'ally_nier_brother', 'ally_nier_father', 'ally_kaine', 'ally_emil_replicant', 'ally_yorha_soldier', 'ally_yorha_8b', 'ally_yorha_22b', 'ally_yorha_64b', 'ally_yorha_heavy', 'ally_yorha_2e', 'ally_commander', 'ally_operator_6o', 'ally_operator_21o', 'ally_resistance_soldier',
        'ally_anemone', 'ally_jackass', 'ally_pascal', 'ally_devola', 'ally_popola', 'ally_emil', 'ally_emil_hacked', 'ally_pod', 'ally_pod_153']
 if __name__ == '__main__':
     os.makedirs(OUT, exist_ok=True)

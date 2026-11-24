@@ -21,7 +21,8 @@ public class ReplicantUnit extends AllyUnit {
     public ReplicantUnit(EntityType<? extends ReplicantUnit> t, Level l, int kit) { super(t, l); this.kit = kit; }
     @Override protected int variants() { return 1; }
     @Override public int getForm() { return kit; }
-    @Override public double preferredRange() { return kit == 3 ? 8 : 2.2; }
+    @Override public double preferredRange() { return kit >= 3 ? 8 : 2.2; }
+    @Override protected net.minecraft.network.chat.Component bossName() { return kit >= 4 ? net.minecraft.network.chat.Component.translatable(getType().getDescriptionId()) : null; }
 
     private void darkBlast(Vec3 from, Vec3 dir, float dmg, double speed) {
         shoot(from, dir, speed).dmg(dmg).trail(Fx.fade(0xffffff, DARK, 1.6f)).life(40).boom(1.4);
@@ -40,16 +41,16 @@ public class ReplicantUnit extends AllyUnit {
             }).forms(0, 2),
             new Skill(BLAST, "Dark Blast", 36, 70, 3, 22, (u, t, i) -> {
                 if (i < 14 && i % 3 == 0) Fx.burst(level(), at(0.5, 1.5, 0), DARK, 3);
-                if (i == 14 || (kit == 3 && (i == 18 || i == 22))) { Vec3 m = at(0.8, 1.5, 0); darkBlast(m, aimAt(t, m), kit == 3 ? 7 : 5, 1.2); sound(SoundEvents.EVOKER_CAST_SPELL, 1, 1.2f); }
+                if (i == 14 || (kit >= 3 && (i == 18 || i == 22))) { Vec3 m = at(0.8, 1.5, 0); darkBlast(m, aimAt(t, m), kit >= 3 ? 7 : 5, 1.2); sound(SoundEvents.EVOKER_CAST_SPELL, 1, 1.2f); }
             }).forms(0, 0).weight(2),
             new Skill(BLAST_E, "Dark Blast", 36, 60, 3, 22, (u, t, i) -> {
                 if (i < 14 && i % 3 == 0) Fx.burst(level(), at(0.5, 1.5, 0), DARK, 3);
                 if (i == 14 || i == 18 || i == 22) { Vec3 m = at(0.8, 1.5, 0); darkBlast(m, aimAt(t, m).add(random.nextGaussian() * 0.05, 0, random.nextGaussian() * 0.05), 7, 1.2); sound(SoundEvents.EVOKER_CAST_SPELL, 1, 1.2f); }
-            }).forms(3, 3).weight(3),
+            }).forms(3, 5).weight(3),
             new Skill(LANCE, "Dark Lance", 44, 100, 4, 22, (u, t, i) -> {
                 if (i == 14 && t != null) for (int k = -1; k <= 1; k++) { Vec3 src = t.position().add(k * 2.0, 6, 0); shoot(src, new Vec3(0, -1, 0), 1.4).dmg(6).trail(Fx.fade(0xffffff, DARK, 1.4f)).life(10).boom(1.2); fx(ParticleTypes.ENCHANT, src, 6, 0.4, 0.2); }
                 if (i == 14) sound(SoundEvents.TRIDENT_THROW, 1, 0.7f);
-            }).forms(0, 1).weight(2),
+            }).when(u -> u.getForm() <= 1 || u.getForm() >= 4).weight(2),
             new Skill(EVADE, "Evade", 10, 80, 0, 2.5, (u, t, i) -> { if (i == 1) evade(0.9); }).noTurn(),
             new Skill(HEAVY, "Heavy Strike", 36, 50, 0, 4.2, (u, t, i) -> {
                 if (i == 18) { arc(4.2, 90, 14, 1.4, 0.4); fx(ParticleTypes.EXPLOSION, at(2.5, 0.2, 0), 1, 0, 0); sound(SoundEvents.GENERIC_EXPLODE, 0.6f, 1.2f); }
@@ -69,10 +70,10 @@ public class ReplicantUnit extends AllyUnit {
                 if (i < 16 && i % 3 == 0) Fx.shock(level(), position(), 1 + i * 0.2, DARK);
                 if (i == 18) for (int k = 0; k < 10; k++) { double a = k * Math.PI / 5; darkBlast(at(0, 1.2, 0), new Vec3(Math.cos(a), 0.05, Math.sin(a)), 5, 0.9); }
                 if (i == 18) sound(SoundEvents.EVOKER_CAST_SPELL, 1, 0.6f);
-            }).forms(3, 3).weight(2),
+            }).forms(3, 5).weight(2),
             new Skill(BEAM, "Dark Beam", 44, 110, 4, 22, (u, t, i) -> {
                 if (i >= 18 && i <= 34 && i % 4 == 0) { Vec3 f = at(0.6, 1.5, 0); beam(f, aimAt(t, f), 20, 5, ParticleTypes.END_ROD); }
-            }).forms(3, 3).weight(2)
+            }).forms(3, 5).weight(2)
         );
     }
 }
