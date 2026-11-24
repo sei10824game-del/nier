@@ -68,6 +68,29 @@ def ally_yorha_8b(): return _betrayer((232, 232, 240), (10, 10, 12), 31)
 def ally_yorha_22b(): return _betrayer((196, 96, 106), (10, 10, 12), 32)
 def ally_yorha_64b(): return _betrayer((122, 88, 66), (60, 220, 240), 33)
 
+def _hum(seed, skin, suit, legs, boots, hair, eye, gloves, trim, long_=False, blind=None):
+    t = Tex(128, 128, seed)
+    humanoid(t, skin, suit, legs, boots, hair, eye, gloves=gloves, trim=trim)
+    t.box(48, 16, 9, 4, 9, hair); t.box(48, 0, 9, 3, 2, hair)
+    if long_: t.box(84, 16, 9, 12, 1, hair)
+    if blind: t.box(100, 16, 8, 2, 1, blind)
+    t.box(0, 64, 9, 7, 5, suit)
+    pod_dummy = None
+    sword(t); great_sword(t)
+    return t
+
+def ally_nier_brother():
+    t = _hum(41, (240, 214, 190), (236, 236, 240), (196, 198, 206), (28, 28, 34), (232, 232, 238), (90, 110, 150), (46, 46, 54), (60, 60, 70))
+    band(t, 16, 16, 8, 12, 4, 3, 8, (44, 46, 54)); return t
+def ally_nier_father():
+    t = _hum(42, (226, 196, 170), (226, 196, 170), (40, 44, 58), (30, 32, 44), (236, 236, 240), (90, 110, 150), (60, 62, 74), (230, 230, 236), long_=True)
+    band(t, 16, 16, 8, 12, 4, 8, 11, (230, 230, 236)); band(t, 32, 16, 8, 12, 4, 0, 12, (226, 196, 170)); return t
+def ally_kaine():
+    t = _hum(43, (240, 214, 196), (50, 62, 98), (240, 240, 244), (30, 30, 40), (236, 236, 242), (200, 70, 80), (44, 50, 80), (60, 76, 120), long_=True)
+    band(t, 24, 32, 3, 12, 3, 2, 12, (240, 240, 244)); band(t, 36, 32, 3, 12, 3, 4, 12, (240, 240, 244)); return t
+def ally_emil_replicant():
+    return _hum(44, (240, 214, 190), (110, 70, 150), (90, 56, 124), (60, 40, 80), (120, 84, 60), (60, 40, 60), (230, 230, 236), (210, 170, 90), blind=(14, 12, 18))
+
 def ally_yorha_heavy():
     t = ally_yorha_soldier()
     for u, v, w, h, d in ((16, 16, 8, 12, 4), (0, 64, 9, 7, 5)):                     # grey armour plates over the coat
@@ -234,7 +257,7 @@ def ally_pod_153(): return pod_unit((70, 72, 80), (36, 38, 44), (120, 200, 255))
 def build(name):
     globals()[name]().save(os.path.join(OUT, name + '.png'))
 
-ALL = ['ally_yorha_soldier', 'ally_yorha_8b', 'ally_yorha_22b', 'ally_yorha_64b', 'ally_yorha_heavy', 'ally_yorha_2e', 'ally_commander', 'ally_operator_6o', 'ally_operator_21o', 'ally_resistance_soldier',
+ALL = ['ally_nier_brother', 'ally_nier_father', 'ally_kaine', 'ally_emil_replicant', 'ally_yorha_soldier', 'ally_yorha_8b', 'ally_yorha_22b', 'ally_yorha_64b', 'ally_yorha_heavy', 'ally_yorha_2e', 'ally_commander', 'ally_operator_6o', 'ally_operator_21o', 'ally_resistance_soldier',
        'ally_anemone', 'ally_jackass', 'ally_pascal', 'ally_devola', 'ally_popola', 'ally_emil', 'ally_emil_hacked', 'ally_pod', 'ally_pod_153']
 if __name__ == '__main__':
     os.makedirs(OUT, exist_ok=True)
