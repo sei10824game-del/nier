@@ -26,7 +26,7 @@ public class StubbyUnit extends MachineUnit {
 
     public StubbyUnit(EntityType<? extends NierUnit> t, Level l, MachineVariant v) { super(t, l, v); }
 
-    @Override public double preferredRange() { return v.weapon() == Weapon.STAFF ? 6 : 1.5 * v.scale(); }
+    @Override public double preferredRange() { return v.weapon() == Weapon.STAFF || v.weapon() == Weapon.GUN ? 6 : 1.5 * v.scale(); }
 
     @Override protected List<Skill> createSkills() {
         final float s = v.scale();
@@ -109,7 +109,7 @@ public class StubbyUnit extends MachineUnit {
                     }
                 }).noTurn());
             }
-            case STAFF -> {
+            case STAFF, GUN -> {
                 l.add(new Skill(STAFF_ORBS, "Staff Volley", 36, 50, 3, 16, (u, t, k) -> {
                     if (k < 12 && k % 2 == 0) fx(CHARGE_FX, at(0.8 * s, 1.6 * s, -0.4 * s), 2, 0.1, 0);
                     if (k == 12 || k == 18 || k == 24) { shoot(at(0.8 * s, 1.6 * s, -0.4 * s), targetPos(t), 0.5, k == 18 ? Kind.HARD_ORB : Kind.ORB, dmg(1.0));

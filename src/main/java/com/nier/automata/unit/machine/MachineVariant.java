@@ -7,9 +7,10 @@ public record MachineVariant(String id, String name, Arch arch, Size size, Weapo
                              float scale, float width, float height, double hp, double damage, double speed, double armor) {
     public enum Arch { STUBBY, BIPED, FLYER, GOLIATH, TANK, SPHERE, MULTILEG, QUAD }
     public enum Size { SMALL, MEDIUM, LARGE }
-    public enum Weapon { NONE, AXE, SPEAR, HAMMER, STAFF, SHIELD, CLUB, MISSILE, DRILL, SAW, BOMB, LINK }
+    public enum Weapon { NONE, AXE, SPEAR, HAMMER, STAFF, SHIELD, CLUB, MISSILE, DRILL, SAW, BOMB, LINK, GUN }
     public enum Skin {
-        RUST(""), GOLD("_gold"), HACKED("_hacked"), RAMPAGE("_rampage"), KOSHI("_koshi"), ROSHI("_roshi");
+        RUST(""), GOLD("_gold"), HACKED("_hacked"), RAMPAGE("_rampage"), KOSHI("_koshi"), ROSHI("_roshi"),
+        BRONZE("_bronze"), BLOOD("_blood"), GRAVE("_grave"), CLOWN("_clown"), DYING("_dying"), MONSTER("_monster"), ANIMAL("_animal");
         public final String suffix;
         Skin(String s) { suffix = s; }
     }

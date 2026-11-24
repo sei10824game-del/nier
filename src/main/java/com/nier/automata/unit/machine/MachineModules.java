@@ -57,11 +57,26 @@ public final class MachineModules {
         LINKED_SPHERE = m("machine_linked_sphere", "Linked-sphere Type", SPHERE, MEDIUM, LINK, RUST, 1.5f, 1.2f, 1.6f, 80, 10, 0.3, 5),
         KO_SHI = m("machine_ko_shi", "Ko-Shi", BIPED, LARGE, NONE, KOSHI, 2.4f, 1.7f, 4.7f, 320, 14, 0.27, 8),
         RO_SHI = m("machine_ro_shi", "Ro-Shi", BIPED, LARGE, NONE, ROSHI, 2.4f, 1.7f, 4.7f, 320, 14, 0.27, 8),
+        GUNMAN_STUBBY = m("machine_gunman_stubby", "Gunman Stubby", STUBBY, SMALL, GUN, RUST, 1f, 0.8f, 1.5f, 30, 6, 0.26, 3),
+        GUNMAN_BIPED = m("machine_gunman_biped", "Gunman Biped", BIPED, MEDIUM, GUN, RUST, 1.15f, 0.8f, 2.4f, 55, 8, 0.27, 5),
+        GUNMAN_FLYER = m("machine_gunman_flyer", "Gunman Flyer", FLYER, SMALL, GUN, RUST, 1.2f, 1.1f, 1.5f, 34, 6, 0.3, 3),
+        DYING_GOLIATH = m("machine_dying_goliath", "Dying Goliath Biped", GOLIATH, MEDIUM, NONE, DYING, 2.4f, 2.6f, 4.2f, 260, 18, 0.16, 8),
+        MONSTER_TYPE = m("machine_monster_type", "Monster Type", QUAD, LARGE, NONE, MONSTER, 2.2f, 2.2f, 2.2f, 160, 14, 0.34, 6),
+        ANIMAL_MACHINE = m("machine_animal_machine", "Animal Machine", QUAD, MEDIUM, NONE, ANIMAL, 1.5f, 1.5f, 1.6f, 60, 8, 0.34, 3),
+        PARK_RABBIT = m("machine_park_rabbit", "Amusement Park Rabbit", STUBBY, SMALL, NONE, BRONZE, 1.1f, 0.9f, 1.5f, 40, 5, 0.25, 4),
+        BLOOD_DRENCHED = m("machine_blood_drenched", "Blood-drenched Machine", STUBBY, SMALL, AXE, BLOOD, 1f, 0.8f, 1.3f, 40, 8, 0.3, 2),
+        COURAGEOUS_BROTHER = m("machine_courageous_brother", "Courageous Brother", STUBBY, SMALL, NONE, GOLD, 1f, 0.8f, 1.3f, 40, 6, 0.28, 4),
+        HATEFUL_SISTER = m("machine_hateful_sister", "Hateful Sister", STUBBY, SMALL, NONE, GOLD, 1f, 0.8f, 1.3f, 40, 6, 0.28, 4),
+        VENGEFUL_CHILD = m("machine_vengeful_child", "Vengeful Child", STUBBY, SMALL, NONE, GOLD, 0.8f, 0.7f, 1.1f, 30, 7, 0.32, 3),
+        GRAVEKEEPER = m("machine_gravekeeper", "Gravekeeper", STUBBY, MEDIUM, STAFF, GRAVE, 1.8f, 1.4f, 2.6f, 120, 10, 0.22, 8),
+        ZOMBIE_CLOWN = m("machine_zombie_clown", "Zombie Clown", BIPED, SMALL, NONE, CLOWN, 0.9f, 0.7f, 1.8f, 50, 7, 0.32, 3),
         SPHERE_UNIT = m("machine_sphere", "Sphere", SPHERE, SMALL, NONE, RUST, 1.2f, 0.9f, 0.9f, 18, 4, 0.27, 2),
         HACKED_SPHERE = m("machine_hacked_sphere", "Hacked Sphere", SPHERE, SMALL, NONE, HACKED, 1.2f, 0.9f, 0.9f, 26, 5, 0.28, 3);
 
     public static final List<UnitModule<?>> ALL = List.of(SMALL_STUBBY, SMALL_STUBBY_AXE, SMALL_STUBBY_SPEAR, SMALL_STUBBY_HAMMER,
             SMALL_STUBBY_STAFF, SMALL_STUBBY_SHIELD, GOLD_STUBBY_AXE, GOLD_STUBBY_SPEAR, GOLD_STUBBY_HAMMER, GOLD_STUBBY_STAFF,
             MEDIUM_STUBBY, LARGE_STUBBY, HACKED_STUBBY, SMALL_BIPED, MEDIUM_BIPED, MEDIUM_BIPED_SHIELD, LARGE_BIPED, HACKED_BIPED,
-            SMALL_FLYER, MEDIUM_FLYER, MACHINE_FLYER, SMALL_GOLIATH, MEDIUM_GOLIATH, LARGE_GOLIATH, GOLIATH_TANK, SPHERE_UNIT, HACKED_SPHERE, MULTILEG_UNIT, DRILL_SPHERE, SMALL_EXPLODER, SAW_SPHERE, QUADRUPED, GOLD_GOLIATH, GOLD_TANK, MEDIUM_EXPLODER, GOLIATH_FLYER, RAMPAGING_SMALL_STUBBY, RAMPAGING_SMALL_BIPED, RAMPAGING_MEDIUM_BIPED, LINKED_SPHERE, KO_SHI, RO_SHI);
+            SMALL_FLYER, MEDIUM_FLYER, MACHINE_FLYER, SMALL_GOLIATH, MEDIUM_GOLIATH, LARGE_GOLIATH, GOLIATH_TANK, SPHERE_UNIT, HACKED_SPHERE, MULTILEG_UNIT, DRILL_SPHERE, SMALL_EXPLODER, SAW_SPHERE, QUADRUPED, GOLD_GOLIATH, GOLD_TANK, MEDIUM_EXPLODER, GOLIATH_FLYER, RAMPAGING_SMALL_STUBBY, RAMPAGING_SMALL_BIPED, RAMPAGING_MEDIUM_BIPED, LINKED_SPHERE, KO_SHI, RO_SHI,
+            GUNMAN_STUBBY, GUNMAN_BIPED, GUNMAN_FLYER, DYING_GOLIATH, MONSTER_TYPE, ANIMAL_MACHINE, PARK_RABBIT, BLOOD_DRENCHED,
+            COURAGEOUS_BROTHER, HATEFUL_SISTER, VENGEFUL_CHILD, GRAVEKEEPER, ZOMBIE_CLOWN);
 }

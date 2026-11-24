@@ -48,6 +48,7 @@ public class QuadModel extends NierModel<MachineUnit> {
     }
 
     @Override protected void idle(MachineUnit e, float ls, float la, float age, float headYaw, float headPitch) {
+        bone("antlers").visible = e.v.skin() == com.nier.automata.unit.machine.MachineVariant.Skin.ANIMAL;
         float c = ls * 0.9f;
         bone("legR0").xRot = Mth.cos(c) * 0.8f * la; bone("legL1").xRot = Mth.cos(c) * 0.8f * la;
         bone("legL0").xRot = Mth.cos(c + PI) * 0.8f * la; bone("legR1").xRot = Mth.cos(c + PI) * 0.8f * la;

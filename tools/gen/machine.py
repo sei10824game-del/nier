@@ -22,6 +22,10 @@ ARCH['stubby'] = (128, 128, [
     P('head', 'body', (0, -7, 0), [B(-4.5, -8, -4.5, 9, 8, 9, 'plate', *EYE1(9, 2), ('front', 1, 6, 1, 1, 'steel')),
                                    B(-3, -9, -3, 6, 1, 6, 'plate'), B(-5, -2, -5, 10, 1, 10, 'dark')]),
     P('bomb', 'head', (0, -8, 0), [B(-4, -6, -4, 8, 6, 8, 'dark', ('front', 0, 2, 8, 2, 'eye'), ('left', 0, 2, 8, 2, 'eye'), ('right', 0, 2, 8, 2, 'eye'), ('back', 0, 2, 8, 2, 'eye')), B(-0.5, -9, -0.5, 1, 3, 1, 'steel')]),
+    P('hat', 'head', (0, -8, 0), [B(-6, -1, -6, 12, 1, 12, 'black'), B(-3.5, -5, -3.5, 7, 4, 7, 'black', ('front', 0, 3, 7, 1, 'steel'))]),
+    P('ears', 'head', (0, -8, 0), [B(-3.5, -11, -1, 2, 11, 1, 'plate'), B(1.5, -11, -1, 2, 11, 1, 'plate'), B(-5, -2, -5, 10, 2, 10, 'steel')]),
+    P('jester', 'head', (0, -8, 0), [B(-4.5, -3, -4.5, 9, 3, 9, 'purple'), B(-4, -6, -1.5, 3, 3, 3, 'purple'), B(1, -6, -1.5, 3, 3, 3, 'purple'), B(-5, -2, -5, 10, 2, 10, 'steel')]),
+    P('antlers', 'head', (0, -8, 0), [B(-6, -9, 0, 2, 9, 1, 'steel'), B(4, -9, 0, 2, 9, 1, 'steel'), B(-9, -9, 0, 3, 1, 1, 'steel'), B(6, -9, 0, 3, 1, 1, 'steel')]),
     P('rightArm', 'body', (-4.5, -6, 0), [B(-2.5, -1, -1.5, 3, 8, 3, 'dark'), B(-3, 7, -2, 4, 3, 4, 'plate')]),
     P('leftArm', 'body', (4.5, -6, 0), [B(-0.5, -1, -1.5, 3, 8, 3, 'dark'), B(-1, 7, -2, 4, 3, 4, 'plate')]),
     P('rightLeg', 'root', (-2, 18, 0), [B(-1.5, 0, -1.5, 3, 4, 3, 'dark'), B(-2.5, 4, -3, 5, 2, 6, 'plate', ('top', 1, 1, 3, 1, 'dark'))]),
@@ -36,6 +40,10 @@ ARCH['stubby'] = (128, 128, [
 ARCH['biped'] = (128, 64, [
     P('body', 'root', (0, 12, 0), [B(-3, -1, -2, 6, 3, 4, 'dark'), B(-4, -11, -3, 8, 10, 6, 'plate', ('front', 1, 2, 6, 2, 'dark'), ('front', 3, 5, 2, 3, 'dark'))]),
     P('head', 'body', (0, -11, 0), [B(-4, -7, -4, 8, 7, 8, 'plate', *EYE1(8, 2)), B(-3, -8, -3, 6, 1, 6, 'plate')]),
+    P('hat', 'head', (0, -7, 0), [B(-6, -1, -6, 12, 1, 12, 'black'), B(-3.5, -5, -3.5, 7, 4, 7, 'black', ('front', 0, 3, 7, 1, 'steel'))]),
+    P('ears', 'head', (0, -7, 0), [B(-3.5, -11, -1, 2, 11, 1, 'plate'), B(1.5, -11, -1, 2, 11, 1, 'plate'), B(-5, -2, -5, 10, 2, 10, 'steel')]),
+    P('jester', 'head', (0, -7, 0), [B(-4.5, -3, -4.5, 9, 3, 9, 'purple'), B(-4, -6, -1.5, 3, 3, 3, 'purple'), B(1, -6, -1.5, 3, 3, 3, 'purple'), B(-5, -2, -5, 10, 2, 10, 'steel')]),
+    P('antlers', 'head', (0, -7, 0), [B(-6, -9, 0, 2, 9, 1, 'steel'), B(4, -9, 0, 2, 9, 1, 'steel'), B(-9, -9, 0, 3, 1, 1, 'steel'), B(6, -9, 0, 3, 1, 1, 'steel')]),
     P('rightArm', 'body', (-5, -10, 0), [B(-1.5, -1, -1, 2, 12, 2, 'dark'), B(-2.5, -2, -2, 3, 3, 4, 'plate'), B(-2, 11, -1.5, 3, 3, 3, 'plate')]),
     P('leftArm', 'body', (5, -10, 0), [B(-0.5, -1, -1, 2, 12, 2, 'dark'), B(-0.5, -2, -2, 3, 3, 4, 'plate'), B(-1, 11, -1.5, 3, 3, 3, 'plate')]),
     P('rightLeg', 'root', (-2, 12, 0), [B(-1, 0, -1, 2, 11, 2, 'dark'), B(-1.5, 4, -1.5, 3, 3, 3, 'plate'), B(-1.5, 10, -2.5, 3, 2, 4, 'plate')]),
@@ -45,6 +53,7 @@ ARCH['biped'] = (128, 64, [
 ])
 ARCH['flyer'] = (64, 64, [
     P('body', 'root', (0, 12, 0), [B(-4, -4, -4, 8, 8, 8, 'plate', *EYE1(8, 2)), B(-1, 4, -4, 2, 2, 4, 'dark')]),
+    P('hat', 'body', (0, -4, 0), [B(-6, -1, -6, 12, 1, 12, 'black'), B(-3.5, -5, -3.5, 7, 4, 7, 'black', ('front', 0, 3, 7, 1, 'steel'))]),
     P('rightWing', 'body', (-4, -1, 0), [B(-6, -0.5, -1, 6, 1, 2, 'dark'), B(-8, -1.5, -1.5, 3, 3, 3, 'plate')]),
     P('rightRotor', 'rightWing', (-6.5, -2, 0), [B(-5, -0.5, -1, 10, 1, 2, 'steel'), B(-1, -0.5, -5, 2, 1, 10, 'steel')]),
     P('leftWing', 'body', (4, -1, 0), [B(0, -0.5, -1, 6, 1, 2, 'dark'), B(5, -1.5, -1.5, 3, 3, 3, 'plate')]),
@@ -95,7 +104,8 @@ ARCH['multileg'] = (128, 64, _multileg())
 def _quad():
     parts = [P('body', 'root', (0, 12, 0), [B(-4, -3, -7, 8, 6, 14, 'plate', ('top', 2, 4, 4, 1, 'dark')), B(-5, 3, -6, 10, 1, 12, 'dark')]),
              P('head', 'body', (0, -1, -7), [B(-3, -4, -5, 6, 6, 6, 'plate', *EYE1(6, 1)), B(-2, 0, -7, 4, 2, 2, 'dark')]),
-             P('tail', 'body', (0, -2, 7), [B(-0.5, -1, 0, 1, 2, 5, 'dark'), B(-0.5, -4, 4, 1, 6, 6, 'steel')])]
+             P('antlers', 'head', (0, -4, -2), [B(-6, -9, 0, 2, 9, 1, 'steel'), B(4, -9, 0, 2, 9, 1, 'steel'), B(-9, -9, 0, 3, 1, 1, 'steel'), B(6, -9, 0, 3, 1, 1, 'steel')]),
+    P('tail', 'body', (0, -2, 7), [B(-0.5, -1, 0, 1, 2, 5, 'dark'), B(-0.5, -4, 4, 1, 6, 6, 'steel')])]
     for side, sx in (('R', -1), ('L', 1)):
         for i, z in enumerate((-5, 5)):
             n = f'leg{side}{i}'
@@ -124,12 +134,19 @@ SKINS = {  # plate, dark, steel, eye, glow
     '_rampage': ((176, 158, 148), (84, 48, 44), (150, 138, 138), (255, 20, 20), (255, 70, 40)),
     '_koshi': ((228, 230, 238), (70, 76, 96), (190, 200, 230), (90, 190, 255), (120, 220, 255)),
     '_roshi': ((34, 32, 42), (14, 12, 20), (90, 70, 130), (190, 90, 255), (210, 120, 255)),
+    '_bronze': ((176, 140, 84), (92, 70, 44), (200, 170, 110), (255, 60, 30), (255, 200, 90)),
+    '_blood': ((160, 56, 48), (80, 28, 26), (180, 150, 140), (255, 40, 30), (255, 90, 60)),
+    '_grave': ((110, 124, 100), (52, 62, 48), (150, 160, 140), (255, 60, 30), (255, 160, 60)),
+    '_clown': ((200, 190, 210), (70, 40, 96), (230, 225, 235), (255, 40, 80), (255, 120, 160)),
+    '_dying': ((116, 120, 100), (60, 64, 54), (150, 150, 140), (255, 50, 30), (255, 140, 60)),
+    '_monster': ((140, 100, 76), (70, 50, 40), (180, 150, 120), (255, 200, 60), (255, 160, 60)),
+    '_animal': ((190, 180, 166), (100, 96, 88), (210, 200, 190), (255, 210, 80), (255, 160, 60)),
     '_burn': ((176, 76, 44), (70, 34, 26), (200, 110, 80), (255, 220, 70), (255, 200, 60)),
 }
 
 ARCH_BASE = {'goliath': ((150, 104, 74), (82, 62, 48), (150, 140, 128), (255, 48, 32), (255, 150, 40)),
              'tank': ((190, 170, 128), (98, 86, 62), (160, 154, 140), (255, 48, 32), (255, 150, 40))}
-NEED = {'_koshi': ('biped',), '_roshi': ('biped',), '_rampage': ('stubby', 'biped'), '_gold': ('stubby', 'goliath', 'tank'), '_hacked': ('stubby', 'biped', 'sphere'), '_burn': ('stubby', 'sphere')}
+NEED = {'_bronze': ('stubby',), '_blood': ('stubby',), '_grave': ('stubby',), '_clown': ('biped',), '_dying': ('goliath',), '_monster': ('quad',), '_animal': ('quad',), '_koshi': ('biped',), '_roshi': ('biped',), '_rampage': ('stubby', 'biped'), '_gold': ('stubby', 'goliath', 'tank'), '_hacked': ('stubby', 'biped', 'sphere'), '_burn': ('stubby', 'sphere')}
 
 def pack(w, boxes):
     # shelf packer; footprint of a box = (2(d+w), d+h)
@@ -168,7 +185,7 @@ for arch, (W, H, parts) in ARCH.items():
     for suffix, (plate, dark, steel, eye, glow) in SKINS.items():
         if suffix and arch not in NEED[suffix]: continue
         if not suffix and arch in ARCH_BASE: plate, dark, steel, eye, glow = ARCH_BASE[arch]
-        mats = {'plate': plate, 'dark': dark, 'steel': steel, 'eye': eye, 'glow': glow, 'white': (255, 40, 30) if suffix == '_rampage' else (238, 234, 222)}
+        mats = {'plate': plate, 'dark': dark, 'steel': steel, 'eye': eye, 'glow': glow, 'white': (255, 40, 30) if suffix == '_rampage' else (238, 234, 222), 'black': (22, 20, 24), 'purple': (96, 50, 130)}
         t = Tex(W, H, seed=len(arch) * 7919)
         for pi, (name, parent, pv, rot, boxes) in enumerate(parts):
             for bi, b in enumerate(boxes):
@@ -188,6 +205,19 @@ open(os.path.join(ROOT, 'src/main/java/com/nier/automata/unit/machine/client/Mac
 
 # ---- lang parts: id -> (english, japanese) ----
 NAMES = {
+    'machine_gunman_stubby': ('Gunman Stubby', 'ガンマン短足'),
+    'machine_gunman_biped': ('Gunman Biped', 'ガンマン二足'),
+    'machine_gunman_flyer': ('Gunman Flyer', 'ガンマン飛行体'),
+    'machine_dying_goliath': ('Dying Goliath Biped', '瀕死の超大型二足'),
+    'machine_monster_type': ('Monster Type', '怪物型'),
+    'machine_animal_machine': ('Animal Machine', '動物機械'),
+    'machine_park_rabbit': ('Amusement Park Rabbit', '遊園地のウサギ'),
+    'machine_blood_drenched': ('Blood-drenched Machine', '血まみれの機械'),
+    'machine_courageous_brother': ('Courageous Brother', '勇敢な兄'),
+    'machine_hateful_sister': ('Hateful Sister', '憎む姉'),
+    'machine_vengeful_child': ('Vengeful Child', '復讐する子'),
+    'machine_gravekeeper': ('Gravekeeper', '墓守'),
+    'machine_zombie_clown': ('Zombie Clown', 'ゾンビ・クラウン'),
     'machine_small_stubby': ('Small Stubby', '小型短足'), 'machine_small_stubby_axe': ('Small Stubby (Axe)', '小型短足 (斧)'),
     'machine_small_stubby_spear': ('Small Stubby (Spear)', '小型短足 (槍)'), 'machine_small_stubby_hammer': ('Small Stubby (Hammer)', '小型短足 (槌)'),
     'machine_small_stubby_staff': ('Small Stubby (Staff)', '小型短足 (杖)'), 'machine_small_stubby_shield': ('Small Stubby (Shield)', '小型短足 (盾)'),

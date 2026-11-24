@@ -90,6 +90,11 @@ public class BipedUnit extends MachineUnit {
                     sound(SoundEvents.BLAZE_SHOOT, 0.5f, 1.5f); }
             }));
         }
+        if (v.weapon() == Weapon.GUN && v.size() != Size.LARGE) l.add(new Skill(ORB_VOLLEY, "Gun Volley", 40, 70, 3, 18, (u, t, k) -> {
+            if (k >= 12 && k <= 32 && k % 4 == 0) { boolean right = (k / 4) % 2 == 0;
+                shoot(at(0.8 * s, 1.0 * s, (right ? 0.5 : -0.5) * s), targetPos(t), 0.6, Kind.HARD_ORB, dmg(0.7));
+                sound(SoundEvents.CROSSBOW_SHOOT, 0.7f, 1.2f); }
+        }).weight(3));
         return l;
     }
 }
