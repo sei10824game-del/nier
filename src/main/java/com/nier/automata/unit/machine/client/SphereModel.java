@@ -63,6 +63,14 @@ public class SphereModel extends NierModel<MachineUnit> {
             .bone("rightFin").rot(0, 0, 0, 0).rot(10, 0, 0, 0.9f).rot(32, 0, 0, 0.9f).rot(40, 0, 0, 0)
             .bone("leftFin").rot(0, 0, 0, 0).rot(10, 0, 0, -0.9f).rot(32, 0, 0, -0.9f).rot(40, 0, 0, 0).done());
 
+        // Chain Whip: coil the chain 0-12, whip the whole chain around twice (14 and 24)
+        AnimClip wh = AnimClip.of(44).blend(3);
+        wh.bone("ball").rot(0, 0, 0, 0).rot(12, 0, -0.8f, 0).rot(14, 0, 2 * PI, 0, OUT).rot(22, 0, 2 * PI + 0.4f, 0).rot(24, 0, 4 * PI, 0, OUT).rot(44, 0, 4 * PI, 0);
+        wh.bone("link1").rot(0, 0, 0, 0).rot(12, 0, 0.9f, 0).rot(16, 0, -0.5f, 0).rot(26, 0, 0.4f, 0).rot(44, 0, 0, 0);
+        wh.bone("link2").rot(0, 0, 0, 0).rot(12, 0, 0.9f, 0).rot(18, 0, -0.7f, 0).rot(28, 0, 0.5f, 0).rot(44, 0, 0, 0);
+        wh.bone("link3").rot(0, 0, 0, 0).rot(12, 0, 0.9f, 0).rot(20, 0, -0.9f, 0).rot(30, 0, 0.6f, 0).rot(44, 0, 0, 0);
+        clip(WHIP, wh);
+
         // Self-Destruct: overheating shudder while rushing 0-39, swelling 40-49
         AnimClip sd = AnimClip.of(50).blend(2);
         AnimClip.Bone b = sd.bone("ball").pos(0, 0, 0, 0).scale(0, 1, 1, 1).scale(39, 1.05f, 1.05f, 1.05f).scale(49, 1.5f, 1.5f, 1.5f);
@@ -79,6 +87,9 @@ public class SphereModel extends NierModel<MachineUnit> {
         ball.y += Mth.sin(age * 0.2f) * 0.3f * (1 - la);
         bone("rightFin").zRot = Mth.sin(age * 0.25f) * 0.12f; bone("leftFin").zRot = -Mth.sin(age * 0.25f) * 0.12f;
         bone("topFin").xRot = Mth.sin(age * 0.18f) * 0.1f;
+        boolean link = e.v.weapon() == com.nier.automata.unit.machine.MachineVariant.Weapon.LINK;
+        for (String ln : new String[]{"link1", "link2", "link3"}) { var lp = bone(ln); lp.xScale = lp.yScale = lp.zScale = link ? 1 : 0; }
+        if (link) { bone("link1").yRot = Mth.sin(age * 0.15f) * 0.25f; bone("link2").yRot = Mth.sin(age * 0.15f - 0.8f) * 0.3f; bone("link3").yRot = Mth.sin(age * 0.15f - 1.6f) * 0.35f; }
         boolean drill = e.v.weapon() == com.nier.automata.unit.machine.MachineVariant.Weapon.DRILL;
         bone("drill").xScale = bone("drill").yScale = bone("drill").zScale = drill ? 1 : 0;
         boolean saw = e.v.weapon() == com.nier.automata.unit.machine.MachineVariant.Weapon.SAW;

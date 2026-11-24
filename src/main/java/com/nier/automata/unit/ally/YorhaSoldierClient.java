@@ -39,7 +39,8 @@ public final class YorhaSoldierClient {
             BURST, Clips.shoot(30, 8, 24, 4),
             BASH, Clips.seq(16).key(5, Clips.thrustWind()).key(9, Clips.thrustHit(), AnimClip.Ease.OUT).key(12, Clips.thrustHit()).build(),
             POD_GUN, Clips.podShoot(30, 6, 26, 2),
-            EVADE, Clips.evade(10));
+            EVADE, Clips.evade(10),
+            YorhaHeavyUnit.CANNON, Clips.shoot(40, 14, 17, 3));
     }
 
     static class Model extends AllyClient.Model<YorhaSoldierUnit> {
@@ -53,5 +54,9 @@ public final class YorhaSoldierClient {
     public static void layers(EntityRenderersEvent.RegisterLayerDefinitions e) { AllyClient.layers(e, ID, YorhaSoldierClient::layer); }
     public static void renderers(EntityRenderersEvent.RegisterRenderers e, EntityType<YorhaSoldierUnit> t) {
         AllyClient.renderer(e, t, ID, 0.5f, u -> AllyClient.tex(ID), Model::new);
+    }
+    public static void layers(EntityRenderersEvent.RegisterLayerDefinitions e, String id) { AllyClient.layers(e, id, YorhaSoldierClient::layer); }
+    public static void renderers(EntityRenderersEvent.RegisterRenderers e, String id, EntityType<YorhaSoldierUnit> t) {
+        AllyClient.renderer(e, t, id, 0.6f, u -> AllyClient.tex(id), Model::new);
     }
 }

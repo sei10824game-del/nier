@@ -20,7 +20,7 @@ public final class Modules {
     public static final List<UnitModule<?>> ALL = new ArrayList<>();
     static {
         ALL.addAll(List.of(new Yorha2bModule(), new Yorha9sModule(), new A2Module(),
-            new YorhaSoldierModule(), new Yorha2EModule(), new CommanderModule(), new Operator6OModule(), new Operator21OModule(),
+            new YorhaSoldierModule(), new YorhaHeavyModule(), new Yorha2EModule(), new CommanderModule(), new Operator6OModule(), new Operator21OModule(),
             new ResistanceModule(), new AnemoneModule(), new JackassModule(), new PascalModule(), new DevolaModule(),
             new PopolaModule(), new EmilModule(), new EmilHackedModule(), new PodModule(),
             new AdamModule(), new EveModule(), new EngelsModule(), new MarxModule(), new HegelModule(),

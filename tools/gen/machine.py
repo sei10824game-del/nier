@@ -111,6 +111,9 @@ ARCH['sphere'] = (128, 128, [
     P('leftFin', 'ball', (6, 0, 0), [B(0, -3, -3, 1, 6, 6, 'steel')]),
     P('topFin', 'ball', (0, -6, 0), [B(-3, -1, -1, 6, 1, 2, 'steel')]),
     P('saw', 'ball', (0, -6, 0), [B(-7, -2, -7, 14, 1, 14, 'steel'), B(-1.5, -7, -1.5, 3, 5, 3, 'dark'), B(-8, -2, -1, 1, 1, 2, 'dark'), B(7, -2, -1, 1, 1, 2, 'dark'), B(-1, -2, -8, 2, 1, 1, 'dark'), B(-1, -2, 7, 2, 1, 1, 'dark')]),
+    P('link1', 'ball', (0, 0, 10), [B(-4, -4, -4, 8, 8, 8, 'plate'), B(-1, -1, -6, 2, 2, 3, 'dark')]),
+    P('link2', 'link1', (0, 0, 8), [B(-3, -3, -3, 6, 6, 6, 'plate'), B(-0.5, -0.5, -5, 1, 1, 3, 'dark')]),
+    P('link3', 'link2', (0, 0, 6), [B(-2.5, -2.5, -2.5, 5, 5, 5, 'plate'), B(-0.5, -0.5, -4, 1, 1, 2, 'dark')]),
     P('drill', 'ball', (0, -6, 0), [B(-3, -7, -3, 6, 7, 6, 'dark'), B(-2, -11, -2, 4, 4, 4, 'steel'), B(-1, -13, -1, 2, 2, 2, 'steel')]),
 ])
 
@@ -204,6 +207,7 @@ NAMES = {
     'machine_medium_exploder': ('Medium Exploder', '中型自爆型'), 'machine_goliath_flyer': ('Goliath Flyer', '超大型飛行体'),
     'machine_rampaging_small_stubby': ('Rampaging Small Stubby', '暴走小型短足'), 'machine_rampaging_small_biped': ('Rampaging Small Biped', '暴走小型二足'),
     'machine_rampaging_medium_biped': ('Rampaging Medium Biped', '暴走中型二足'),
+    'machine_linked_sphere': ('Linked-sphere Type', '連結球体型'),
     'machine_sphere': ('Sphere', '球体'), 'machine_hacked_sphere': ('Hacked Sphere', 'ハッキング球体'),
 }
 os.makedirs(RES + '/lang/parts', exist_ok=True)

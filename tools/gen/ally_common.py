@@ -56,6 +56,13 @@ def ally_yorha_soldier():
     pod(t); sword(t); spear(t, (40, 40, 44)); rifle(t)
     return t
 
+def ally_yorha_heavy():
+    t = ally_yorha_soldier()
+    for u, v, w, h, d in ((16, 16, 8, 12, 4), (0, 64, 9, 7, 5)):                     # grey armour plates over the coat
+        band(t, u, v, w, h, d, 2, 6, (96, 98, 108)); band(t, u, v, w, h, d, 6, 7, (200, 40, 40))
+    t.box(48, 16, 9, 4, 9, (60, 60, 70))                                              # helmet
+    return t
+
 def ally_yorha_2e():
     t = Tex(128, 128, 12)
     humanoid(t, PALE, BLACK, BLACK, (12, 12, 14), (40, 40, 46), (180, 40, 40), gloves=(18, 18, 20), trim=(120, 30, 30))
@@ -215,7 +222,7 @@ def ally_pod_153(): return pod_unit((70, 72, 80), (36, 38, 44), (120, 200, 255))
 def build(name):
     globals()[name]().save(os.path.join(OUT, name + '.png'))
 
-ALL = ['ally_yorha_soldier', 'ally_yorha_2e', 'ally_commander', 'ally_operator_6o', 'ally_operator_21o', 'ally_resistance_soldier',
+ALL = ['ally_yorha_soldier', 'ally_yorha_heavy', 'ally_yorha_2e', 'ally_commander', 'ally_operator_6o', 'ally_operator_21o', 'ally_resistance_soldier',
        'ally_anemone', 'ally_jackass', 'ally_pascal', 'ally_devola', 'ally_popola', 'ally_emil', 'ally_emil_hacked', 'ally_pod', 'ally_pod_153']
 if __name__ == '__main__':
     os.makedirs(OUT, exist_ok=True)
