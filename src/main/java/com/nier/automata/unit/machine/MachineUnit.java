@@ -84,6 +84,7 @@ public abstract class MachineUnit extends NierUnit {
             if (once && !hit.add(e.getId())) continue;
             strike(e, amount, knock); n++;
         }
+        com.nier.automata.core.Fx.slash(level(), position().add(fw.scale(0.3)).add(0, getBbHeight() * 0.6, 0), getYRot(), (random.nextInt(3) - 1) * 40.0, Math.min(arcDeg, 160), Math.min(reach, 4) + 0.3, com.nier.automata.core.Fx.MACHINE_HOT, random.nextBoolean() ? 1 : -1);
         return n;
     }
     /** Radial blast. */
@@ -96,6 +97,7 @@ public abstract class MachineUnit extends NierUnit {
     }
     /** Expanding ground shockwave: call every tick with the current radius; hits grounded victims inside the band once. */
     protected void ring(Vec3 c, double radius, float amount) {
+        com.nier.automata.core.Fx.shock(level(), c, radius, com.nier.automata.core.Fx.MACHINE_HOT);
         for (LivingEntity e : near(c, radius + 1)) {
             double d = e.position().multiply(1, 0, 1).distanceTo(c.multiply(1, 0, 1));
             if (Math.abs(d - radius) > 1.0 || Math.abs(e.getY() - c.y) > 1.2 || !hit.add(e.getId())) continue;
@@ -115,9 +117,7 @@ public abstract class MachineUnit extends NierUnit {
         if (t % 4 == 0) for (LivingEntity e : level().getEntitiesOfClass(LivingEntity.class, new AABB(from, to).inflate(1), this::foe))
             if (e.getBoundingBox().inflate(0.4).clip(from, to).isPresent()) strike(e, amount, 0.1);
         if (level() instanceof ServerLevel sl) {
-            double l = from.distanceTo(to);
-            for (double s = 0; s < l; s += 0.5) { Vec3 p = from.add(to.subtract(from).scale(s / l)); sl.sendParticles(LASER_FX, p.x, p.y, p.z, 1, 0, 0, 0, 0); }
-            sl.sendParticles(ParticleTypes.LAVA, to.x, to.y, to.z, 1, 0.1, 0.1, 0.1, 0);
+            com.nier.automata.core.Fx.beam(level(), from, to, com.nier.automata.core.Fx.MACHINE, 0.18);
         }
         return to;
     }

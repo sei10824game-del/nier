@@ -1,6 +1,7 @@
 package com.nier.automata.unit.boss;
 
 import com.nier.automata.core.NierUnit;
+import com.nier.automata.core.Fx;
 import net.minecraft.core.particles.DustParticleOptions;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -61,6 +62,7 @@ public final class BossFx {
             if (len > reach || (d.lengthSqr() > 0.01 && d.normalize().dot(f) < cos)) continue;
             hit(u, e, atk(u) * mult, knock, 0); n++;
         }
+        com.nier.automata.core.Fx.slash(u.level(), u.position().add(f.scale(0.4)).add(0, u.getBbHeight() * 0.55, 0), u.getYRot(), (u.getRandom().nextInt(3) - 1) * 40.0, Math.min(2 * halfDeg + 30, 170), Math.min(reach, 6) + 0.4, Fx.MACHINE, u.getRandom().nextBoolean() ? 1 : -1);
         return n;
     }
 
@@ -89,7 +91,8 @@ public final class BossFx {
             hit(u, e, atk(u) * mult, 0.3, 0); n++;
         }
         if (u.level() instanceof ServerLevel s)
-            for (double d = 0; d < len; d += 0.5) { Vec3 q = from.add(dir.scale(d)); s.sendParticles(p, q.x, q.y, q.z, 1, width * .2, width * .2, width * .2, 0); }
+            { com.nier.automata.core.Fx.beam(s, from, from.add(dir.scale(len)), com.nier.automata.core.Fx.MACHINE, Math.min(width, 0.6) * 0.5);
+              for (double d = 0; d < len; d += 1.0) { Vec3 q = from.add(dir.scale(d)); s.sendParticles(p, q.x, q.y, q.z, 1, width * .3, width * .3, width * .3, 0); } }
         return n;
     }
 
@@ -98,7 +101,8 @@ public final class BossFx {
         for (LivingEntity e : u.level().getEntitiesOfClass(LivingEntity.class, new AABB(pos, pos).inflate(r, 3, r), e -> foe(u, e)))
             if (Math.hypot(e.getX() - pos.x, e.getZ() - pos.z) <= r + e.getBbWidth() / 2) hit(u, e, atk(u) * mult, 0, 0.8);
         if (u.level() instanceof ServerLevel s) {
-            for (double y = 0; y < 4; y += 0.25) s.sendParticles(p, pos.x, pos.y + y, pos.z, 2, r * .3, 0.05, r * .3, 0);
+            com.nier.automata.core.Fx.pillar(s, pos, 4, Math.max(0.3, r * 0.5), com.nier.automata.core.Fx.MACHINE);
+            for (double y = 0; y < 4; y += 0.5) s.sendParticles(p, pos.x, pos.y + y, pos.z, 1, r * .3, 0.05, r * .3, 0);
             s.sendParticles(ParticleTypes.CRIT, pos.x, pos.y + .2, pos.z, 8, r * .5, 0.1, r * .5, 0.2);
         }
     }
@@ -108,6 +112,7 @@ public final class BossFx {
     public static void ring(NierUnit u, Vec3 c, double r, ParticleOptions p, int n) {
         if (!(u.level() instanceof ServerLevel s)) return;
         for (int i = 0; i < n; i++) { double a = i * Math.PI * 2 / n; s.sendParticles(p, c.x + Math.cos(a) * r, c.y, c.z + Math.sin(a) * r, 1, 0, 0, 0, 0); }
+        if (r > 1.5 && n >= 16) com.nier.automata.core.Fx.shock(s, c, r, com.nier.automata.core.Fx.MACHINE_HOT);
     }
     public static void puff(NierUnit u, Vec3 c, ParticleOptions p, int n, double spread) {
         if (u.level() instanceof ServerLevel s) s.sendParticles(p, c.x, c.y, c.z, n, spread, spread, spread, 0.02);

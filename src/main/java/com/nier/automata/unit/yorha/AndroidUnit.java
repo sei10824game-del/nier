@@ -50,8 +50,8 @@ public abstract class AndroidUnit extends NierUnit {
             if (h.lengthSqr() > 0.25 && h.normalize().dot(f) < cos) continue;
             strike(e, dmg); if (knock > 0) e.knockback(knock, -f.x, -f.z); n++;
         }
-        Vec3 p = position().add(f.scale(1.3)).add(0, 1.1, 0);
-        sl().sendParticles(ParticleTypes.SWEEP_ATTACK, p.x, p.y, p.z, 1, 0, 0, 0, 0);
+        com.nier.automata.core.Fx.slash(level(), position().add(f.scale(0.3)).add(0, 1.25, 0), getYRot(), (random.nextInt(4) - 1) * 35.0, 150, Math.min(range, 3.2) + 0.5,
+                this instanceof A2Unit ? 0xff5040 : com.nier.automata.core.Fx.YORHA, random.nextBoolean() ? 1 : -1);
         sound(n > 0 ? SoundEvents.PLAYER_ATTACK_STRONG : SoundEvents.PLAYER_ATTACK_SWEEP, 1f, 0.9f + random.nextFloat() * 0.3f);
         return n;
     }
@@ -94,7 +94,7 @@ public abstract class AndroidUnit extends NierUnit {
         Vec3 to = from.add(dir.normalize().scale(len));
         for (LivingEntity e : level().getEntitiesOfClass(LivingEntity.class, new AABB(from, to).inflate(1), this::foe))
             if (e.getBoundingBox().inflate(0.4).clip(from, to).isPresent()) { strike(e, dmg); e.invulnerableTime = 0; }
-        tracer(from, to, ParticleTypes.END_ROD, 3);
+        com.nier.automata.core.Fx.beam(level(), from, to, com.nier.automata.core.Fx.YORHA_DEEP, 0.12);
     }
 
     public void tracer(Vec3 a, Vec3 b, ParticleOptions p, int perBlock) {
@@ -102,6 +102,8 @@ public abstract class AndroidUnit extends NierUnit {
         for (int i = 0; i <= n; i++) { Vec3 q = a.lerp(b, i / (double) n); sl().sendParticles(p, q.x, q.y, q.z, 1, 0, 0, 0, 0); }
     }
     public void ring(Vec3 c, double r, ParticleOptions p) {
+        com.nier.automata.core.Fx.shock(level(), c, r, com.nier.automata.core.Fx.YORHA);
+        if (r > 0) return;
         for (int i = 0; i < 24; i++) { double a = i * Math.PI / 12;
             sl().sendParticles(p, c.x + Math.cos(a) * r, c.y + 0.1, c.z + Math.sin(a) * r, 1, 0, 0.05, 0, 0.02); }
     }

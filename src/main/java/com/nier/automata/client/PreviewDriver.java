@@ -71,12 +71,16 @@ public final class PreviewDriver {
         int j = 0;
         for (Skill sk : cur.skills()) {
             if (j++ >= max) break;
-            final int jj = j;
-            final int d = sk.duration;
-            add.add(new Step(Math.max(1, (int) (d * 0.30)), () -> srv(mc, () -> { if (cur != null) cur.startSkill(sk); })));
-            add.add(new Step(Math.max(1, (int) (d * 0.25)), () -> shot(mc, String.format("%02d_%s_s%d_a", num, m.id(), jj))));
-            add.add(new Step(Math.max(1, (int) (d * 0.25)), () -> shot(mc, String.format("%02d_%s_s%d_b", num, m.id(), jj))));
-            add.add(new Step(Math.max(1, d), () -> srv(mc, () -> { if (cur != null) cur.endSkill(); })));
+            final int jj = j, d = sk.duration;
+            add.add(new Step(1, () -> srv(mc, () -> { if (cur != null) { var p = mc.getSingleplayerServer().getPlayerList().getPlayers().get(0); cur.setTarget(p); cur.startSkill(sk); } })));
+            int sa = (int) (d * 0.3), sb = (int) (d * 0.55);
+            for (int t = 0; t < d; t++) {
+                final int tt = t;
+                add.add(new Step(1, () -> srv(mc, () -> { if (cur != null) { cur.skillTime = tt; try { sk.tick.run(cur, cur.getTarget(), tt); } catch (Throwable ex) { System.out.println("SKILL ERR " + sk.name + " " + ex); } } })));
+                if (t == sa) add.add(new Step(1, () -> shot(mc, String.format("%02d_%s_s%d_a", num, m.id(), jj))));
+                if (t == sb) add.add(new Step(1, () -> shot(mc, String.format("%02d_%s_s%d_b", num, m.id(), jj))));
+            }
+            add.add(new Step(3, () -> srv(mc, () -> { if (cur != null) cur.endSkill(); })));
         }
         // push in front, preserving order
         Step[] arr = add.toArray(new Step[0]);

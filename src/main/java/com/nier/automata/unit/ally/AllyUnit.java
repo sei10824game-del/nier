@@ -67,7 +67,7 @@ public abstract class AllyUnit extends NierUnit {
             if (len > 0.6 && (d.x * f.x + d.z * f.z) / len < cos) continue;
             if (e.hurt(damageSources().mobAttack(this), dmg)) { n++; push(e, d, kb, lift); }
         }
-        if (level() instanceof ServerLevel sl) sl.sendParticles(ParticleTypes.SWEEP_ATTACK, at(range * 0.6, 1.0, 0).x, getY() + 1.0, at(range * 0.6, 1.0, 0).z, 1, 0, 0, 0, 0);
+        com.nier.automata.core.Fx.slash(level(), position().add(f.scale(0.3)).add(0, 1.2, 0), getYRot(), (random.nextInt(4) - 1) * 35.0, Math.min(150, halfAngle * 2 + 40), Math.min(range, 3.2) + 0.4, com.nier.automata.core.Fx.YORHA, random.nextBoolean() ? 1 : -1);
         return n;
     }
     /** Damage all foes in a sphere. */
@@ -122,7 +122,7 @@ public abstract class AllyUnit extends NierUnit {
             if (e.getBoundingBox().inflate(0.4).clip(from, to).isPresent() || e.getBoundingBox().inflate(0.4).contains(from)) {
                 e.invulnerableTime = 0; if (e.hurt(damageSources().indirectMagic(this, this), dmg)) n++;
             }
-        for (double s = 0; s < len; s += 0.5) fx(p, from.add(dir.scale(s)), 1, 0.03, 0);
+        com.nier.automata.core.Fx.beam(level(), from, to, com.nier.automata.core.Fx.YORHA_DEEP, 0.12);
         return n;
     }
 
