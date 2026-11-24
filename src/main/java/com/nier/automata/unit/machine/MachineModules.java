@@ -61,7 +61,7 @@ public final class MachineModules {
         GUNMAN_BIPED = m("machine_gunman_biped", "Gunman Biped", BIPED, MEDIUM, GUN, RUST, 1.15f, 0.8f, 2.4f, 55, 8, 0.27, 5),
         GUNMAN_FLYER = m("machine_gunman_flyer", "Gunman Flyer", FLYER, SMALL, GUN, RUST, 1.2f, 1.1f, 1.5f, 34, 6, 0.3, 3),
         DYING_GOLIATH = m("machine_dying_goliath", "Dying Goliath Biped", GOLIATH, MEDIUM, NONE, DYING, 2.4f, 2.6f, 4.2f, 260, 18, 0.16, 8),
-        MONSTER_TYPE = m("machine_monster_type", "Monster Type", QUAD, LARGE, NONE, MONSTER, 2.2f, 2.2f, 2.2f, 160, 14, 0.34, 6),
+        MONSTER_TYPE = m("machine_monster_type", "Monster Type", MachineVariant.Arch.MONSTER, LARGE, NONE, MachineVariant.Skin.MONSTER, 2.2f, 2.2f, 2.2f, 160, 14, 0.34, 6),
         ANIMAL_MACHINE = m("machine_animal_machine", "Animal Machine", QUAD, MEDIUM, NONE, ANIMAL, 1.5f, 1.5f, 1.6f, 60, 8, 0.34, 3),
         PARK_RABBIT = m("machine_park_rabbit", "Amusement Park Rabbit", STUBBY, SMALL, NONE, BRONZE, 1.1f, 0.9f, 1.5f, 40, 5, 0.25, 4),
         BLOOD_DRENCHED = m("machine_blood_drenched", "Blood-drenched Machine", STUBBY, SMALL, AXE, BLOOD, 1f, 0.8f, 1.3f, 40, 8, 0.3, 2),

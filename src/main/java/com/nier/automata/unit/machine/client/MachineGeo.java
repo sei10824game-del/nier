@@ -133,6 +133,18 @@ public final class MachineGeo {
         PartDefinition lowL1 = legL1.addOrReplaceChild("lowL1", CubeListBuilder.create().texOffs(68, 20).addBox(-0.5F, 0F, -0.5F, 1F, 6F, 1F).texOffs(114, 20).addBox(-1.5F, 5F, -2F, 3F, 1F, 4F), PartPose.offsetAndRotation(0F, 5F, 0F, 0F, 0F, 0.3F));
         return LayerDefinition.create(mesh, 128, 128);
     }
+    public static final String[] MONSTER_PATHS = {"body", "body/head", "body/head/jaw", "body/armR", "body/armL", "legR", "legL"};
+    public static LayerDefinition monster() {
+        MeshDefinition mesh = new MeshDefinition(); PartDefinition root = mesh.getRoot();
+        PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-6F, -6F, -5F, 12F, 10F, 10F).texOffs(104, 20).addBox(-4F, -9F, -1F, 8F, 3F, 2F).texOffs(0, 20).addBox(-5F, 4F, -4F, 10F, 1F, 8F), PartPose.offsetAndRotation(0F, 14F, 0F, 0F, 0F, 0F));
+        PartDefinition head = body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(44, 0).addBox(-4F, -5F, -9F, 8F, 5F, 10F).texOffs(0, 29).addBox(-3F, -8F, -5F, 6F, 2F, 3F), PartPose.offsetAndRotation(0F, -4F, -5F, 0F, 0F, 0F));
+        PartDefinition jaw = head.addOrReplaceChild("jaw", CubeListBuilder.create().texOffs(80, 0).addBox(-3.5F, 0F, -9F, 7F, 2F, 9F).texOffs(102, 29).addBox(-3F, -1F, -9F, 6F, 1F, 1F), PartPose.offsetAndRotation(0F, 0F, -1F, 0F, 0F, 0F));
+        PartDefinition armR = body.addOrReplaceChild("armR", CubeListBuilder.create().texOffs(36, 20).addBox(-1F, 0F, -1F, 2F, 6F, 2F).texOffs(18, 29).addBox(-2F, 6F, -3F, 4F, 1F, 4F).texOffs(50, 29).addBox(-0.5F, 7F, -4F, 1F, 1F, 3F), PartPose.offsetAndRotation(-6F, -3F, -2F, 0F, 0F, 0F));
+        PartDefinition armL = body.addOrReplaceChild("armL", CubeListBuilder.create().texOffs(44, 20).addBox(-1F, 0F, -1F, 2F, 6F, 2F).texOffs(34, 29).addBox(-2F, 6F, -3F, 4F, 1F, 4F).texOffs(58, 29).addBox(-0.5F, 7F, -4F, 1F, 1F, 3F), PartPose.offsetAndRotation(6F, -3F, -2F, 0F, 0F, 0F));
+        PartDefinition legR = root.addOrReplaceChild("legR", CubeListBuilder.create().texOffs(112, 0).addBox(-1F, 0F, -1F, 2F, 8F, 2F).texOffs(52, 20).addBox(-3F, 8F, -5F, 6F, 1F, 7F).texOffs(66, 29).addBox(-0.5F, 8F, -7F, 1F, 1F, 2F).texOffs(72, 29).addBox(-2.5F, 8F, -7F, 1F, 1F, 2F).texOffs(78, 29).addBox(1.5F, 8F, -7F, 1F, 1F, 2F), PartPose.offsetAndRotation(-3F, 14F, 1F, 0F, 0F, 0F));
+        PartDefinition legL = root.addOrReplaceChild("legL", CubeListBuilder.create().texOffs(120, 0).addBox(-1F, 0F, -1F, 2F, 8F, 2F).texOffs(78, 20).addBox(-3F, 8F, -5F, 6F, 1F, 7F).texOffs(84, 29).addBox(-0.5F, 8F, -7F, 1F, 1F, 2F).texOffs(90, 29).addBox(-2.5F, 8F, -7F, 1F, 1F, 2F).texOffs(96, 29).addBox(1.5F, 8F, -7F, 1F, 1F, 2F), PartPose.offsetAndRotation(3F, 14F, 1F, 0F, 0F, 0F));
+        return LayerDefinition.create(mesh, 128, 128);
+    }
     public static final String[] SPHERE_PATHS = {"ball", "ball/rightFin", "ball/leftFin", "ball/topFin", "ball/saw", "ball/link1", "ball/link1/link2", "ball/link1/link2/link3", "ball/drill"};
     public static LayerDefinition sphere() {
         MeshDefinition mesh = new MeshDefinition(); PartDefinition root = mesh.getRoot();

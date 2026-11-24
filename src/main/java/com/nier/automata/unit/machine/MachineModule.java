@@ -31,6 +31,7 @@ public class MachineModule extends UnitModule<MachineUnit> {
             case SPHERE -> new SphereUnit(t, l, v);
             case MULTILEG -> new MultiLegUnit(t, l, v);
             case QUAD -> new QuadUnit(t, l, v);
+            case MONSTER -> new MonsterUnit(t, l, v);
         };
     }
     @Override public EntityType.Builder<MachineUnit> builder() {

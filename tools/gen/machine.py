@@ -113,6 +113,15 @@ def _quad():
             parts.append(P(f'low{side}{i}', n, (0, 5, 0), [B(-0.5, 0, -0.5, 1, 6, 1, 'dark'), B(-1.5, 5, -2, 3, 1, 4, 'steel')], rot=(0, 0, sx * 0.3)))
     return parts
 ARCH['quad'] = (128, 128, _quad())
+ARCH['monster'] = (128, 128, [
+    P('body', 'root', (0, 14, 0), [B(-6, -6, -5, 12, 10, 10, 'plate', ('front', 3, 3, 6, 5, 'dark')), B(-4, -9, -1, 8, 3, 2, 'steel'), B(-5, 4, -4, 10, 1, 8, 'dark')]),
+    P('head', 'body', (0, -4, -5), [B(-4, -5, -9, 8, 5, 10, 'plate', ('front', 1, 1, 2, 2, 'eye'), ('front', 5, 1, 2, 2, 'eye')), B(-3, -8, -5, 6, 2, 3, 'steel')]),
+    P('jaw', 'head', (0, 0, -1), [B(-3.5, 0, -9, 7, 2, 9, 'dark'), B(-3, -1, -9, 6, 1, 1, 'steel')]),
+    P('armR', 'body', (-6, -3, -2), [B(-1, 0, -1, 2, 6, 2, 'dark'), B(-2, 6, -3, 4, 1, 4, 'steel'), B(-0.5, 7, -4, 1, 1, 3, 'steel')]),
+    P('armL', 'body', (6, -3, -2), [B(-1, 0, -1, 2, 6, 2, 'dark'), B(-2, 6, -3, 4, 1, 4, 'steel'), B(-0.5, 7, -4, 1, 1, 3, 'steel')]),
+    P('legR', 'root', (-3, 14, 1), [B(-1, 0, -1, 2, 8, 2, 'dark'), B(-3, 8, -5, 6, 1, 7, 'plate'), B(-0.5, 8, -7, 1, 1, 2, 'steel'), B(-2.5, 8, -7, 1, 1, 2, 'steel'), B(1.5, 8, -7, 1, 1, 2, 'steel')]),
+    P('legL', 'root', (3, 14, 1), [B(-1, 0, -1, 2, 8, 2, 'dark'), B(-3, 8, -5, 6, 1, 7, 'plate'), B(-0.5, 8, -7, 1, 1, 2, 'steel'), B(-2.5, 8, -7, 1, 1, 2, 'steel'), B(1.5, 8, -7, 1, 1, 2, 'steel')]),
+])
 ARCH['sphere'] = (128, 128, [
     P('ball', 'root', (0, 18, 0), [B(-6, -4, -4, 12, 8, 8, 'plate'), B(-4, -6, -4, 8, 12, 8, 'plate'),
                                    B(-4, -4, -6, 8, 8, 12, 'plate', ('front', 0, 3, 8, 2, 'dark'), ('front', 1, 1, 6, 6, 'dark'), ('front', 2, 2, 4, 4, 'white'), ('front', 3, 3, 2, 2, 'eye')),
@@ -146,7 +155,7 @@ SKINS = {  # plate, dark, steel, eye, glow
 
 ARCH_BASE = {'goliath': ((150, 104, 74), (82, 62, 48), (150, 140, 128), (255, 48, 32), (255, 150, 40)),
              'tank': ((190, 170, 128), (98, 86, 62), (160, 154, 140), (255, 48, 32), (255, 150, 40))}
-NEED = {'_bronze': ('stubby',), '_blood': ('stubby',), '_grave': ('stubby',), '_clown': ('biped',), '_dying': ('goliath',), '_monster': ('quad',), '_animal': ('quad',), '_koshi': ('biped',), '_roshi': ('biped',), '_rampage': ('stubby', 'biped'), '_gold': ('stubby', 'goliath', 'tank'), '_hacked': ('stubby', 'biped', 'sphere'), '_burn': ('stubby', 'sphere')}
+NEED = {'_bronze': ('stubby',), '_blood': ('stubby',), '_grave': ('stubby',), '_clown': ('biped',), '_dying': ('goliath',), '_monster': ('monster',), '_animal': ('quad',), '_koshi': ('biped',), '_roshi': ('biped',), '_rampage': ('stubby', 'biped'), '_gold': ('stubby', 'goliath', 'tank'), '_hacked': ('stubby', 'biped', 'sphere'), '_burn': ('stubby', 'sphere')}
 
 def pack(w, boxes):
     # shelf packer; footprint of a box = (2(d+w), d+h)
