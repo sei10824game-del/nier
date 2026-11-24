@@ -87,6 +87,7 @@ public abstract class NierUnit extends PathfinderMob {
         if (!level().isClientSide) {
             cooldowns.replaceAll((k, v) -> Math.max(0, v - 1));
             if (bossBar != null) bossBar.setProgress(getHealth() / getMaxHealth());
+            if (tickCount % 5 == 0 && !isCasting()) retarget();
         }
     }
 
@@ -98,6 +99,22 @@ public abstract class NierUnit extends PathfinderMob {
         goalSelector.addGoal(7, new RandomLookAroundGoal(this));
         targetSelector.addGoal(1, new HurtByTargetGoal(this, NierUnit.class).setAlertOthers());
         targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, this::isEnemy));
+    }
+
+    /** Switch to whoever is actually hurting us / is closest, so a unit never keeps chasing a far target while being beaten. */
+    private void retarget() {
+        LivingEntity t = getTarget();
+        LivingEntity atk = getLastHurtByMob();
+        boolean far = t == null || !t.isAlive() || distanceToSqr(t) > 36;
+        if (atk != null && atk.isAlive() && atk != t && tickCount - getLastHurtByMobTimestamp() < 60 && canAttack(atk)
+                && (far || distanceToSqr(atk) < distanceToSqr(t))) { setTarget(atk); return; }
+        if (far) {
+            LivingEntity best = null; double bd = 49;
+            for (LivingEntity e : level().getEntitiesOfClass(LivingEntity.class, getBoundingBox().inflate(7), e -> e != this && e.isAlive() && isEnemy(e) && canAttack(e) && hasLineOfSight(e))) {
+                double d = distanceToSqr(e); if (d < bd) { bd = d; best = e; }
+            }
+            if (best != null && best != t) setTarget(best);
+        }
     }
 
     public boolean isEnemy(LivingEntity e) {
