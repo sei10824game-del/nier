@@ -3,6 +3,7 @@ package com.nier.automata.unit.machine;
 import static com.nier.automata.unit.machine.MachineVariant.Arch.*;
 import static com.nier.automata.unit.machine.MachineVariant.Size.*;
 import static com.nier.automata.unit.machine.MachineVariant.Skin.*;
+import static com.nier.automata.unit.machine.MachineVariant.Skin.SHADE;
 import static com.nier.automata.unit.machine.MachineVariant.Weapon.*;
 
 import com.nier.automata.core.UnitModule;
@@ -78,6 +79,16 @@ public final class MachineModules {
         MULTI_TIER = m("machine_multi_tier", "Multi-tier Type", STUBBY, SMALL, NONE, TIER, 1.1f, 0.9f, 1.5f, 36, 6, 0.26, 4),
         MULTI_TIER_VILLAGE = m("machine_multi_tier_village", "Multi-tier Type (Village)", STUBBY, SMALL, NONE, TIER, 0.8f, 0.7f, 1.1f, 20, 3, 0.24, 1),
         REVERSE_GOLIATH = m("machine_reverse_goliath", "Reverse-jointed Goliath", GOLIATH, MEDIUM, NONE, REVERSE, 2.2f, 2.6f, 4f, 300, 18, 0.26, 12),
+        SHADE_SMALL = m("machine_shade_small", "Shade", MachineVariant.Arch.SHADE, SMALL, NONE, MachineVariant.Skin.SHADE, 0.8f, 0.7f, 1.2f, 16, 4, 0.3, 0),
+        SHADE_MEDIUM = m("machine_shade_medium", "Medium Shade", MachineVariant.Arch.SHADE, MEDIUM, NONE, MachineVariant.Skin.SHADE, 1.3f, 1.1f, 1.9f, 45, 7, 0.28, 3),
+        SHADE_LARGE = m("machine_shade_large", "Large Shade", MachineVariant.Arch.SHADE, LARGE, NONE, MachineVariant.Skin.SHADE, 2.2f, 1.9f, 3.2f, 130, 12, 0.26, 6),
+        SHADE_GIANT = m("machine_shade_giant", "Giant Shade", MachineVariant.Arch.SHADE, LARGE, SPEAR, MachineVariant.Skin.SHADE, 3.4f, 2.8f, 4.8f, 320, 20, 0.24, 10),
+        SHADE_BEAST = m("machine_shade_beast", "Shade Beast", MachineVariant.Arch.QUAD, MEDIUM, NONE, MachineVariant.Skin.SHADE, 1.5f, 1.5f, 1.5f, 60, 9, 0.36, 3),
+        SHADE_BEETLE = m("machine_shade_beetle", "Shade Beetle", MachineVariant.Arch.MULTILEG, MEDIUM, NONE, MachineVariant.Skin.SHADE, 1.8f, 1.9f, 2f, 90, 9, 0.28, 5),
+        SHADE_FLYER = m("machine_shade_flyer", "Shade Flyer", FLYER, MEDIUM, NONE, MachineVariant.Skin.SHADE, 1.5f, 1.5f, 1.8f, 40, 6, 0.3, 2),
+        SHADE_MULTI_LIMB = m("machine_shade_multi_limb", "Multi-limb Shade", MachineVariant.Arch.MONSTER, LARGE, NONE, MachineVariant.Skin.SHADE, 2.4f, 2.4f, 2.4f, 220, 16, 0.3, 8),
+        WOLF = m("machine_wolf", "Wolf", MachineVariant.Arch.QUAD, SMALL, NONE, MachineVariant.Skin.WOLF, 1.1f, 1f, 1.1f, 24, 5, 0.38, 0),
+        SCORPION = m("machine_scorpion", "Scorpion", MachineVariant.Arch.QUAD, SMALL, NONE, MachineVariant.Skin.SCORPION, 1.0f, 1f, 0.8f, 20, 6, 0.3, 2),
         SPHERE_UNIT = m("machine_sphere", "Sphere", SPHERE, SMALL, NONE, RUST, 1.2f, 0.9f, 0.9f, 18, 4, 0.27, 2),
         HACKED_SPHERE = m("machine_hacked_sphere", "Hacked Sphere", SPHERE, SMALL, NONE, HACKED, 1.2f, 0.9f, 0.9f, 26, 5, 0.28, 3);
 
@@ -86,5 +97,6 @@ public final class MachineModules {
             MEDIUM_STUBBY, LARGE_STUBBY, HACKED_STUBBY, SMALL_BIPED, MEDIUM_BIPED, MEDIUM_BIPED_SHIELD, LARGE_BIPED, HACKED_BIPED,
             SMALL_FLYER, MEDIUM_FLYER, MACHINE_FLYER, SMALL_GOLIATH, MEDIUM_GOLIATH, LARGE_GOLIATH, GOLIATH_TANK, SPHERE_UNIT, HACKED_SPHERE, MULTILEG_UNIT, DRILL_SPHERE, SMALL_EXPLODER, SAW_SPHERE, QUADRUPED, GOLD_GOLIATH, GOLD_TANK, MEDIUM_EXPLODER, GOLIATH_FLYER, RAMPAGING_SMALL_STUBBY, RAMPAGING_SMALL_BIPED, RAMPAGING_MEDIUM_BIPED, LINKED_SPHERE, KO_SHI, RO_SHI,
             GUNMAN_STUBBY, GUNMAN_BIPED, GUNMAN_FLYER, DYING_GOLIATH, MONSTER_TYPE, ANIMAL_MACHINE, PARK_RABBIT, BLOOD_DRENCHED,
-            COURAGEOUS_BROTHER, HATEFUL_SISTER, VENGEFUL_CHILD, GRAVEKEEPER, ZOMBIE_CLOWN, MASAMUNE, HO229_WHITE, HO229_BLACK, HIGH_SPEED, EMIL_CLONE, MULTI_TIER, MULTI_TIER_VILLAGE, REVERSE_GOLIATH);
+            COURAGEOUS_BROTHER, HATEFUL_SISTER, VENGEFUL_CHILD, GRAVEKEEPER, ZOMBIE_CLOWN, MASAMUNE, HO229_WHITE, HO229_BLACK, HIGH_SPEED, EMIL_CLONE, MULTI_TIER, MULTI_TIER_VILLAGE, REVERSE_GOLIATH,
+            SHADE_SMALL, SHADE_MEDIUM, SHADE_LARGE, SHADE_GIANT, SHADE_BEAST, SHADE_BEETLE, SHADE_FLYER, SHADE_MULTI_LIMB, WOLF, SCORPION);
 }

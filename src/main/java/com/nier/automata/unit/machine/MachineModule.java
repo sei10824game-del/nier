@@ -33,6 +33,7 @@ public class MachineModule extends UnitModule<MachineUnit> {
             case QUAD -> new QuadUnit(t, l, v);
             case MONSTER -> new MonsterUnit(t, l, v);
             case EXPLODER -> new ExploderUnit(t, l, v);
+            case SHADE -> new ShadeUnit(t, l, v);
         };
     }
     @Override public EntityType.Builder<MachineUnit> builder() {

@@ -144,6 +144,17 @@ public final class MachineGeo {
         PartDefinition lowL1 = legL1.addOrReplaceChild("lowL1", CubeListBuilder.create().texOffs(68, 20).addBox(-0.5F, 0F, -0.5F, 1F, 6F, 1F).texOffs(114, 20).addBox(-1.5F, 5F, -2F, 3F, 1F, 4F), PartPose.offsetAndRotation(0F, 5F, 0F, 0F, 0F, 0.3F));
         return LayerDefinition.create(mesh, 128, 128);
     }
+    public static final String[] SHADE_PATHS = {"body", "body/armR", "body/armL", "legR", "legL", "body/crest"};
+    public static LayerDefinition shade() {
+        MeshDefinition mesh = new MeshDefinition(); PartDefinition root = mesh.getRoot();
+        PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-5F, -6F, -4F, 10F, 9F, 8F).texOffs(56, 0).addBox(-4F, -8F, -3F, 8F, 3F, 6F).texOffs(0, 17).addBox(-4F, 3F, -3F, 8F, 2F, 6F), PartPose.offsetAndRotation(0F, 15F, 0F, 0F, 0F, 0F));
+        PartDefinition armR = body.addOrReplaceChild("armR", CubeListBuilder.create().texOffs(36, 0).addBox(-2F, -1F, -1.5F, 2F, 9F, 3F).texOffs(28, 17).addBox(-3F, 8F, -2F, 3F, 3F, 4F), PartPose.offsetAndRotation(-5F, -2F, 0F, 0F, 0F, 0F));
+        PartDefinition armL = body.addOrReplaceChild("armL", CubeListBuilder.create().texOffs(46, 0).addBox(0F, -1F, -1.5F, 2F, 9F, 3F).texOffs(42, 17).addBox(0F, 8F, -2F, 3F, 3F, 4F), PartPose.offsetAndRotation(5F, -2F, 0F, 0F, 0F, 0F));
+        PartDefinition legR = root.addOrReplaceChild("legR", CubeListBuilder.create().texOffs(84, 0).addBox(-1.5F, 0F, -1.5F, 3F, 6F, 3F).texOffs(56, 17).addBox(-2F, 5F, -3F, 4F, 1F, 5F), PartPose.offsetAndRotation(-2.5F, 18F, 0F, 0F, 0F, 0F));
+        PartDefinition legL = root.addOrReplaceChild("legL", CubeListBuilder.create().texOffs(96, 0).addBox(-1.5F, 0F, -1.5F, 3F, 6F, 3F).texOffs(74, 17).addBox(-2F, 5F, -3F, 4F, 1F, 5F), PartPose.offsetAndRotation(2.5F, 18F, 0F, 0F, 0F, 0F));
+        PartDefinition crest = body.addOrReplaceChild("crest", CubeListBuilder.create().texOffs(98, 17).addBox(-3F, -3F, -1F, 1F, 3F, 2F).texOffs(92, 17).addBox(-0.5F, -4F, -1F, 1F, 4F, 2F).texOffs(104, 17).addBox(2F, -3F, -1F, 1F, 3F, 2F), PartPose.offsetAndRotation(0F, -8F, 0F, 0F, 0F, 0F));
+        return LayerDefinition.create(mesh, 128, 64);
+    }
     public static final String[] EXPLODER_PATHS = {"body", "body/antenna", "legR", "legL"};
     public static LayerDefinition exploder() {
         MeshDefinition mesh = new MeshDefinition(); PartDefinition root = mesh.getRoot();

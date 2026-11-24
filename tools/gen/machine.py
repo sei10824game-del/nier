@@ -124,6 +124,15 @@ def _quad():
             parts.append(P(f'low{side}{i}', n, (0, 5, 0), [B(-0.5, 0, -0.5, 1, 6, 1, 'dark'), B(-1.5, 5, -2, 3, 1, 4, 'steel')], rot=(0, 0, sx * 0.3)))
     return parts
 ARCH['quad'] = (128, 128, _quad())
+ARCH['shade'] = (128, 64, [
+    P('body', 'root', (0, 15, 0), [B(-5, -6, -4, 10, 9, 8, 'plate', ('front', 1, 2, 3, 3, 'white'), ('front', 2, 3, 1, 1, 'eye'), ('front', 6, 2, 3, 3, 'white'), ('front', 7, 3, 1, 1, 'eye'), ('front', 3, 7, 4, 1, 'dark')),
+                                   B(-4, -8, -3, 8, 3, 6, 'plate'), B(-4, 3, -3, 8, 2, 6, 'dark')]),
+    P('armR', 'body', (-5, -2, 0), [B(-2, -1, -1.5, 2, 9, 3, 'dark'), B(-3, 8, -2, 3, 3, 4, 'steel')]),
+    P('armL', 'body', (5, -2, 0), [B(0, -1, -1.5, 2, 9, 3, 'dark'), B(0, 8, -2, 3, 3, 4, 'steel')]),
+    P('legR', 'root', (-2.5, 18, 0), [B(-1.5, 0, -1.5, 3, 6, 3, 'dark'), B(-2, 5, -3, 4, 1, 5, 'steel')]),
+    P('legL', 'root', (2.5, 18, 0), [B(-1.5, 0, -1.5, 3, 6, 3, 'dark'), B(-2, 5, -3, 4, 1, 5, 'steel')]),
+    P('crest', 'body', (0, -8, 0), [B(-3, -3, -1, 1, 3, 2, 'steel'), B(-0.5, -4, -1, 1, 4, 2, 'steel'), B(2, -3, -1, 1, 3, 2, 'steel')]),
+])
 ARCH['exploder'] = (128, 64, [
     P('body', 'root', (0, 12, 0), [B(-4, -10, -3, 8, 10, 6, 'plate', ('front', 1, 3, 6, 1, 'dark'), ('front', 3, 6, 2, 2, 'steel')),
         B(-4, -14, -3, 8, 4, 6, 'hazard', ('front', 0, 0, 2, 4, 'black'), ('front', 4, 0, 2, 4, 'black'), ('back', 0, 0, 2, 4, 'black'), ('back', 4, 0, 2, 4, 'black'),
@@ -178,12 +187,15 @@ SKINS = {  # plate, dark, steel, eye, glow
     '_pale': ((222, 222, 214), (150, 150, 142), (235, 235, 228), (255, 255, 255), (255, 255, 200)),
     '_tier': ((196, 70, 56), (50, 30, 30), (170, 150, 140), (80, 255, 120), (120, 255, 150)),
     '_reverse': ((150, 100, 76), (64, 50, 44), (150, 140, 128), (255, 60, 40), (255, 150, 60)),
+    '_shade': ((22, 20, 28), (8, 8, 12), (84, 84, 100), (0, 0, 0), (255, 255, 255)),
+    '_wolf': ((150, 112, 72), (84, 60, 40), (210, 190, 160), (255, 220, 80), (255, 200, 80)),
+    '_scorpion': ((96, 64, 44), (50, 32, 24), (150, 120, 90), (255, 200, 60), (255, 160, 60)),
     '_burn': ((176, 76, 44), (70, 34, 26), (200, 110, 80), (255, 220, 70), (255, 200, 60)),
 }
 
 ARCH_BASE = {'goliath': ((150, 104, 74), (82, 62, 48), (150, 140, 128), (255, 48, 32), (255, 150, 40)),
              'tank': ((190, 170, 128), (98, 86, 62), (160, 154, 140), (255, 48, 32), (255, 150, 40))}
-NEED = {'_blue': ('sphere',), '_pale': ('sphere',), '_tier': ('stubby',), '_reverse': ('goliath',), '_samurai': ('stubby',), '_flightw': ('flyer',), '_flightb': ('flyer',), '_bronze': ('stubby',), '_blood': ('stubby',), '_grave': ('stubby',), '_clown': ('biped',), '_dying': ('goliath',), '_monster': ('monster',), '_animal': ('quad',), '_koshi': ('biped',), '_roshi': ('biped',), '_rampage': ('stubby', 'biped'), '_gold': ('stubby', 'goliath', 'tank'), '_hacked': ('stubby', 'biped', 'sphere'), '_burn': ('stubby', 'sphere')}
+NEED = {'_shade': ('shade', 'quad', 'multileg', 'flyer', 'monster'), '_wolf': ('quad',), '_scorpion': ('quad',), '_blue': ('sphere',), '_pale': ('sphere',), '_tier': ('stubby',), '_reverse': ('goliath',), '_samurai': ('stubby',), '_flightw': ('flyer',), '_flightb': ('flyer',), '_bronze': ('stubby',), '_blood': ('stubby',), '_grave': ('stubby',), '_clown': ('biped',), '_dying': ('goliath',), '_monster': ('monster',), '_animal': ('quad',), '_koshi': ('biped',), '_roshi': ('biped',), '_rampage': ('stubby', 'biped'), '_gold': ('stubby', 'goliath', 'tank'), '_hacked': ('stubby', 'biped', 'sphere'), '_burn': ('stubby', 'sphere')}
 
 def pack(w, boxes):
     # shelf packer; footprint of a box = (2(d+w), d+h)
@@ -242,6 +254,16 @@ open(os.path.join(ROOT, 'src/main/java/com/nier/automata/unit/machine/client/Mac
 
 # ---- lang parts: id -> (english, japanese) ----
 NAMES = {
+    'machine_shade_small': ('Shade', 'シェイド'),
+    'machine_shade_medium': ('Medium Shade', '中型シェイド'),
+    'machine_shade_large': ('Large Shade', '大型シェイド'),
+    'machine_shade_giant': ('Giant Shade', '巨大シェイド'),
+    'machine_shade_beast': ('Shade Beast', 'シェイド・ビースト'),
+    'machine_shade_beetle': ('Shade Beetle', 'シェイド・ビートル'),
+    'machine_shade_flyer': ('Shade Flyer', 'シェイド・フライヤー'),
+    'machine_shade_multi_limb': ('Multi-limb Shade', '多肢シェイド'),
+    'machine_wolf': ('Wolf', 'オオカミ'),
+    'machine_scorpion': ('Scorpion', 'サソリ'),
     'machine_high_speed': ('High-speed Machine', '高速型'),
     'machine_emil_clone': ('Emil Clones', 'エミールのクローン'),
     'machine_multi_tier': ('Multi-tier Type', '多段型'),

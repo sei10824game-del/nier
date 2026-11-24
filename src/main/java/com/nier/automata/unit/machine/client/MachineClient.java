@@ -39,6 +39,7 @@ public final class MachineClient {
         e.registerLayerDefinition(layer(Arch.QUAD), MachineGeo::quad);
         e.registerLayerDefinition(layer(Arch.MONSTER), MachineGeo::monster);
         e.registerLayerDefinition(layer(Arch.EXPLODER), MachineGeo::exploder);
+        e.registerLayerDefinition(layer(Arch.SHADE), MachineGeo::shade);
     }
 
     public static void renderers(MachineModule m, EntityRenderersEvent.RegisterRenderers e) {
@@ -59,6 +60,7 @@ public final class MachineClient {
             case QUAD -> new QuadModel(root);
             case MONSTER -> new MonsterModel(root);
             case EXPLODER -> new ExploderModel(root);
+            case SHADE -> new ShadeModel(root);
         };
     }
 
