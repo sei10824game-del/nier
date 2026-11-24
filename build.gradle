@@ -11,7 +11,7 @@ minecraft {
     mappings channel: 'official', version: '1.20.1'
     runs {
         client { workingDirectory project.file('run'); property 'forge.logging.console.level', 'debug'
-            if (project.hasProperty('preview')) { args '--quickPlaySingleplayer', 'preview', '--width', '960', '--height', '640'; jvmArg '-Dnier.preview=1'; jvmArg "-Dnier.preview.ids=${project.findProperty('previewIds') ?: ''}"; jvmArg "-Dnier.preview.skills=${project.findProperty('previewSkills') ?: '3'}" }
+            if (project.hasProperty('preview')) { args '--quickPlaySingleplayer', 'preview', '--width', '960', '--height', '640'; jvmArg '-Dnier.preview=1'; jvmArg "-Dnier.preview.ids=${project.findProperty('previewIds') ?: ''}"; jvmArg "-Dnier.preview.dist=${project.findProperty('previewDist') ?: '1'}"; jvmArg "-Dnier.preview.skills=${project.findProperty('previewSkills') ?: '3'}" }
             mods { nierautomata { source sourceSets.main } } }
         server { workingDirectory project.file('run'); args '--nogui'
             mods { nierautomata { source sourceSets.main } } }

@@ -94,7 +94,7 @@ public final class PreviewDriver {
             @SuppressWarnings("unchecked") EntityType<? extends NierUnit> t = (EntityType<? extends NierUnit>) m.type.get();
             NierUnit u = t.create(lv);
             float h = u.getBbHeight() * (float) u.getScale();
-            double d = Math.max(2.8, u.getBbHeight() * 1.9 + 1.4);
+            double d = Math.max(2.0, (u.getBbHeight() * 1.9 + 1.4) * Double.parseDouble(System.getProperty("nier.preview.dist", "1")));
             u.setNoAi(true); u.setInvulnerable(true); u.setPersistenceRequired();
             u.moveTo(0.5, gy, 0.5 + d, 180f, 0f); u.setYHeadRot(180f); u.setYBodyRot(180f);
             lv.addFreshEntity(u); cur = u;
