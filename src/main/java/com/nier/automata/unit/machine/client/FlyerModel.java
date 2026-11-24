@@ -70,6 +70,7 @@ public class FlyerModel extends NierModel<MachineUnit> {
 
     @Override protected void idle(MachineUnit e, float ls, float la, float age, float headYaw, float headPitch) {
         bone("hat").visible = e.v.weapon() == com.nier.automata.unit.machine.MachineVariant.Weapon.GUN;
+        boolean gf = e.v.size() == Size.LARGE && !e.v.flight(); bone("gcore").visible = bone("gpodR").visible = bone("gpodL").visible = gf;
         boolean fl = e.v.flight(); bone("jwingR").visible = bone("jwingL").visible = bone("gsword").visible = fl;
         bone("rightRotor").visible = bone("leftRotor").visible = bone("rightWing").visible = bone("leftWing").visible = !fl;
         boolean medium = e.v.size() == Size.MEDIUM;

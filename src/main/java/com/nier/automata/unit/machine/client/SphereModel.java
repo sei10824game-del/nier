@@ -87,6 +87,8 @@ public class SphereModel extends NierModel<MachineUnit> {
         ball.y += Mth.sin(age * 0.2f) * 0.3f * (1 - la);
         bone("rightFin").zRot = Mth.sin(age * 0.25f) * 0.12f; bone("leftFin").zRot = -Mth.sin(age * 0.25f) * 0.12f;
         bone("topFin").xRot = Mth.sin(age * 0.18f) * 0.1f;
+        boolean hover = e.v.skin() == com.nier.automata.unit.machine.MachineVariant.Skin.BLUE;
+        bone("ball").visible = !hover; bone("disc").visible = bone("hhead").visible = hover;
         boolean link = e.v.weapon() == com.nier.automata.unit.machine.MachineVariant.Weapon.LINK;
         for (String ln : new String[]{"link1", "link2", "link3"}) { var lp = bone(ln); lp.xScale = lp.yScale = lp.zScale = link ? 1 : 0; }
         if (link) { bone("link1").yRot = Mth.sin(age * 0.15f) * 0.25f; bone("link2").yRot = Mth.sin(age * 0.15f - 0.8f) * 0.3f; bone("link3").yRot = Mth.sin(age * 0.15f - 1.6f) * 0.35f; }

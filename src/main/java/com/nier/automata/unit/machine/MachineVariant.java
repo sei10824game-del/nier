@@ -5,12 +5,12 @@ import com.nier.automata.core.Faction;
 /** Data describing one spawnable machine (one entity id). Several ids share one {@link Arch}. */
 public record MachineVariant(String id, String name, Arch arch, Size size, Weapon weapon, Skin skin,
                              float scale, float width, float height, double hp, double damage, double speed, double armor) {
-    public enum Arch { STUBBY, BIPED, FLYER, GOLIATH, TANK, SPHERE, MULTILEG, QUAD, MONSTER }
+    public enum Arch { STUBBY, BIPED, FLYER, GOLIATH, TANK, SPHERE, MULTILEG, QUAD, MONSTER, EXPLODER }
     public enum Size { SMALL, MEDIUM, LARGE }
     public enum Weapon { NONE, AXE, SPEAR, HAMMER, STAFF, SHIELD, CLUB, MISSILE, DRILL, SAW, BOMB, LINK, GUN }
     public enum Skin {
         RUST(""), GOLD("_gold"), HACKED("_hacked"), RAMPAGE("_rampage"), KOSHI("_koshi"), ROSHI("_roshi"),
-        BRONZE("_bronze"), BLOOD("_blood"), GRAVE("_grave"), CLOWN("_clown"), DYING("_dying"), MONSTER("_monster"), ANIMAL("_animal"), SAMURAI("_samurai"), FLIGHT_W("_flightw"), FLIGHT_B("_flightb");
+        BRONZE("_bronze"), BLOOD("_blood"), GRAVE("_grave"), CLOWN("_clown"), DYING("_dying"), MONSTER("_monster"), ANIMAL("_animal"), SAMURAI("_samurai"), FLIGHT_W("_flightw"), FLIGHT_B("_flightb"), BLUE("_blue"), PALE("_pale"), TIER("_tier"), REVERSE("_reverse");
         public final String suffix;
         Skin(String s) { suffix = s; }
     }

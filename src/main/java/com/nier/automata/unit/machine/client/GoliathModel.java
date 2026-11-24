@@ -109,6 +109,7 @@ public class GoliathModel extends NierModel<MachineUnit> {
     }
 
     @Override protected void idle(MachineUnit e, float ls, float la, float age, float headYaw, float headPitch) {
+        bone("dome").visible = e.v.skin() == com.nier.automata.unit.machine.MachineVariant.Skin.REVERSE;
         float c = Mth.cos(ls * 0.5f) * 0.7f * la;
         bone("rightLeg").xRot = c; bone("leftLeg").xRot = -c;
         bone("rightArm").xRot = -c * 0.6f; bone("leftArm").xRot = c * 0.6f;

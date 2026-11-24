@@ -188,6 +188,7 @@ public class StubbyModel extends NierModel<MachineUnit> {
         var vv = e.v; boolean gun = vv.weapon() == com.nier.automata.unit.machine.MachineVariant.Weapon.GUN;
         bone("hat").visible = gun; bone("ears").visible = vv.skin() == com.nier.automata.unit.machine.MachineVariant.Skin.BRONZE;
         bone("drum").visible = vv.skin() == com.nier.automata.unit.machine.MachineVariant.Skin.GRAVE;
+        bone("tiers").visible = vv.skin() == com.nier.automata.unit.machine.MachineVariant.Skin.TIER;
         bone("jester").visible = vv.skin() == com.nier.automata.unit.machine.MachineVariant.Skin.CLOWN;
         bone("antlers").visible = vv.skin() == com.nier.automata.unit.machine.MachineVariant.Skin.GRAVE;
         Weapon w = e.v.weapon();

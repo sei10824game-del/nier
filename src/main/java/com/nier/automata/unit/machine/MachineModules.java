@@ -44,12 +44,12 @@ public final class MachineModules {
         GOLIATH_TANK = m("machine_goliath_tank", "Goliath Tank", TANK, LARGE, NONE, RUST, 2.2f, 3.8f, 3f, 420, 20, 0.2, 14),
         MULTILEG_UNIT = m("machine_multileg", "Medium Multi-Leg", MachineVariant.Arch.MULTILEG, MEDIUM, NONE, RUST, 1.5f, 1.6f, 1.8f, 70, 8, 0.28, 4),
         DRILL_SPHERE = m("machine_drill_sphere", "Drill Sphere", SPHERE, SMALL, DRILL, RUST, 1.2f, 0.9f, 1.3f, 24, 6, 0.27, 3),
-        SMALL_EXPLODER = m("machine_small_exploder", "Small Exploder", STUBBY, SMALL, BOMB, RUST, 1f, 0.8f, 1.5f, 14, 3, 0.34, 1),
+        SMALL_EXPLODER = m("machine_small_exploder", "Small Exploder", EXPLODER, SMALL, NONE, RUST, 1f, 0.8f, 1.5f, 14, 3, 0.34, 1),
         SAW_SPHERE = m("machine_saw_sphere", "Saw Sphere", SPHERE, SMALL, SAW, RUST, 1.2f, 0.9f, 1.3f, 24, 6, 0.27, 3),
         QUADRUPED = m("machine_medium_quadruped", "Medium Quadruped", MachineVariant.Arch.QUAD, MEDIUM, NONE, RUST, 1.5f, 1.5f, 1.5f, 60, 8, 0.34, 3),
         GOLD_GOLIATH = m("machine_gold_goliath", "Gold Goliath Biped", GOLIATH, MEDIUM, NONE, GOLD, 2.4f, 2.6f, 4.2f, 520, 22, 0.24, 14),
         GOLD_TANK = m("machine_gold_tank", "Gold Tank", TANK, LARGE, NONE, GOLD, 2.2f, 3.8f, 3f, 760, 26, 0.2, 18),
-        MEDIUM_EXPLODER = m("machine_medium_exploder", "Medium Exploder", STUBBY, MEDIUM, BOMB, RUST, 1.8f, 1.4f, 2.5f, 40, 6, 0.3, 2),
+        MEDIUM_EXPLODER = m("machine_medium_exploder", "Medium Exploder", EXPLODER, MEDIUM, NONE, RUST, 1.8f, 1.4f, 2.5f, 40, 6, 0.3, 2),
         GOLIATH_FLYER = m("machine_goliath_flyer", "Goliath Flyer", FLYER, LARGE, MISSILE, RUST, 2.6f, 2.6f, 2.4f, 260, 16, 0.3, 10),
         RAMPAGING_SMALL_STUBBY = m("machine_rampaging_small_stubby", "Rampaging Small Stubby", STUBBY, SMALL, NONE, RAMPAGE, 1f, 0.8f, 1.3f, 30, 7, 0.4, 2),
         RAMPAGING_SMALL_BIPED = m("machine_rampaging_small_biped", "Rampaging Small Biped", BIPED, SMALL, NONE, RAMPAGE, 0.8f, 0.6f, 1.6f, 40, 8, 0.38, 2),
@@ -73,6 +73,11 @@ public final class MachineModules {
         MASAMUNE = m("machine_masamune", "Masamune", STUBBY, MEDIUM, AXE, SAMURAI, 1.8f, 1.4f, 2.6f, 200, 15, 0.27, 10),
         HO229_WHITE = m("machine_ho229_white", "Flight Unit Ho229 Type-B", FLYER, LARGE, MISSILE, FLIGHT_W, 2.4f, 2.4f, 2.2f, 300, 14, 0.34, 10),
         HO229_BLACK = m("machine_ho229_black", "Flight Unit Ho229 Type-B (Black)", FLYER, LARGE, MISSILE, FLIGHT_B, 2.4f, 2.4f, 2.2f, 300, 14, 0.34, 10),
+        HIGH_SPEED = m("machine_high_speed", "High-speed Machine", SPHERE, SMALL, NONE, BLUE, 1.3f, 1.2f, 1.4f, 30, 5, 0.5, 3),
+        EMIL_CLONE = m("machine_emil_clone", "Emil Clones", SPHERE, MEDIUM, LINK, PALE, 1.5f, 1.2f, 1.6f, 90, 10, 0.3, 5),
+        MULTI_TIER = m("machine_multi_tier", "Multi-tier Type", STUBBY, SMALL, NONE, TIER, 1.1f, 0.9f, 1.5f, 36, 6, 0.26, 4),
+        MULTI_TIER_VILLAGE = m("machine_multi_tier_village", "Multi-tier Type (Village)", STUBBY, SMALL, NONE, TIER, 0.8f, 0.7f, 1.1f, 20, 3, 0.24, 1),
+        REVERSE_GOLIATH = m("machine_reverse_goliath", "Reverse-jointed Goliath", GOLIATH, MEDIUM, NONE, REVERSE, 2.2f, 2.6f, 4f, 300, 18, 0.26, 12),
         SPHERE_UNIT = m("machine_sphere", "Sphere", SPHERE, SMALL, NONE, RUST, 1.2f, 0.9f, 0.9f, 18, 4, 0.27, 2),
         HACKED_SPHERE = m("machine_hacked_sphere", "Hacked Sphere", SPHERE, SMALL, NONE, HACKED, 1.2f, 0.9f, 0.9f, 26, 5, 0.28, 3);
 
@@ -81,5 +86,5 @@ public final class MachineModules {
             MEDIUM_STUBBY, LARGE_STUBBY, HACKED_STUBBY, SMALL_BIPED, MEDIUM_BIPED, MEDIUM_BIPED_SHIELD, LARGE_BIPED, HACKED_BIPED,
             SMALL_FLYER, MEDIUM_FLYER, MACHINE_FLYER, SMALL_GOLIATH, MEDIUM_GOLIATH, LARGE_GOLIATH, GOLIATH_TANK, SPHERE_UNIT, HACKED_SPHERE, MULTILEG_UNIT, DRILL_SPHERE, SMALL_EXPLODER, SAW_SPHERE, QUADRUPED, GOLD_GOLIATH, GOLD_TANK, MEDIUM_EXPLODER, GOLIATH_FLYER, RAMPAGING_SMALL_STUBBY, RAMPAGING_SMALL_BIPED, RAMPAGING_MEDIUM_BIPED, LINKED_SPHERE, KO_SHI, RO_SHI,
             GUNMAN_STUBBY, GUNMAN_BIPED, GUNMAN_FLYER, DYING_GOLIATH, MONSTER_TYPE, ANIMAL_MACHINE, PARK_RABBIT, BLOOD_DRENCHED,
-            COURAGEOUS_BROTHER, HATEFUL_SISTER, VENGEFUL_CHILD, GRAVEKEEPER, ZOMBIE_CLOWN, MASAMUNE, HO229_WHITE, HO229_BLACK);
+            COURAGEOUS_BROTHER, HATEFUL_SISTER, VENGEFUL_CHILD, GRAVEKEEPER, ZOMBIE_CLOWN, MASAMUNE, HO229_WHITE, HO229_BLACK, HIGH_SPEED, EMIL_CLONE, MULTI_TIER, MULTI_TIER_VILLAGE, REVERSE_GOLIATH);
 }

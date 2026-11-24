@@ -38,6 +38,7 @@ public final class MachineClient {
         e.registerLayerDefinition(layer(Arch.MULTILEG), MachineGeo::multileg);
         e.registerLayerDefinition(layer(Arch.QUAD), MachineGeo::quad);
         e.registerLayerDefinition(layer(Arch.MONSTER), MachineGeo::monster);
+        e.registerLayerDefinition(layer(Arch.EXPLODER), MachineGeo::exploder);
     }
 
     public static void renderers(MachineModule m, EntityRenderersEvent.RegisterRenderers e) {
@@ -57,6 +58,7 @@ public final class MachineClient {
             case MULTILEG -> new MultiLegModel(root);
             case QUAD -> new QuadModel(root);
             case MONSTER -> new MonsterModel(root);
+            case EXPLODER -> new ExploderModel(root);
         };
     }
 
