@@ -92,10 +92,10 @@ public final class MachineModules {
         HANSEL = m("machine_hansel", "Hansel", BIPED, MEDIUM, SHIELD, MachineVariant.Skin.SILVER, 1.8f, 1.2f, 3.2f, 360, 14, 0.25, 14),
         GRETEL = m("machine_gretel", "Gretel", BIPED, MEDIUM, CLUB, MachineVariant.Skin.SILVER, 1.8f, 1.2f, 3.2f, 360, 16, 0.26, 12),
         ROC = m("machine_roc", "Roc", MachineVariant.Arch.QUAD, LARGE, NONE, MachineVariant.Skin.ROC, 2.8f, 2.8f, 2.8f, 420, 18, 0.36, 8),
-        HOOK = m("machine_hook", "Hook", MachineVariant.Arch.MONSTER, LARGE, NONE, MachineVariant.Skin.SHADE, 3.2f, 3f, 3f, 520, 22, 0.28, 10),
+        HOOK = m("machine_hook", "Hook", MachineVariant.Arch.MONSTER, LARGE, NONE, MachineVariant.Skin.HOOK, 3.2f, 3f, 3f, 520, 22, 0.28, 10),
         JACK = m("machine_jack", "Jack", MachineVariant.Arch.MONSTER, LARGE, NONE, MachineVariant.Skin.JACK, 4.2f, 3.8f, 4f, 900, 26, 0.22, 14),
         LOUISE = m("machine_louise", "Louise", MachineVariant.Arch.MULTILEG, LARGE, NONE, MachineVariant.Skin.LOUISE, 3.0f, 3f, 3.2f, 700, 20, 0.3, 10),
-        WENDY = m("machine_wendy", "Wendy", SPHERE, LARGE, LINK, MachineVariant.Skin.STONE, 3.0f, 2.6f, 3.4f, 600, 18, 0.26, 12),
+        WENDY = m("machine_wendy", "Wendy", SPHERE, LARGE, LINK, MachineVariant.Skin.WENDY, 3.0f, 2.6f, 3.4f, 600, 18, 0.26, 12),
         MOURNING_MOTHER = m("machine_mourning_mother", "Mourning Mother", MachineVariant.Arch.MONSTER, LARGE, NONE, MachineVariant.Skin.STONE, 5.2f, 4.2f, 5.2f, 1100, 28, 0.18, 16),
         SPHERE_UNIT = m("machine_sphere", "Sphere", SPHERE, SMALL, NONE, RUST, 1.2f, 0.9f, 0.9f, 18, 4, 0.27, 2),
         HACKED_SPHERE = m("machine_hacked_sphere", "Hacked Sphere", SPHERE, SMALL, NONE, HACKED, 1.2f, 0.9f, 0.9f, 26, 5, 0.28, 3);
