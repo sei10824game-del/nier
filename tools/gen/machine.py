@@ -41,13 +41,14 @@ ARCH['stubby'] = (128, 192, [
     P('staff', 'weapon', (0, 0, 0), [B(-0.5, -0.5, -14, 1, 1, 17, 'dark'), B(-1.5, -1.5, -17, 3, 3, 3, 'glow')]),
     P('shield', 'leftArm', (1, 5, -2), [B(-4, -5, -1.5, 9, 10, 1, 'plate', ('front', 3, 3, 3, 4, 'dark'))]),
 ])
-ARCH['biped'] = (128, 64, [
+ARCH['biped'] = (128, 128, [
     P('body', 'root', (0, 12, 0), [B(-3, -1, -2, 6, 3, 4, 'dark'), B(-4, -11, -3, 8, 10, 6, 'plate', ('front', 1, 2, 6, 2, 'dark'), ('front', 3, 5, 2, 3, 'dark'))]),
     P('head', 'body', (0, -11, 0), [B(-4, -7, -4, 8, 7, 8, 'plate', *EYE1(8, 2)), B(-3, -8, -3, 6, 1, 6, 'plate')]),
     P('hat', 'head', (0, -7, 0), [B(-6, -1, -6, 12, 1, 12, 'black'), B(-3.5, -5, -3.5, 7, 4, 7, 'black', ('front', 0, 3, 7, 1, 'steel'))]),
     P('ears', 'head', (0, -7, 0), [B(-3.5, -11, -1, 2, 11, 1, 'plate'), B(1.5, -11, -1, 2, 11, 1, 'plate'), B(-5, -2, -5, 10, 2, 10, 'steel')]),
     P('jester', 'head', (0, -7, 0), [B(-4.5, -3, -4.5, 9, 3, 9, 'purple'), B(-4, -6, -1.5, 3, 3, 3, 'purple'), B(1, -6, -1.5, 3, 3, 3, 'purple'), B(-5, -2, -5, 10, 2, 10, 'steel')]),
     P('antlers', 'head', (0, -7, 0), [B(-6, -9, 0, 2, 9, 1, 'steel'), B(4, -9, 0, 2, 9, 1, 'steel'), B(-9, -9, 0, 3, 1, 1, 'steel'), B(6, -9, 0, 3, 1, 1, 'steel')]),
+    P('helm', 'head', (0, -7, 0), [B(-0.5, -11, -0.5, 1, 5, 1, 'steel'), B(-4.5, -3, -4.5, 9, 1, 9, 'steel'), B(-4, -8, -4, 1, 3, 1, 'steel'), B(3, -8, -4, 1, 3, 1, 'steel')]),
     P('rightArm', 'body', (-5, -10, 0), [B(-1.5, -1, -1, 2, 12, 2, 'dark'), B(-2.5, -2, -2, 3, 3, 4, 'plate'), B(-2, 11, -1.5, 3, 3, 3, 'plate')]),
     P('leftArm', 'body', (5, -10, 0), [B(-0.5, -1, -1, 2, 12, 2, 'dark'), B(-0.5, -2, -2, 3, 3, 4, 'plate'), B(-1, 11, -1.5, 3, 3, 3, 'plate')]),
     P('rightLeg', 'root', (-2, 12, 0), [B(-1, 0, -1, 2, 11, 2, 'dark'), B(-1.5, 4, -1.5, 3, 3, 3, 'plate'), B(-1.5, 10, -2.5, 3, 2, 4, 'plate')]),
@@ -190,12 +191,14 @@ SKINS = {  # plate, dark, steel, eye, glow
     '_shade': ((22, 20, 28), (8, 8, 12), (84, 84, 100), (0, 0, 0), (255, 255, 255)),
     '_wolf': ((150, 112, 72), (84, 60, 40), (210, 190, 160), (255, 220, 80), (255, 200, 80)),
     '_scorpion': ((96, 64, 44), (50, 32, 24), (150, 120, 90), (255, 200, 60), (255, 160, 60)),
+    '_silver': ((206, 212, 224), (90, 96, 116), (236, 238, 245), (255, 60, 60), (255, 200, 80)),
+    '_roc': ((58, 62, 70), (28, 30, 36), (130, 134, 146), (255, 240, 120), (255, 240, 160)),
     '_burn': ((176, 76, 44), (70, 34, 26), (200, 110, 80), (255, 220, 70), (255, 200, 60)),
 }
 
 ARCH_BASE = {'goliath': ((150, 104, 74), (82, 62, 48), (150, 140, 128), (255, 48, 32), (255, 150, 40)),
              'tank': ((190, 170, 128), (98, 86, 62), (160, 154, 140), (255, 48, 32), (255, 150, 40))}
-NEED = {'_shade': ('shade', 'quad', 'multileg', 'flyer', 'monster'), '_wolf': ('quad',), '_scorpion': ('quad',), '_blue': ('sphere',), '_pale': ('sphere',), '_tier': ('stubby',), '_reverse': ('goliath',), '_samurai': ('stubby',), '_flightw': ('flyer',), '_flightb': ('flyer',), '_bronze': ('stubby',), '_blood': ('stubby',), '_grave': ('stubby',), '_clown': ('biped',), '_dying': ('goliath',), '_monster': ('monster',), '_animal': ('quad',), '_koshi': ('biped',), '_roshi': ('biped',), '_rampage': ('stubby', 'biped'), '_gold': ('stubby', 'goliath', 'tank'), '_hacked': ('stubby', 'biped', 'sphere'), '_burn': ('stubby', 'sphere')}
+NEED = {'_silver': ('biped',), '_roc': ('quad',), '_shade': ('shade', 'quad', 'multileg', 'flyer', 'monster'), '_wolf': ('quad',), '_scorpion': ('quad',), '_blue': ('sphere',), '_pale': ('sphere',), '_tier': ('stubby',), '_reverse': ('goliath',), '_samurai': ('stubby',), '_flightw': ('flyer',), '_flightb': ('flyer',), '_bronze': ('stubby',), '_blood': ('stubby',), '_grave': ('stubby',), '_clown': ('biped',), '_dying': ('goliath',), '_monster': ('monster',), '_animal': ('quad',), '_koshi': ('biped',), '_roshi': ('biped',), '_rampage': ('stubby', 'biped'), '_gold': ('stubby', 'goliath', 'tank'), '_hacked': ('stubby', 'biped', 'sphere'), '_burn': ('stubby', 'sphere')}
 
 def pack(w, boxes):
     # shelf packer; footprint of a box = (2(d+w), d+h)
@@ -254,6 +257,10 @@ open(os.path.join(ROOT, 'src/main/java/com/nier/automata/unit/machine/client/Mac
 
 # ---- lang parts: id -> (english, japanese) ----
 NAMES = {
+    'machine_hansel': ('Hansel', 'ヘンゼル'),
+    'machine_gretel': ('Gretel', 'グレーテル'),
+    'machine_roc': ('Roc', 'ロック'),
+    'machine_hook': ('Hook', 'フック'),
     'machine_shade_small': ('Shade', 'シェイド'),
     'machine_shade_medium': ('Medium Shade', '中型シェイド'),
     'machine_shade_large': ('Large Shade', '大型シェイド'),

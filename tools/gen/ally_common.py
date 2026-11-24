@@ -91,6 +91,18 @@ def ally_kaine():
 def ally_emil_replicant():
     return _hum(44, (240, 214, 190), (110, 70, 150), (90, 56, 124), (60, 40, 80), (120, 84, 60), (60, 40, 60), (230, 230, 236), (210, 170, 90), blind=(14, 12, 18))
 
+def _book(seed, cover, trim, plate):
+    t = Tex(128, 128, seed)
+    t.box(0, 0, 10, 14, 3, cover, noise=6)
+    for f in ('front',): t.face(0, 0, 10, 14, 3, f, 0, 0, 10, 1, trim); t.face(0, 0, 10, 14, 3, f, 0, 13, 10, 1, trim); t.face(0, 0, 10, 14, 3, f, 0, 0, 1, 14, trim); t.face(0, 0, 10, 14, 3, f, 9, 0, 1, 14, trim)
+    t.box(0, 24, 2, 2, 2, trim); t.box(16, 24, 1, 12, 3, (226, 220, 200))
+    t.box(36, 24, 6, 6, 1, plate)
+    t.face(36, 24, 6, 6, 1, 'front', 1, 1, 1, 2, (20, 20, 24)); t.face(36, 24, 6, 6, 1, 'front', 4, 1, 1, 2, (20, 20, 24)); t.face(36, 24, 6, 6, 1, 'front', 2, 4, 2, 1, (20, 20, 24))
+    return t
+def ally_grimoire_weiss(): return _book(51, (176, 180, 188), (230, 232, 238), (214, 218, 226))
+def ally_grimoire_noir(): return _book(52, (70, 96, 100), (150, 176, 176), (160, 190, 190))
+def ally_grimoire_rubrum(): return _book(53, (150, 100, 56), (230, 190, 110), (214, 170, 90))
+
 def ally_yorha_heavy():
     t = ally_yorha_soldier()
     for u, v, w, h, d in ((16, 16, 8, 12, 4), (0, 64, 9, 7, 5)):                     # grey armour plates over the coat
@@ -257,7 +269,7 @@ def ally_pod_153(): return pod_unit((70, 72, 80), (36, 38, 44), (120, 200, 255))
 def build(name):
     globals()[name]().save(os.path.join(OUT, name + '.png'))
 
-ALL = ['ally_nier_brother', 'ally_nier_father', 'ally_kaine', 'ally_emil_replicant', 'ally_yorha_soldier', 'ally_yorha_8b', 'ally_yorha_22b', 'ally_yorha_64b', 'ally_yorha_heavy', 'ally_yorha_2e', 'ally_commander', 'ally_operator_6o', 'ally_operator_21o', 'ally_resistance_soldier',
+ALL = ['ally_grimoire_weiss', 'ally_grimoire_noir', 'ally_grimoire_rubrum', 'ally_nier_brother', 'ally_nier_father', 'ally_kaine', 'ally_emil_replicant', 'ally_yorha_soldier', 'ally_yorha_8b', 'ally_yorha_22b', 'ally_yorha_64b', 'ally_yorha_heavy', 'ally_yorha_2e', 'ally_commander', 'ally_operator_6o', 'ally_operator_21o', 'ally_resistance_soldier',
        'ally_anemone', 'ally_jackass', 'ally_pascal', 'ally_devola', 'ally_popola', 'ally_emil', 'ally_emil_hacked', 'ally_pod', 'ally_pod_153']
 if __name__ == '__main__':
     os.makedirs(OUT, exist_ok=True)

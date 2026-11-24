@@ -118,7 +118,7 @@ public class BipedModel extends NierModel<MachineUnit> {
 
     @Override protected void idle(MachineUnit e, float ls, float la, float age, float headYaw, float headPitch) {
         var vv = e.v; boolean gun = vv.weapon() == com.nier.automata.unit.machine.MachineVariant.Weapon.GUN;
-        bone("hat").visible = gun; bone("ears").visible = vv.skin() == com.nier.automata.unit.machine.MachineVariant.Skin.BRONZE;
+        bone("hat").visible = gun; bone("helm").visible = vv.skin() == com.nier.automata.unit.machine.MachineVariant.Skin.SILVER; bone("ears").visible = vv.skin() == com.nier.automata.unit.machine.MachineVariant.Skin.BRONZE;
         bone("jester").visible = vv.skin() == com.nier.automata.unit.machine.MachineVariant.Skin.CLOWN;
         bone("antlers").visible = vv.skin() == com.nier.automata.unit.machine.MachineVariant.Skin.GRAVE;
         Weapon w = e.v.weapon();

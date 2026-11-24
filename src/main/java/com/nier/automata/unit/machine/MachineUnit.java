@@ -47,6 +47,8 @@ public abstract class MachineUnit extends NierUnit {
         }
     }
 
+    @Override protected net.minecraft.network.chat.Component bossName() { return v.hp() >= 300 ? net.minecraft.network.chat.Component.translatable("entity.nierautomata." + v.id()) : null; }
+
     @Override public Faction faction() { return v.faction(); }
     @Override public void startSkill(Skill s) {
         hit.clear(); landed = false; lockYaw = getYRot();

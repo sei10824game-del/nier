@@ -89,6 +89,10 @@ public final class MachineModules {
         SHADE_MULTI_LIMB = m("machine_shade_multi_limb", "Multi-limb Shade", MachineVariant.Arch.MONSTER, LARGE, NONE, MachineVariant.Skin.SHADE, 2.4f, 2.4f, 2.4f, 220, 16, 0.3, 8),
         WOLF = m("machine_wolf", "Wolf", MachineVariant.Arch.QUAD, SMALL, NONE, MachineVariant.Skin.WOLF, 1.1f, 1f, 1.1f, 24, 5, 0.38, 0),
         SCORPION = m("machine_scorpion", "Scorpion", MachineVariant.Arch.QUAD, SMALL, NONE, MachineVariant.Skin.SCORPION, 1.0f, 1f, 0.8f, 20, 6, 0.3, 2),
+        HANSEL = m("machine_hansel", "Hansel", BIPED, MEDIUM, SHIELD, MachineVariant.Skin.SILVER, 1.8f, 1.2f, 3.2f, 360, 14, 0.25, 14),
+        GRETEL = m("machine_gretel", "Gretel", BIPED, MEDIUM, CLUB, MachineVariant.Skin.SILVER, 1.8f, 1.2f, 3.2f, 360, 16, 0.26, 12),
+        ROC = m("machine_roc", "Roc", MachineVariant.Arch.QUAD, LARGE, NONE, MachineVariant.Skin.ROC, 2.8f, 2.8f, 2.8f, 420, 18, 0.36, 8),
+        HOOK = m("machine_hook", "Hook", MachineVariant.Arch.MONSTER, LARGE, NONE, MachineVariant.Skin.SHADE, 3.2f, 3f, 3f, 520, 22, 0.28, 10),
         SPHERE_UNIT = m("machine_sphere", "Sphere", SPHERE, SMALL, NONE, RUST, 1.2f, 0.9f, 0.9f, 18, 4, 0.27, 2),
         HACKED_SPHERE = m("machine_hacked_sphere", "Hacked Sphere", SPHERE, SMALL, NONE, HACKED, 1.2f, 0.9f, 0.9f, 26, 5, 0.28, 3);
 
@@ -98,5 +102,5 @@ public final class MachineModules {
             SMALL_FLYER, MEDIUM_FLYER, MACHINE_FLYER, SMALL_GOLIATH, MEDIUM_GOLIATH, LARGE_GOLIATH, GOLIATH_TANK, SPHERE_UNIT, HACKED_SPHERE, MULTILEG_UNIT, DRILL_SPHERE, SMALL_EXPLODER, SAW_SPHERE, QUADRUPED, GOLD_GOLIATH, GOLD_TANK, MEDIUM_EXPLODER, GOLIATH_FLYER, RAMPAGING_SMALL_STUBBY, RAMPAGING_SMALL_BIPED, RAMPAGING_MEDIUM_BIPED, LINKED_SPHERE, KO_SHI, RO_SHI,
             GUNMAN_STUBBY, GUNMAN_BIPED, GUNMAN_FLYER, DYING_GOLIATH, MONSTER_TYPE, ANIMAL_MACHINE, PARK_RABBIT, BLOOD_DRENCHED,
             COURAGEOUS_BROTHER, HATEFUL_SISTER, VENGEFUL_CHILD, GRAVEKEEPER, ZOMBIE_CLOWN, MASAMUNE, HO229_WHITE, HO229_BLACK, HIGH_SPEED, EMIL_CLONE, MULTI_TIER, MULTI_TIER_VILLAGE, REVERSE_GOLIATH,
-            SHADE_SMALL, SHADE_MEDIUM, SHADE_LARGE, SHADE_GIANT, SHADE_BEAST, SHADE_BEETLE, SHADE_FLYER, SHADE_MULTI_LIMB, WOLF, SCORPION);
+            SHADE_SMALL, SHADE_MEDIUM, SHADE_LARGE, SHADE_GIANT, SHADE_BEAST, SHADE_BEETLE, SHADE_FLYER, SHADE_MULTI_LIMB, WOLF, SCORPION, HANSEL, GRETEL, ROC, HOOK);
 }
