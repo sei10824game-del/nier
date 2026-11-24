@@ -90,6 +90,8 @@ public class BipedModel extends NierModel<MachineUnit> {
         // Jump Slam: crouch, launch t9, weapon/fists brought down on landing ~t21
         clip(JUMP_SLAM, MachineClips.press(36, 9, 21, 0.25f));
 
+        clip(LIGHTNING, MachineClips.pound(46, 26));
+
         // Stomp (large): knee raised high 0-12, stamp t13, ground shockwave
         clip(STOMP, MachineClips.stomp(30, 13));
 

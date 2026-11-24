@@ -18,7 +18,8 @@ import net.minecraft.world.phys.Vec3;
  * orb volley, charge, laser, jump slam.
  */
 public class BipedUnit extends MachineUnit {
-    public static final int FLAIL = 1, CHARGE = 2, CLUB = 3, SWEEP = 4, COMBO = 5, LASER = 6, JUMP_SLAM = 7, STOMP = 8,
+    private final java.util.List<Vec3> marks = new java.util.ArrayList<>();
+    public static final int LIGHTNING = 30, FLAIL = 1, CHARGE = 2, CLUB = 3, SWEEP = 4, COMBO = 5, LASER = 6, JUMP_SLAM = 7, STOMP = 8,
             ORB_VOLLEY = 9, FIST_SLAM = 10, KICK = 11, SHIELD_BASH = 12;
 
     public BipedUnit(EntityType<? extends NierUnit> t, Level l, MachineVariant v) { super(t, l, v); }
@@ -68,6 +69,12 @@ public class BipedUnit extends MachineUnit {
             if (!landed && ((k >= 14 && onGround()) || k == 23)) { landed = true; area(position(), 2.4 * s, dmg(1.7), 1.0, true); dust(position(), 25, 0.7 * s);
                 sound(SoundEvents.GENERIC_EXPLODE, 0.5f, 1.3f); }
         }));
+        if (v.electric()) l.add(new Skill(LIGHTNING, "Thunderfall", 46, 100, 0, 22, (u, t, k) -> {
+            int rgb = v.skin() == MachineVariant.Skin.KOSHI ? com.nier.automata.core.Fx.HACK : 0xb060ff;
+            if (k == 8 && t != null) { marks.clear(); for (int i = 0; i < 5; i++) marks.add(t.position().add(new Vec3(i == 0 ? 0 : 3.2, 0, 0).yRot(i * 1.2566f))); }
+            if (k >= 8 && k < 26 && k % 3 == 0) for (Vec3 m : marks) com.nier.automata.core.Fx.shock(level(), m, 1.6, rgb);
+            if (k == 26) for (Vec3 m : marks) { com.nier.automata.core.Fx.pillar(level(), m, 9, 0.6, rgb); area(m, 1.8, dmg(2.0), 1.0, true); sound(SoundEvents.LIGHTNING_BOLT_THUNDER, 0.8f, 1.4f); }
+        }).weight(3));
         if (v.size() == Size.LARGE) {
             l.add(new Skill(STOMP, "Stomp", 30, 60, 0, 4 * s, (u, t, k) -> {
                 if (k == 13) { Vec3 c = at(0.4 * s, 0, -0.3 * s); area(c, 1.4 * s, dmg(1.6), 0.8, true); dust(c, 25, 0.5 * s); sound(SoundEvents.GENERIC_EXPLODE, 0.6f, 1.0f); }

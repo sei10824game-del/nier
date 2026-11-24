@@ -122,12 +122,14 @@ SKINS = {  # plate, dark, steel, eye, glow
     '_gold': ((222, 176, 58), (112, 84, 30), (240, 220, 150), (255, 60, 30), (255, 230, 120)),
     '_hacked': ((128, 120, 104), (52, 56, 60), (150, 160, 170), (70, 230, 255), (90, 200, 255)),
     '_rampage': ((176, 158, 148), (84, 48, 44), (150, 138, 138), (255, 20, 20), (255, 70, 40)),
+    '_koshi': ((228, 230, 238), (70, 76, 96), (190, 200, 230), (90, 190, 255), (120, 220, 255)),
+    '_roshi': ((34, 32, 42), (14, 12, 20), (90, 70, 130), (190, 90, 255), (210, 120, 255)),
     '_burn': ((176, 76, 44), (70, 34, 26), (200, 110, 80), (255, 220, 70), (255, 200, 60)),
 }
 
 ARCH_BASE = {'goliath': ((150, 104, 74), (82, 62, 48), (150, 140, 128), (255, 48, 32), (255, 150, 40)),
              'tank': ((190, 170, 128), (98, 86, 62), (160, 154, 140), (255, 48, 32), (255, 150, 40))}
-NEED = {'_rampage': ('stubby', 'biped'), '_gold': ('stubby', 'goliath', 'tank'), '_hacked': ('stubby', 'biped', 'sphere'), '_burn': ('stubby', 'sphere')}
+NEED = {'_koshi': ('biped',), '_roshi': ('biped',), '_rampage': ('stubby', 'biped'), '_gold': ('stubby', 'goliath', 'tank'), '_hacked': ('stubby', 'biped', 'sphere'), '_burn': ('stubby', 'sphere')}
 
 def pack(w, boxes):
     # shelf packer; footprint of a box = (2(d+w), d+h)
@@ -208,6 +210,7 @@ NAMES = {
     'machine_rampaging_small_stubby': ('Rampaging Small Stubby', '暴走小型短足'), 'machine_rampaging_small_biped': ('Rampaging Small Biped', '暴走小型二足'),
     'machine_rampaging_medium_biped': ('Rampaging Medium Biped', '暴走中型二足'),
     'machine_linked_sphere': ('Linked-sphere Type', '連結球体型'),
+    'machine_ko_shi': ('Ko-Shi', 'コ・シ'), 'machine_ro_shi': ('Ro-Shi', 'ロ・シ'),
     'machine_sphere': ('Sphere', '球体'), 'machine_hacked_sphere': ('Hacked Sphere', 'ハッキング球体'),
 }
 os.makedirs(RES + '/lang/parts', exist_ok=True)

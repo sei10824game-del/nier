@@ -37,6 +37,16 @@ public abstract class MachineUnit extends NierUnit {
         super(t, l); this.v = v; xpReward = (int) (v.hp() / 4);
     }
 
+    /** Ko-Shi / Ro-Shi: the whole body is charged - nearby foes are shocked continuously. */
+    @Override public void aiStep() {
+        super.aiStep();
+        if (!level().isClientSide && v.electric() && tickCount % 8 == 0) {
+            double r = 2.2 * v.scale() * 0.8;
+            com.nier.automata.core.Fx.burst(level(), position().add(0, getBbHeight() * 0.5, 0), v.skin() == MachineVariant.Skin.KOSHI ? com.nier.automata.core.Fx.HACK : 0xb060ff, 3);
+            for (var e : level().getEntitiesOfClass(net.minecraft.world.entity.LivingEntity.class, getBoundingBox().inflate(r, 1, r), this::foe)) strike(e, dmg(0.35f), 0.15);
+        }
+    }
+
     @Override public Faction faction() { return v.faction(); }
     @Override public void startSkill(Skill s) {
         hit.clear(); landed = false; lockYaw = getYRot();

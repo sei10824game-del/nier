@@ -9,11 +9,12 @@ public record MachineVariant(String id, String name, Arch arch, Size size, Weapo
     public enum Size { SMALL, MEDIUM, LARGE }
     public enum Weapon { NONE, AXE, SPEAR, HAMMER, STAFF, SHIELD, CLUB, MISSILE, DRILL, SAW, BOMB, LINK }
     public enum Skin {
-        RUST(""), GOLD("_gold"), HACKED("_hacked"), RAMPAGE("_rampage");
+        RUST(""), GOLD("_gold"), HACKED("_hacked"), RAMPAGE("_rampage"), KOSHI("_koshi"), ROSHI("_roshi");
         public final String suffix;
         Skin(String s) { suffix = s; }
     }
     public Faction faction() { return skin == Skin.HACKED ? Faction.ANDROID : Faction.MACHINE; }
+    public boolean electric() { return skin == Skin.KOSHI || skin == Skin.ROSHI; }
     public boolean small() { return size == Size.SMALL; }
     public boolean large() { return size == Size.LARGE; }
 }
