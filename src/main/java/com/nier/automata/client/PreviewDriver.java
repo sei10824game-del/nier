@@ -53,7 +53,7 @@ public final class PreviewDriver {
         String ids = System.getProperty("nier.preview.ids", "");
         if (!ids.isEmpty()) only.addAll(Arrays.asList(ids.split(",")));
         int maxSkills = Integer.getInteger("nier.preview.skills", 3);
-        queue.add(new Step(5, () -> srv(mc, () -> { ServerLevel lv = mc.getSingleplayerServer().overworld(); lv.setDayTime(6000); })));
+        queue.add(new Step(5, () -> srv(mc, () -> { ServerLevel lv = mc.getSingleplayerServer().overworld(); lv.setDayTime(6000); lv.getGameRules().getRule(net.minecraft.world.level.GameRules.RULE_DAYLIGHT).set(false, mc.getSingleplayerServer()); })));
         int n = 0;
         for (UnitModule<?> m : Modules.ALL) {
             if (!only.isEmpty() && !only.contains(m.id())) continue;
