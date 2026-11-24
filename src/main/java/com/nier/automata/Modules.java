@@ -19,8 +19,9 @@ import java.util.List;
 public final class Modules {
     public static final List<UnitModule<?>> ALL = new ArrayList<>();
     static {
-        ALL.addAll(List.of(new Yorha2bModule(), new Yorha9sModule(), new A2Module(),
-            new YorhaSoldierModule(), new YorhaHeavyModule(), new Yorha2EModule(), new CommanderModule(), new Operator6OModule(), new Operator21OModule(),
+        ALL.addAll(List.of(new Yorha2bModule(), new Yorha2bCopyModule(), new Yorha9sModule(), new A2Module(),
+            new YorhaSoldierModule(), new YorhaHeavyModule(),
+            new YorhaBetrayerModule("ally_yorha_8b", "YoRHa 8B", 0, 0xe8e8f0), new YorhaBetrayerModule("ally_yorha_22b", "YoRHa 22B", 1, 0xc4606a), new YorhaBetrayerModule("ally_yorha_64b", "YoRHa 64B", 2, 0x7a5842), new Yorha2EModule(), new CommanderModule(), new Operator6OModule(), new Operator21OModule(),
             new ResistanceModule(), new AnemoneModule(), new JackassModule(), new PascalModule(), new DevolaModule(),
             new PopolaModule(), new EmilModule(), new EmilHackedModule(), new PodModule(),
             new AdamModule(), new EveModule(), new EngelsModule(), new MarxModule(), new HegelModule(),

@@ -46,15 +46,27 @@ def rifle(t, body=(45, 45, 48), metal=(120, 120, 126)):
 
 BLACK, CLOTH, SKIN, PALE, DARKSKIN = (24, 24, 28), (34, 34, 40), (236, 208, 186), (240, 226, 214), (150, 104, 78)
 
-def ally_yorha_soldier():
-    t = Tex(128, 128, 11)
-    humanoid(t, SKIN, BLACK, BLACK, (16, 16, 18), (232, 232, 240), (80, 80, 90), gloves=(20, 20, 22), trim=(235, 235, 240))
-    t.box(48, 16, 9, 4, 9, (232, 232, 240)); t.box(48, 0, 9, 3, 2, (232, 232, 240))          # white hair
-    t.box(84, 16, 8, 2, 1, (10, 10, 12)); t.face(84, 16, 8, 2, 1, 'front', 0, 0, 8, 2, (10, 10, 12))   # blindfold
+def ally_yorha_soldier(hair=(232, 232, 240), blind=(10, 10, 12), seed=11):
+    t = Tex(128, 128, seed)
+    humanoid(t, SKIN, BLACK, BLACK, (16, 16, 18), hair, (80, 80, 90), gloves=(20, 20, 22), trim=(235, 235, 240))
+    t.box(48, 16, 9, 4, 9, hair); t.box(48, 0, 9, 3, 2, hair)          # hair
+    t.box(84, 16, 8, 2, 1, blind); t.face(84, 16, 8, 2, 1, 'front', 0, 0, 8, 2, blind)   # blindfold / visor
     t.box(0, 64, 9, 7, 5, CLOTH); band(t, 0, 64, 9, 7, 5, 0, 1, (180, 170, 150))      # coat skirt
     t.box(28, 64, 9, 3, 5, (20, 20, 24))                                               # collar
     pod(t); sword(t); spear(t, (40, 40, 44)); rifle(t)
     return t
+
+def _betrayer(hair, band, seed):
+    t = ally_yorha_soldier(hair, band, seed)
+    for u, v, w, h, d in ((16, 16, 8, 12, 4), (0, 64, 9, 7, 5)):                     # black plate armour, shoulder + thigh guards
+        band_(t, u, v, w, h, d)
+    return t
+def band_(t, u, v, w, h, d):
+    band(t, u, v, w, h, d, 1, 5, (52, 54, 62)); band(t, u, v, w, h, d, 5, 6, (150, 130, 80))
+
+def ally_yorha_8b(): return _betrayer((232, 232, 240), (10, 10, 12), 31)
+def ally_yorha_22b(): return _betrayer((196, 96, 106), (10, 10, 12), 32)
+def ally_yorha_64b(): return _betrayer((122, 88, 66), (60, 220, 240), 33)
 
 def ally_yorha_heavy():
     t = ally_yorha_soldier()
@@ -222,7 +234,7 @@ def ally_pod_153(): return pod_unit((70, 72, 80), (36, 38, 44), (120, 200, 255))
 def build(name):
     globals()[name]().save(os.path.join(OUT, name + '.png'))
 
-ALL = ['ally_yorha_soldier', 'ally_yorha_heavy', 'ally_yorha_2e', 'ally_commander', 'ally_operator_6o', 'ally_operator_21o', 'ally_resistance_soldier',
+ALL = ['ally_yorha_soldier', 'ally_yorha_8b', 'ally_yorha_22b', 'ally_yorha_64b', 'ally_yorha_heavy', 'ally_yorha_2e', 'ally_commander', 'ally_operator_6o', 'ally_operator_21o', 'ally_resistance_soldier',
        'ally_anemone', 'ally_jackass', 'ally_pascal', 'ally_devola', 'ally_popola', 'ally_emil', 'ally_emil_hacked', 'ally_pod', 'ally_pod_153']
 if __name__ == '__main__':
     os.makedirs(OUT, exist_ok=True)
