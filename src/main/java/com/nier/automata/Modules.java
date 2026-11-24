@@ -22,7 +22,7 @@ public final class Modules {
         ALL.addAll(List.of(new Yorha2bModule(), new Yorha2bCopyModule(), new Yorha9sModule(), new A2Module(),
             new YorhaSoldierModule(), new YorhaHeavyModule(), new GrimoireModule(),
             new ReplicantModule("ally_nier_brother", "Nier (Brother)", 0, 90, 7, 0xe8e8ee, 0x303040), new ReplicantModule("ally_nier_father", "Nier (Father)", 1, 140, 12, 0xe8e8ee, 0x8a6a4a),
-            new ReplicantModule("ally_kaine", "Kaine", 2, 100, 6, 0x3a4a78, 0xf0f0f4), new ReplicantModule("ally_shadowlord_brother", "Shadowlord (Brother)", 4, 360, 12, 0x3a423a, 0x9aa09a), new ReplicantModule("ally_shadowlord_father", "Shadowlord (Father)", 5, 360, 12, 0x3a423a, 0xb09070),
+            new ReplicantModule("ally_kaine", "Kaine", 2, 100, 6, 0x3a4a78, 0xf0f0f4), new ReplicantModule("ally_king_of_facade", "King of Facade", 6, 300, 10, 0x1c1a22, 0xd6b050), new ReplicantModule("ally_shadowlord_brother", "Shadowlord (Brother)", 4, 360, 12, 0x3a423a, 0x9aa09a), new ReplicantModule("ally_shadowlord_father", "Shadowlord (Father)", 5, 360, 12, 0x3a423a, 0xb09070),
             new ReplicantModule("ally_emil_replicant", "Emil (Replicant)", 3, 70, 8, 0x6e4696, 0xd2aa5a),
             new YorhaBetrayerModule("ally_yorha_8b", "YoRHa 8B", 0, 0xe8e8f0), new YorhaBetrayerModule("ally_yorha_22b", "YoRHa 22B", 1, 0xc4606a), new YorhaBetrayerModule("ally_yorha_64b", "YoRHa 64B", 2, 0x7a5842), new Yorha2EModule(), new CommanderModule(), new Operator6OModule(), new Operator21OModule(),
             new ResistanceModule(), new AnemoneModule(), new JackassModule(), new PascalModule(), new DevolaModule(),

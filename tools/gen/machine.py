@@ -193,12 +193,15 @@ SKINS = {  # plate, dark, steel, eye, glow
     '_scorpion': ((96, 64, 44), (50, 32, 24), (150, 120, 90), (255, 200, 60), (255, 160, 60)),
     '_silver': ((206, 212, 224), (90, 96, 116), (236, 238, 245), (255, 60, 60), (255, 200, 80)),
     '_roc': ((58, 62, 70), (28, 30, 36), (130, 134, 146), (255, 240, 120), (255, 240, 160)),
+    '_jack': ((22, 20, 26), (10, 10, 12), (236, 206, 40), (255, 230, 40), (255, 230, 60)),
+    '_louise': ((62, 16, 26), (22, 6, 10), (170, 44, 56), (255, 130, 130), (255, 90, 90)),
+    '_stone': ((152, 150, 144), (84, 84, 80), (196, 194, 188), (0, 0, 0), (255, 255, 255)),
     '_burn': ((176, 76, 44), (70, 34, 26), (200, 110, 80), (255, 220, 70), (255, 200, 60)),
 }
 
 ARCH_BASE = {'goliath': ((150, 104, 74), (82, 62, 48), (150, 140, 128), (255, 48, 32), (255, 150, 40)),
              'tank': ((190, 170, 128), (98, 86, 62), (160, 154, 140), (255, 48, 32), (255, 150, 40))}
-NEED = {'_silver': ('biped',), '_roc': ('quad',), '_shade': ('shade', 'quad', 'multileg', 'flyer', 'monster'), '_wolf': ('quad',), '_scorpion': ('quad',), '_blue': ('sphere',), '_pale': ('sphere',), '_tier': ('stubby',), '_reverse': ('goliath',), '_samurai': ('stubby',), '_flightw': ('flyer',), '_flightb': ('flyer',), '_bronze': ('stubby',), '_blood': ('stubby',), '_grave': ('stubby',), '_clown': ('biped',), '_dying': ('goliath',), '_monster': ('monster',), '_animal': ('quad',), '_koshi': ('biped',), '_roshi': ('biped',), '_rampage': ('stubby', 'biped'), '_gold': ('stubby', 'goliath', 'tank'), '_hacked': ('stubby', 'biped', 'sphere'), '_burn': ('stubby', 'sphere')}
+NEED = {'_jack': ('monster',), '_louise': ('multileg',), '_stone': ('sphere', 'monster'), '_silver': ('biped',), '_roc': ('quad',), '_shade': ('shade', 'quad', 'multileg', 'flyer', 'monster'), '_wolf': ('quad',), '_scorpion': ('quad',), '_blue': ('sphere',), '_pale': ('sphere',), '_tier': ('stubby',), '_reverse': ('goliath',), '_samurai': ('stubby',), '_flightw': ('flyer',), '_flightb': ('flyer',), '_bronze': ('stubby',), '_blood': ('stubby',), '_grave': ('stubby',), '_clown': ('biped',), '_dying': ('goliath',), '_monster': ('monster',), '_animal': ('quad',), '_koshi': ('biped',), '_roshi': ('biped',), '_rampage': ('stubby', 'biped'), '_gold': ('stubby', 'goliath', 'tank'), '_hacked': ('stubby', 'biped', 'sphere'), '_burn': ('stubby', 'sphere')}
 
 def pack(w, boxes):
     # shelf packer; footprint of a box = (2(d+w), d+h)
@@ -257,6 +260,10 @@ open(os.path.join(ROOT, 'src/main/java/com/nier/automata/unit/machine/client/Mac
 
 # ---- lang parts: id -> (english, japanese) ----
 NAMES = {
+    'machine_jack': ('Jack', 'ジャック'),
+    'machine_louise': ('Louise', 'ルイーズ'),
+    'machine_wendy': ('Wendy', 'ウェンディ'),
+    'machine_mourning_mother': ('Mourning Mother', '嘆きの母'),
     'machine_hansel': ('Hansel', 'ヘンゼル'),
     'machine_gretel': ('Gretel', 'グレーテル'),
     'machine_roc': ('Roc', 'ロック'),

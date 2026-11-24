@@ -93,6 +93,10 @@ public final class MachineModules {
         GRETEL = m("machine_gretel", "Gretel", BIPED, MEDIUM, CLUB, MachineVariant.Skin.SILVER, 1.8f, 1.2f, 3.2f, 360, 16, 0.26, 12),
         ROC = m("machine_roc", "Roc", MachineVariant.Arch.QUAD, LARGE, NONE, MachineVariant.Skin.ROC, 2.8f, 2.8f, 2.8f, 420, 18, 0.36, 8),
         HOOK = m("machine_hook", "Hook", MachineVariant.Arch.MONSTER, LARGE, NONE, MachineVariant.Skin.SHADE, 3.2f, 3f, 3f, 520, 22, 0.28, 10),
+        JACK = m("machine_jack", "Jack", MachineVariant.Arch.MONSTER, LARGE, NONE, MachineVariant.Skin.JACK, 4.2f, 3.8f, 4f, 900, 26, 0.22, 14),
+        LOUISE = m("machine_louise", "Louise", MachineVariant.Arch.MULTILEG, LARGE, NONE, MachineVariant.Skin.LOUISE, 3.0f, 3f, 3.2f, 700, 20, 0.3, 10),
+        WENDY = m("machine_wendy", "Wendy", SPHERE, LARGE, LINK, MachineVariant.Skin.STONE, 3.0f, 2.6f, 3.4f, 600, 18, 0.26, 12),
+        MOURNING_MOTHER = m("machine_mourning_mother", "Mourning Mother", MachineVariant.Arch.MONSTER, LARGE, NONE, MachineVariant.Skin.STONE, 5.2f, 4.2f, 5.2f, 1100, 28, 0.18, 16),
         SPHERE_UNIT = m("machine_sphere", "Sphere", SPHERE, SMALL, NONE, RUST, 1.2f, 0.9f, 0.9f, 18, 4, 0.27, 2),
         HACKED_SPHERE = m("machine_hacked_sphere", "Hacked Sphere", SPHERE, SMALL, NONE, HACKED, 1.2f, 0.9f, 0.9f, 26, 5, 0.28, 3);
 
@@ -102,5 +106,5 @@ public final class MachineModules {
             SMALL_FLYER, MEDIUM_FLYER, MACHINE_FLYER, SMALL_GOLIATH, MEDIUM_GOLIATH, LARGE_GOLIATH, GOLIATH_TANK, SPHERE_UNIT, HACKED_SPHERE, MULTILEG_UNIT, DRILL_SPHERE, SMALL_EXPLODER, SAW_SPHERE, QUADRUPED, GOLD_GOLIATH, GOLD_TANK, MEDIUM_EXPLODER, GOLIATH_FLYER, RAMPAGING_SMALL_STUBBY, RAMPAGING_SMALL_BIPED, RAMPAGING_MEDIUM_BIPED, LINKED_SPHERE, KO_SHI, RO_SHI,
             GUNMAN_STUBBY, GUNMAN_BIPED, GUNMAN_FLYER, DYING_GOLIATH, MONSTER_TYPE, ANIMAL_MACHINE, PARK_RABBIT, BLOOD_DRENCHED,
             COURAGEOUS_BROTHER, HATEFUL_SISTER, VENGEFUL_CHILD, GRAVEKEEPER, ZOMBIE_CLOWN, MASAMUNE, HO229_WHITE, HO229_BLACK, HIGH_SPEED, EMIL_CLONE, MULTI_TIER, MULTI_TIER_VILLAGE, REVERSE_GOLIATH,
-            SHADE_SMALL, SHADE_MEDIUM, SHADE_LARGE, SHADE_GIANT, SHADE_BEAST, SHADE_BEETLE, SHADE_FLYER, SHADE_MULTI_LIMB, WOLF, SCORPION, HANSEL, GRETEL, ROC, HOOK);
+            SHADE_SMALL, SHADE_MEDIUM, SHADE_LARGE, SHADE_GIANT, SHADE_BEAST, SHADE_BEETLE, SHADE_FLYER, SHADE_MULTI_LIMB, WOLF, SCORPION, HANSEL, GRETEL, ROC, HOOK, JACK, LOUISE, WENDY, MOURNING_MOTHER);
 }
