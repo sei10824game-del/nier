@@ -10,6 +10,11 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.phys.Vec3;
 
 /**
@@ -21,6 +26,65 @@ public class HegelUnit extends BossUnit {
     public static final int SWEEP_LASER = 1, LATTICE = 2, RING_LASERS = 3, SEPARATE = 4, SPHERE_SLAM = 5, SPHERE_BURST = 6;
     static final int RED = 0xff2a2a, WHITE = 0xfff0e0;
     private final List<Vec3> marks = new ArrayList<>();
+
+    // ---- nine spheres (8 ring units + core), each with its own HP; the boss dies when all are destroyed ----
+    private static final EntityDataAccessor<Integer> MASK = SynchedEntityData.defineId(HegelUnit.class, EntityDataSerializers.INT);
+    private final float[] sphereHp = new float[9];
+    private boolean hpInit;
+    static final double RING_R = 13.0 / 16.0 * 2.2, RING_Y = 14.0 / 16.0 * 2.2;
+
+    @Override protected void defineSynchedData() { super.defineSynchedData(); entityData.define(MASK, 0); }
+    public int mask() { return entityData.get(MASK); }
+    public boolean sphereAlive(int i) { return (mask() & (1 << i)) == 0; }
+    public int aliveCount() { int n = 0; for (int i = 0; i < 9; i++) if (sphereAlive(i)) n++; return n; }
+
+    private void initHp() {
+        if (hpInit) return; hpInit = true;
+        for (int i = 0; i < 9; i++) sphereHp[i] = sphereAlive(i) ? getMaxHealth() / 9f : 0f;
+    }
+    /** World position of sphere i (0-7 ring, 8 core). */
+    public Vec3 spherePos(int i) {
+        Vec3 c = position().add(0, RING_Y, 0);
+        if (i >= 8) return c;
+        float y = (float) Math.toRadians(getYRot()); double a = i * Math.PI / 4;
+        Vec3 f = new Vec3(-Math.sin(y), 0, Math.cos(y)), left = new Vec3(Math.cos(y), 0, Math.sin(y));
+        return c.add(f.scale(Math.cos(a) * RING_R)).add(left.scale(Math.sin(a) * RING_R));
+    }
+    private int nearestAlive(Vec3 from) {
+        int best = -1; double bd = Double.MAX_VALUE;
+        for (int i = 0; i < 9; i++) if (sphereAlive(i)) { double d = spherePos(i).distanceToSqr(from); if (d < bd) { bd = d; best = i; } }
+        return best;
+    }
+    @Override public boolean hurt(DamageSource src, float amount) {
+        if (level().isClientSide || src.is(net.minecraft.tags.DamageTypeTags.BYPASSES_INVULNERABILITY)) return super.hurt(src, amount);
+        initHp();
+        Vec3 from = src.getSourcePosition() != null ? src.getSourcePosition() : position().add(0, RING_Y, 0);
+        if (src.getEntity() != null) from = src.getEntity().getEyePosition();
+        int idx = nearestAlive(from); if (idx < 0) return super.hurt(src, amount);
+        float before = getHealth();
+        boolean r = super.hurt(src, amount);
+        float lost = before - getHealth();
+        if (lost > 0) {
+            if (lost > sphereHp[idx]) { setHealth(Math.min(getMaxHealth(), getHealth() + (lost - sphereHp[idx]))); lost = sphereHp[idx]; }   // no spill-over to other spheres
+            sphereHp[idx] -= lost;
+            if (sphereHp[idx] <= 0.01f) {
+                sphereHp[idx] = 0; entityData.set(MASK, mask() | (1 << idx));
+                Vec3 p = spherePos(idx);
+                BossFx.puff(this, p, ParticleTypes.EXPLOSION, 2, 0.3); BossFx.puff(this, p, ParticleTypes.LARGE_SMOKE, 20, 0.6);
+                BossFx.sound(this, SoundEvents.GENERIC_EXPLODE, 2f, 0.8f);
+                if (aliveCount() == 0) setHealth(0f);
+            }
+        }
+        return r;
+    }
+    @Override public void addAdditionalSaveData(CompoundTag t) {
+        super.addAdditionalSaveData(t); initHp(); t.putInt("SphereMask", mask());
+        for (int i = 0; i < 9; i++) t.putFloat("SphereHp" + i, sphereHp[i]);
+    }
+    @Override public void readAdditionalSaveData(CompoundTag t) {
+        super.readAdditionalSaveData(t); entityData.set(MASK, t.getInt("SphereMask")); hpInit = true;
+        for (int i = 0; i < 9; i++) sphereHp[i] = t.contains("SphereHp" + i) ? t.getFloat("SphereHp" + i) : (sphereAlive(i) ? getMaxHealth() / 9f : 0f);
+    }
 
     public HegelUnit(EntityType<? extends HegelUnit> t, Level l) { super(t, l); }
 
@@ -51,8 +115,9 @@ public class HegelUnit extends BossUnit {
                 if (k >= 18 && k <= 32) {
                     double base = (k - 18) * 0.06;
                     for (int i = 0; i < 8; i++) {
+                        if (!((HegelUnit) u).sphereAlive(i)) continue;
                         Vec3 dir = new Vec3(Math.cos(base + i * Math.PI / 4), 0, Math.sin(base + i * Math.PI / 4));
-                        BossFx.beam(u, u.position().add(0, 1.6, 0).add(dir.scale(2.2)), dir.add(0, -0.08, 0), 12, 0.45, k % 2 == 0 ? 0.3f : 0f, BossFx.dust(RED, 1.6f));
+                        BossFx.beam(u, ((HegelUnit) u).spherePos(i), dir.add(0, -0.08, 0), 12, 0.45, k % 2 == 0 ? 0.3f : 0f, BossFx.dust(RED, 1.6f));
                     }
                 }
                 if (k == 18) BossFx.sound(u, SoundEvents.BEACON_POWER_SELECT, 2, 1.5f);
@@ -71,8 +136,8 @@ public class HegelUnit extends BossUnit {
             }).forms(1, 1).weight(3),
             new Skill(SPHERE_BURST, "Sphere Burst", 50, 100, 0, 24, (u, t, k) -> {
                 if (k == 16) {
-                    for (int i = 0; i < 8; i++)
-                        BossFx.orb(u, u.position().add(0, 1.6, 0), new Vec3(Math.cos(i * Math.PI / 4), 0, Math.sin(i * Math.PI / 4)).scale(0.5), 1.1f, RED, 0.8f, BossOrb.STRAIGHT, 40);
+                    for (int i = 0; i < 8; i++) if (((HegelUnit) u).sphereAlive(i))
+                        BossFx.orb(u, ((HegelUnit) u).spherePos(i), new Vec3(Math.cos(i * Math.PI / 4), 0, Math.sin(i * Math.PI / 4)).scale(0.5), 1.1f, RED, 0.8f, BossOrb.STRAIGHT, 40);
                     BossFx.sound(u, SoundEvents.FIREWORK_ROCKET_BLAST, 2, 0.6f);
                 }
                 if (k == 30 || k == 34 || k == 38) {

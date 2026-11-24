@@ -112,6 +112,9 @@ public class HegelModel extends NierModel<HegelUnit> {
     }
 
     @Override protected void idle(HegelUnit e, float ls, float la, float age, float yaw, float pitch) {
+        int mk = e.mask();
+        for (int i = 0; i < 8; i++) if ((mk & (1 << i)) != 0) { var sg = bone(SEG[i]); sg.xScale = sg.yScale = sg.zScale = 0; }
+        if ((mk & 256) != 0) { var cr = bone("core"); cr.xScale = cr.yScale = cr.zScale = 0; }
         boolean sep = e.getForm() == 1;
         bone("core").y += Mth.sin(age * 0.08f) * 1.2f;
         bone("core").yRot = Mth.clamp(yaw, -45, 45) * Mth.DEG_TO_RAD * 0.5f;

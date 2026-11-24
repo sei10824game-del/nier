@@ -101,6 +101,15 @@ public abstract class NierUnit extends PathfinderMob {
         targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, this::isEnemy));
     }
 
+    /** Turn the whole body (not just the head) toward e by at most maxStep degrees this tick, so skills aimed along getYRot() really hit the target. */
+    public void faceTarget(LivingEntity e, float maxStep) {
+        double dx = e.getX() - getX(), dz = e.getZ() - getZ();
+        if (dx * dx + dz * dz < 1e-4) return;
+        float want = (float) (net.minecraft.util.Mth.atan2(dz, dx) * (180 / Math.PI)) - 90f;
+        float yaw = net.minecraft.util.Mth.approachDegrees(getYRot(), want, maxStep);
+        setYRot(yaw); yBodyRot = yaw; yHeadRot = yaw;
+    }
+
     /** Switch to whoever is actually hurting us / is closest, so a unit never keeps chasing a far target while being beaten. */
     private void retarget() {
         LivingEntity t = getTarget();

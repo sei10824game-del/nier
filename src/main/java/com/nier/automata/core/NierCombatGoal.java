@@ -20,16 +20,17 @@ public class NierCombatGoal extends Goal {
         Skill active = u.activeSkill();
         if (active == null) {
             Skill forced = u.pickForced();
-            if (forced != null) { u.startSkill(forced); active = forced; }
+            if (forced != null) { if (t != null) u.faceTarget(t, 180f); u.startSkill(forced); active = forced; }
         }
         if (active != null) {
-            if (t != null && !active.noTurn) u.getLookControl().setLookAt(t, 60f, 60f);
+            if (t != null && !active.noTurn) u.faceTarget(t, 40f);
             active.tick.run(u, t, u.skillTime);
             if (u.skillTime + 1 >= active.duration) u.endSkill();
             return;
         }
         if (t == null) return;
         u.getLookControl().setLookAt(t, 30f, 30f);
+        if (u.getNavigation().isDone()) u.faceTarget(t, 25f);
         double d = u.distanceTo(t);
         List<Skill> ok = new ArrayList<>();
         int total = 0;
@@ -40,7 +41,7 @@ public class NierCombatGoal extends Goal {
         }
         if (!ok.isEmpty()) {
             int r = u.getRandom().nextInt(total);
-            for (Skill s : ok) { r -= s.weight; if (r < 0) { u.startSkill(s); u.getNavigation().stop(); return; } }
+            for (Skill s : ok) { r -= s.weight; if (r < 0) { u.faceTarget(t, 180f); u.startSkill(s); u.getNavigation().stop(); return; } }
         }
         if (d > u.preferredRange()) u.getNavigation().moveTo(t, 1.0); else u.getNavigation().stop();
     }
