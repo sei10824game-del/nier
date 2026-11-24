@@ -101,6 +101,47 @@ public abstract class NierUnit extends PathfinderMob {
         targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, 10, true, false, this::isEnemy));
     }
 
+    // ---- audio / death feedback (machines clang, androids use the player voice) ----
+    @Override protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource s) {
+        return faction() == Faction.MACHINE ? net.minecraft.sounds.SoundEvents.IRON_GOLEM_DAMAGE : net.minecraft.sounds.SoundEvents.PLAYER_HURT;
+    }
+    @Override protected net.minecraft.sounds.SoundEvent getDeathSound() {
+        return faction() == Faction.MACHINE ? net.minecraft.sounds.SoundEvents.IRON_GOLEM_DEATH : net.minecraft.sounds.SoundEvents.PLAYER_DEATH;
+    }
+    @Override protected void playStepSound(net.minecraft.core.BlockPos pos, net.minecraft.world.level.block.state.BlockState st) {
+        if (faction() == Faction.MACHINE && getBbHeight() > 1.0f) playSound(net.minecraft.sounds.SoundEvents.IRON_GOLEM_STEP, 0.4f, 1.3f);
+        else super.playStepSound(pos, st);
+    }
+    @Override public float getVoicePitch() { return faction() == Faction.MACHINE ? 1.5f - Math.min(0.7f, getBbHeight() * 0.12f) : super.getVoicePitch(); }
+    @Override public void die(net.minecraft.world.damagesource.DamageSource src) {
+        if (!level().isClientSide) {
+            net.minecraft.world.phys.Vec3 c = position().add(0, getBbHeight() * 0.5, 0);
+            int rgb = faction() == Faction.MACHINE ? Fx.MACHINE_HOT : Fx.YORHA;
+            Fx.burst(level(), c, rgb, 18 + (int) (getBbHeight() * 6));
+            Fx.shock(level(), position(), 1.2 + getBbWidth(), rgb);
+            if (level() instanceof net.minecraft.server.level.ServerLevel sl) {
+                sl.sendParticles(net.minecraft.core.particles.ParticleTypes.LARGE_SMOKE, c.x, c.y, c.z, 12, getBbWidth() * 0.4, getBbHeight() * 0.3, getBbWidth() * 0.4, 0.03);
+                if (getBbHeight() > 3) sl.sendParticles(net.minecraft.core.particles.ParticleTypes.EXPLOSION_EMITTER, c.x, c.y, c.z, 1, 0, 0, 0, 0);
+            }
+        }
+        super.die(src);
+    }
+    @Override protected void dropCustomDeathLoot(net.minecraft.world.damagesource.DamageSource src, int looting, boolean recent) {
+        super.dropCustomDeathLoot(src, looting, recent);
+        net.minecraft.util.RandomSource r = getRandom();
+        boolean boss = bossName() != null;
+        if (faction() == Faction.MACHINE) {
+            spawnAtLocation(new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.IRON_NUGGET, 1 + r.nextInt(3 + looting) + (int) (getMaxHealth() / 40)));
+            if (r.nextInt(4) == 0) spawnAtLocation(new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.COPPER_INGOT, 1 + r.nextInt(2)));
+            if (r.nextInt(8) == 0) spawnAtLocation(new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.REDSTONE, 1 + r.nextInt(3)));
+        } else if (r.nextInt(3) == 0) spawnAtLocation(new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.GOLD_NUGGET, 1 + r.nextInt(3)));
+        if (boss) {
+            spawnAtLocation(new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.IRON_INGOT, 6 + r.nextInt(8)));
+            spawnAtLocation(new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.DIAMOND, 1 + r.nextInt(3)));
+            if (r.nextInt(3) == 0) spawnAtLocation(new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.NETHERITE_SCRAP, 1));
+        }
+    }
+
     /** Turn the whole body (not just the head) toward e by at most maxStep degrees this tick, so skills aimed along getYRot() really hit the target. */
     public void faceTarget(LivingEntity e, float maxStep) {
         double dx = e.getX() - getX(), dz = e.getZ() - getZ();
