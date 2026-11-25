@@ -24,12 +24,26 @@ class Tex:
                 if 0 <= i < self.img.width and 0 <= j < self.img.height:
                     f = 1 + (self.rnd.uniform(-noise, noise) / 100 if noise else 0)
                     self.px[i, j] = _c(color if len(color) > 3 else color + (255,), f)
+    def _bevel(self, x, y, w, h):
+        """Edge/gradient shading on one face: darker rim, light top row, darker bottom row (cheap ambient occlusion)."""
+        if w < 3 or h < 3: return
+        for i in range(x, x + w):
+            for j in range(y, y + h):
+                if not (0 <= i < self.img.width and 0 <= j < self.img.height): continue
+                r, g, b, a = self.px[i, j]
+                if a == 0: continue
+                f = 1.0
+                if j == y: f *= 1.07
+                if j == y + h - 1: f *= 0.86
+                if i in (x, x + w - 1): f *= 0.9
+                self.px[i, j] = _c((r, g, b, a), f)
     def box(self, u, v, w, h, d, base, top=None, bottom=None, front=None, back=None, side=None, shade=0.12, noise=5):
         top = top or _c(base, 1 + shade); bottom = bottom or _c(base, 1 - shade * 2)
         front = front or base; back = back or _c(base, 1 - shade * .5); side = side or _c(base, 1 - shade)
         self.rect(u + d, v, w, d, top, noise); self.rect(u + d + w, v, w, d, bottom, noise)
         self.rect(u, v + d, d, h, side, noise); self.rect(u + d, v + d, w, h, front, noise)
         self.rect(u + d + w, v + d, d, h, side, noise); self.rect(u + 2 * d + w, v + d, w, h, back, noise)
+        for fx, fy, fw, fh in ((u, v + d, d, h), (u + d, v + d, w, h), (u + d + w, v + d, d, h), (u + 2 * d + w, v + d, w, h)): self._bevel(fx, fy, fw, fh)
     def face(self, u, v, w, h, d, which, x, y, w2, h2, color):
         ox, oy = {'top': (u + d, v), 'bottom': (u + d + w, v), 'right': (u, v + d), 'front': (u + d, v + d),
                   'left': (u + d + w, v + d), 'back': (u + 2 * d + w, v + d)}[which]
