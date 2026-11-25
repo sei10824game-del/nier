@@ -40,6 +40,7 @@ public abstract class MachineUnit extends NierUnit {
     /** Ko-Shi / Ro-Shi: the whole body is charged - nearby foes are shocked continuously. */
     @Override public void aiStep() {
         super.aiStep();
+        if (!level().isClientSide && v.id().equals("machine_jack") && tickCount % 20 == 0 && getHealth() < getMaxHealth()) heal(getMaxHealth() * 0.01f);   // Jack regrows lost body
         if (!level().isClientSide && v.electric() && tickCount % 8 == 0) {
             double r = 2.2 * v.scale() * 0.8;
             com.nier.automata.core.Fx.burst(level(), position().add(0, getBbHeight() * 0.5, 0), v.skin() == MachineVariant.Skin.KOSHI ? com.nier.automata.core.Fx.HACK : 0xb060ff, 3);
@@ -49,6 +50,7 @@ public abstract class MachineUnit extends NierUnit {
 
     @Override protected net.minecraft.network.chat.Component bossName() { return v.hp() >= 300 ? net.minecraft.network.chat.Component.translatable("entity.nierautomata." + v.id()) : null; }
 
+    @Override protected int revives() { return switch (v.id()) { case "machine_goose" -> 2; case "machine_jack" -> 1; case "machine_kalil" -> 1; default -> 0; }; }
     @Override public Faction faction() { return v.faction(); }
     @Override public void startSkill(Skill s) {
         hit.clear(); landed = false; lockYaw = getYRot();

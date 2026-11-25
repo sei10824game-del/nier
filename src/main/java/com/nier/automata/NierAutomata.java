@@ -43,7 +43,7 @@ public class NierAutomata {
             for (UnitModule m : Modules.ALL) e.put((EntityType) m.type.get(), m.attributes().build());
         });
         bus.addListener((net.minecraftforge.event.entity.SpawnPlacementRegisterEvent e) -> {
-            for (UnitModule m : Modules.ALL) if (m instanceof com.nier.automata.unit.machine.MachineModule)
+            for (UnitModule m : Modules.ALL) if (m instanceof com.nier.automata.unit.machine.MachineModule || m instanceof com.nier.automata.unit.ally.YorhaSoldierModule || m instanceof com.nier.automata.unit.ally.ResistanceModule)
                 e.register((EntityType) m.type.get(), net.minecraft.world.entity.SpawnPlacements.Type.ON_GROUND, net.minecraft.world.level.levelgen.Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                         (net.minecraft.world.entity.SpawnPlacements.SpawnPredicate) (t, lv, reason, pos, rnd) -> lv.getDifficulty() != net.minecraft.world.Difficulty.PEACEFUL
                                 && net.minecraft.world.entity.Mob.checkMobSpawnRules((EntityType) t, lv, reason, pos, rnd),

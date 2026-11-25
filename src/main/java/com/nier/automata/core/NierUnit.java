@@ -113,7 +113,17 @@ public abstract class NierUnit extends PathfinderMob {
         else super.playStepSound(pos, st);
     }
     @Override public float getVoicePitch() { return faction() == Faction.MACHINE ? 1.5f - Math.min(0.7f, getBbHeight() * 0.12f) : super.getVoicePitch(); }
+    /** Extra lives (Goose, Jack...): on lethal damage the unit stands back up at half health. */
+    protected int revives() { return 0; }
+    private int revivesUsed;
     @Override public void die(net.minecraft.world.damagesource.DamageSource src) {
+        if (!level().isClientSide && revivesUsed < revives() && !src.is(net.minecraft.tags.DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+            revivesUsed++; setHealth(getMaxHealth() * 0.5f); setForm(getForm());
+            net.minecraft.world.phys.Vec3 c = position().add(0, getBbHeight() * 0.5, 0);
+            Fx.burst(level(), c, 0xffd040, 30); Fx.pillar(level(), position(), getBbHeight() + 2, getBbWidth() * 0.4, 0xffd040);
+            playSound(net.minecraft.sounds.SoundEvents.TOTEM_USE, 1.5f, 0.7f);
+            return;
+        }
         if (!level().isClientSide) {
             net.minecraft.world.phys.Vec3 c = position().add(0, getBbHeight() * 0.5, 0);
             int rgb = faction() == Faction.MACHINE ? Fx.MACHINE_HOT : Fx.YORHA;
@@ -188,8 +198,8 @@ public abstract class NierUnit extends PathfinderMob {
     }
     @Override public void stopSeenByPlayer(ServerPlayer p) { super.stopSeenByPlayer(p); if (bossBar != null) bossBar.removePlayer(p); }
 
-    @Override public void addAdditionalSaveData(CompoundTag t) { super.addAdditionalSaveData(t); t.putInt("Form", getForm()); }
-    @Override public void readAdditionalSaveData(CompoundTag t) { super.readAdditionalSaveData(t); setForm(t.getInt("Form")); }
+    @Override public void addAdditionalSaveData(CompoundTag t) { super.addAdditionalSaveData(t); t.putInt("Form", getForm()); t.putInt("RevivesUsed", revivesUsed); }
+    @Override public void readAdditionalSaveData(CompoundTag t) { super.readAdditionalSaveData(t); setForm(t.getInt("Form")); revivesUsed = t.getInt("RevivesUsed"); }
 
     // package-private hooks for the goal
     @Nullable Skill pickForced() { return forcedSkill(); }

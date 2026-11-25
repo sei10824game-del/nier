@@ -7,4 +7,12 @@ import net.minecraft.world.level.Level;
 public class GrimoireUnit extends PodUnit {
     public GrimoireUnit(EntityType<? extends PodUnit> t, Level l) { super(t, l); }
     @Override protected int variants() { return 3; }
+
+    /** With no target the tome trails the nearest Replicant human it can find. */
+    @Override public void aiStep() {
+        super.aiStep();
+        if (level().isClientSide || getTarget() != null || tickCount % 10 != 0) return;
+        var owner = level().getEntitiesOfClass(ReplicantUnit.class, getBoundingBox().inflate(32)).stream().min(java.util.Comparator.comparingDouble(this::distanceToSqr)).orElse(null);
+        if (owner != null && distanceToSqr(owner) > 36) getNavigation().moveTo(owner, 1.1);
+    }
 }

@@ -23,7 +23,7 @@ import net.minecraft.world.phys.Vec3;
  * the spherical units slam into the foe and burst outward.
  */
 public class HegelUnit extends BossUnit {
-    public static final int SWEEP_LASER = 1, LATTICE = 2, RING_LASERS = 3, SEPARATE = 4, SPHERE_SLAM = 5, SPHERE_BURST = 6;
+    public static final int SWEEP_LASER = 1, LATTICE = 2, RING_LASERS = 3, SEPARATE = 4, SPHERE_SLAM = 5, SPHERE_BURST = 6, FOCUS = 7;
     static final int RED = 0xff2a2a, WHITE = 0xfff0e0;
     private final List<Vec3> marks = new ArrayList<>();
 
@@ -126,6 +126,14 @@ public class HegelUnit extends BossUnit {
                 if (k % 4 == 0) BossFx.ring(u, u.position().add(0, 1.6, 0), 2 + k * 0.06, BossFx.dust(WHITE, 1.5f), 16);
                 if (k == 30) { u.setForm(1); BossFx.blast(u, u.position().add(0, 1, 0), 6, 1.0f, 2.5, false); BossFx.sound(u, SoundEvents.IRON_GOLEM_DAMAGE, 3, 0.5f); }
             })),
+            new Skill(FOCUS, "Sphere Focus Fire", 44, 90, 3, 22, (u, t, k) -> {
+                HegelUnit h = (HegelUnit) u;
+                for (int i = 0; i < 9; i++) if (h.sphereAlive(i) && k == 10 + i * 3 && t != null) {
+                    Vec3 p = h.spherePos(i);
+                    BossFx.orb(u, p, t.position().add(0, 1, 0).subtract(p).normalize().scale(0.9), 1.0f, RED, 0.7f, BossOrb.STRAIGHT, 40);
+                    BossFx.sound(u, SoundEvents.BLAZE_SHOOT, 1.5f, 0.6f);
+                }
+            }).weight(3).noTurn(),
             new Skill(SPHERE_SLAM, "Sphere Slam", 44, 60, 0, 20, (u, t, k) -> {
                 if ((k == 12 || k == 18 || k == 24) && t != null) { marks.add(0, t.position()); BossFx.warn(u, t.position(), 2.5, RED); }
                 if (k == 8) marks.clear();
