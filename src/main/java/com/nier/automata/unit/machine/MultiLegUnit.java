@@ -32,6 +32,9 @@ public class MultiLegUnit extends MachineUnit {
             if (k >= 10 && k < 42) { if (t != null) dash(0.2); if (k % 5 == 0) { area(position(), 3.2 * s, dmg(0.9), 0.7, false); sound(SoundEvents.PLAYER_ATTACK_SWEEP, 0.7f, 1.4f); } }
             if (k % 4 == 0 && k >= 10 && k < 42) fx(ParticleTypes.CRIT, at(0, 0.9 * s, 0), 4, 1.5 * s, 0.1);
         }).weight(2));
+        if (v.skin() == MachineVariant.Skin.LOUISE) l.add(new Skill(10, "Tentacle Lash", 36, 50, 0, 7 * s, (u, t, k) -> {
+            if (k == 12 || k == 18 || k == 24) { swing(6.5 * s, 200, dmg(1.4), 0.9, false); hit.clear(); sound(SoundEvents.PLAYER_ATTACK_SWEEP, 1f, 0.5f); com.nier.automata.core.Fx.shock(level(), position(), 5.0 * s, 0x2a1a30); }
+        }).weight(3));
         return l;
     }
 }

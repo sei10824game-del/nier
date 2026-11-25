@@ -40,6 +40,11 @@ public class MultiLegModel extends NierModel<MachineUnit> {
             .bone("panelR").rot(0, 0, 0, 0).rot(12, 0, 0.4f, 0).rot(14, 0, -0.9f, 0, OUT).rot(34, 0, 0, 0)
             .bone("panelL").rot(0, 0, 0, 0).rot(12, 0, 0.9f, 0).rot(14, 0, -0.4f, 0, OUT).rot(34, 0, 0, 0).done());
 
+        clip(10, AnimClip.of(36).blend(3)
+            .bone("handR").rot(0, 0, 0, 0).rot(10, 0, 1.2f, 0).rot(12, 0, -1.2f, 0, OUT).rot(20, 0, 1.0f, 0).rot(24, 0, -1.0f, 0, OUT).rot(36, 0, 0, 0)
+            .bone("handL").rot(0, 0, 0, 0).rot(10, 0, -1.2f, 0).rot(12, 0, 1.2f, 0, OUT).rot(20, 0, -1.0f, 0).rot(24, 0, 1.0f, 0, OUT).rot(36, 0, 0, 0)
+            .bone("body").rot(0, 0, 0, 0).rot(10, 0, 0.6f, 0).rot(14, 0, -0.6f, 0).rot(20, 0, 0.6f, 0).rot(24, 0, -0.6f, 0).rot(36, 0, 0, 0).done());
+
         // Blade Whirl: panels fold out horizontal 0-9, body spins four turns 10-41, dizzy settle
         clip(WHIRL, AnimClip.of(50).blend(3)
             .bone("body").rot(0, 0, 0, 0).rot(9, 0.1f, 0, 0).rot(10, 0, 0, 0).rot(41, 0, 8 * PI, 0, LINEAR).rot(42, 0, 8 * PI, 0).rot(44, 0.1f, 0, 0.12f, SNAP).rot(47, 0, 0, -0.1f).rot(50, 0, 0, 0)
@@ -61,6 +66,8 @@ public class MultiLegModel extends NierModel<MachineUnit> {
                 bone("leg" + sd + i).xRot = Mth.sin(p) * 0.25f * la * 3;
             }
         }
+        bone("handR").visible = bone("handL").visible = e.v.skin() == com.nier.automata.unit.machine.MachineVariant.Skin.LOUISE;
+        bone("handR").zRot = Mth.sin(age * 0.1f) * 0.2f; bone("handL").zRot = -Mth.sin(age * 0.1f) * 0.2f;
         bone("body").y += Mth.sin(age * 0.12f) * 0.25f;
         bone("head").yRot = headYaw * Mth.DEG_TO_RAD * 0.8f; bone("head").xRot = headPitch * Mth.DEG_TO_RAD * 0.8f;
         bone("panelR").zRot = Mth.sin(age * 0.1f) * 0.05f; bone("panelL").zRot = -Mth.sin(age * 0.1f) * 0.05f;

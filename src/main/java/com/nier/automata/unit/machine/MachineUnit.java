@@ -40,6 +40,7 @@ public abstract class MachineUnit extends NierUnit {
     /** Ko-Shi / Ro-Shi: the whole body is charged - nearby foes are shocked continuously. */
     @Override public void aiStep() {
         super.aiStep();
+        if (!level().isClientSide && tickCount % 10 == 0 && getTarget() == null) { MachineUnit p = partner(); if (p != null && p.getTarget() != null) setTarget(p.getTarget()); }
         if (!level().isClientSide && v.id().equals("machine_jack") && tickCount % 20 == 0 && getHealth() < getMaxHealth()) heal(getMaxHealth() * 0.01f);   // Jack regrows lost body
         if (!level().isClientSide && v.electric() && tickCount % 8 == 0) {
             double r = 2.2 * v.scale() * 0.8;
@@ -66,7 +67,24 @@ public abstract class MachineUnit extends NierUnit {
         Vec3 fw = fwd(); Vec3 r = new Vec3(-fw.z, 0, fw.x);
         return position().add(fw.scale(f)).add(r.scale(right)).add(0, up, 0);
     }
-    protected float dmg(double mult) { return (float) (getAttributeValue(Attributes.ATTACK_DAMAGE) * mult); }
+    protected float dmg(double mult) { return (float) (getAttributeValue(Attributes.ATTACK_DAMAGE) * mult * (partner() != null ? 1.3 : 1.0)); }
+
+    /** Linked pairs (Hansel/Gretel, Kalil/Beepy): while the partner lives nearby both hit 30% harder and share targets. */
+    @Nullable protected MachineUnit partner() {
+        String o = switch (v.id()) { case "machine_hansel" -> "machine_gretel"; case "machine_gretel" -> "machine_hansel"; case "machine_kalil" -> "machine_beepy"; case "machine_beepy" -> "machine_kalil"; default -> null; };
+        if (o == null) return null;
+        for (MachineUnit m : level().getEntitiesOfClass(MachineUnit.class, getBoundingBox().inflate(32), m -> m != this && m.isAlive() && m.v.id().equals(o))) return m;
+        return null;
+    }
+    @Override protected net.minecraft.sounds.SoundEvent getAmbientSound() {
+        return switch (v.skin()) { case SHADE -> net.minecraft.sounds.SoundEvents.PHANTOM_AMBIENT; case WOLF, ROC -> net.minecraft.sounds.SoundEvents.WOLF_GROWL; case SCORPION -> net.minecraft.sounds.SoundEvents.SPIDER_AMBIENT; default -> null; };
+    }
+    @Override protected net.minecraft.sounds.SoundEvent getHurtSound(net.minecraft.world.damagesource.DamageSource s) {
+        return v.skin() == MachineVariant.Skin.SHADE ? net.minecraft.sounds.SoundEvents.PHANTOM_HURT : v.skin() == MachineVariant.Skin.WOLF ? net.minecraft.sounds.SoundEvents.WOLF_HURT : super.getHurtSound(s);
+    }
+    @Override protected net.minecraft.sounds.SoundEvent getDeathSound() {
+        return v.skin() == MachineVariant.Skin.SHADE ? net.minecraft.sounds.SoundEvents.PHANTOM_DEATH : v.skin() == MachineVariant.Skin.WOLF ? net.minecraft.sounds.SoundEvents.WOLF_DEATH : super.getDeathSound();
+    }
     protected float yawTo(Vec3 p) { return (float) (Mth.atan2(p.z - getZ(), p.x - getX()) * Mth.RAD_TO_DEG) - 90f; }
     protected void face(float yaw) { setYRot(yaw); yBodyRot = yaw; yHeadRot = yaw; }
 

@@ -33,6 +33,9 @@ public class NierAutomata {
             ITEMS.register(m.id() + "_spawn_egg", () -> new net.minecraftforge.common.ForgeSpawnEggItem(() -> (EntityType) m.type.get(), m.eggPrimary(), m.eggSecondary(), new Item.Properties()));
             m.registerExtra(ENTITIES);
         }
+        java.util.Set<String> bosses = java.util.Set.of("boss_eve","boss_engels","boss_marx","boss_hegel","boss_grun","boss_red_girls","boss_simone","boss_adam","machine_goose","machine_jack","machine_louise","machine_wendy","machine_mourning_mother","machine_geppetto","machine_shahriyar","machine_hook","machine_roc","machine_hansel","machine_gretel","machine_kalil","machine_beepy","machine_gold_tank","machine_large_goliath","machine_ko_shi","machine_ro_shi","machine_masamune","machine_shade_giant","ally_shadowlord_brother","ally_shadowlord_father","ally_king_of_facade");
+        for (UnitModule m : Modules.ALL) if (bosses.contains(m.id()))
+            ITEMS.register(m.id() + "_sigil", () -> new SigilItem(() -> (EntityType) m.type.get(), new Item.Properties().stacksTo(16)));
         RegistryObject<CreativeModeTab> tab = TABS.register("units", () -> CreativeModeTab.builder()
                 .title(Component.translatable("itemGroup.nierautomata"))
                 .icon(() -> ItemStack.EMPTY.isEmpty() && !Modules.ALL.isEmpty()

@@ -78,6 +78,16 @@ public class FlyerUnit extends MachineUnit {
                 if (k == 10) { swing(2.6 * s, 160, dmg(1.2), 0.6, false); sound(SoundEvents.SHEEP_SHEAR, 1f, 0.7f); }
             }).weight(3));
         }
+        if (v.flight()) {
+            l.add(new Skill(20, "Strafing Run", 40, 80, 6, 26, (u, t, k) -> {
+                if (k >= 8 && k <= 30) { if (t != null) dash(0.35); if (k % 3 == 0) shoot(at(1.2 * v.scale(), 0.2, 0), targetPos(t), 0.9, MachineShot.Kind.HARD_ORB, dmg(0.6)); }
+                if (k == 8) sound(net.minecraft.sounds.SoundEvents.FIREWORK_ROCKET_LAUNCH, 1f, 0.8f);
+            }).weight(3));
+            l.add(new Skill(21, "Great Sword Pass", 34, 70, 3, 16, (u, t, k) -> {
+                if (k == 10) { dash(1.3); sound(net.minecraft.sounds.SoundEvents.PLAYER_ATTACK_STRONG, 1f, 0.6f); }
+                if (k >= 10 && k < 20) swing(3.6 * v.scale(), 180, dmg(1.8), 1.0, true);
+            }).weight(3));
+        }
         return l;
     }
 }

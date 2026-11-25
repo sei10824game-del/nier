@@ -19,6 +19,7 @@ import net.minecraft.world.phys.Vec3;
  * rocket-engine leap into a diving kick.
  */
 public class GoliathUnit extends MachineUnit {
+    private final java.util.List<Vec3> rain = new java.util.ArrayList<>();
     public static final int RAIL_SWIPE = 1, SLAM = 2, PUNCH = 3, GRAB = 4, BEAM = 5, MISSILES = 6, MINES = 7, DIVE_KICK = 8, STOMP = 9;
     private int grabbed = -1;
 
@@ -51,6 +52,11 @@ public class GoliathUnit extends MachineUnit {
             if (k == 18) { Vec3 c = at(1.3 * s, 0, 0); area(c, 1.2 * s, dmg(2.2), 1.0, true); dust(c, 40, 0.6 * s); sound(SoundEvents.GENERIC_EXPLODE, 1.2f, 0.7f); }
             if (k >= 18 && k <= 32) ring(at(1.3 * s, 0, 0), (k - 17) * 0.5 * s, dmg(1.2));
         }).weight(2));
+        if (v.skin() == MachineVariant.Skin.CUBE) l.add(new Skill(30, "Block Rain", 46, 90, 0, 24, (u, t, k) -> {
+            if (k == 8 && t != null) { rain.clear(); for (int i = 0; i < 6; i++) rain.add(t.position().add(new Vec3(i == 0 ? 0 : 3.4, 0, 0).yRot(i * 1.0472f))); }
+            if (k >= 8 && k < 26 && k % 4 == 0) for (Vec3 m : rain) com.nier.automata.core.Fx.shock(level(), m, 1.5, 0xff5ad2);
+            if (k == 28) for (Vec3 m : rain) { area(m, 1.8, dmg(1.8), 1.0, true); com.nier.automata.core.Fx.pillar(level(), m, 6, 0.8, 0xff5ad2); dust(m, 12, 0.5); sound(SoundEvents.ANVIL_LAND, 1f, 0.6f); }
+        }).weight(3));
         l.add(new Skill(STOMP, "Shockwave Stomp", 38, 80, 0, 4 * s, (u, t, k) -> {
             if (k == 16) { Vec3 c = at(0.3 * s, 0, -0.35 * s); area(c, 1.0 * s, dmg(1.8), 1.0, true); dust(c, 40, 0.6 * s); sound(SoundEvents.GENERIC_EXPLODE, 1f, 0.8f); }
             if (k >= 16 && k <= 30) ring(at(0.3 * s, 0, -0.35 * s), (k - 15) * 0.6 * s, dmg(1.1));

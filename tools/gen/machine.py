@@ -111,6 +111,8 @@ def _multileg():
             parts.append(P(f'low{side}{i}', n, (0, 5, 0), [B(-0.5, 0, -0.5, 1, 7, 1, 'dark'), B(-1, 6, -1, 2, 1, 2, 'steel')], rot=(0, 0, sx * 1.0)))
         parts.append(P(f'arm{side}', 'body', (sx * 5, -1, 0), [B(-0.5 if sx > 0 else -3, -1, -1, 3, 2, 2, 'dark')]))
         parts.append(P(f'panel{side}', f'arm{side}', (sx * 3, 0, 0), [B(-0.5, -8, -3.5, 1, 16, 7, 'plate', ('front', 0, 0, 1, 1, 'dark'))]))
+    parts.append(P('handR', 'body', (-5, -2, -3), [B(-2, -1, -5, 4, 3, 6, 'dark'), B(-2.5, -2, -9, 5, 5, 4, 'plate', ('front', 1, 1, 1, 1, 'white'), ('front', 3, 1, 1, 1, 'white'), ('front', 1, 3, 3, 1, 'steel'))]))
+    parts.append(P('handL', 'body', (5, -2, -3), [B(-2, -1, -5, 4, 3, 6, 'dark'), B(-2.5, -2, -9, 5, 5, 4, 'plate', ('front', 1, 1, 1, 1, 'white'), ('front', 3, 1, 1, 1, 'white'), ('front', 1, 3, 3, 1, 'steel'))]))
     return parts
 ARCH['multileg'] = (128, 64, _multileg())
 def _quad():
