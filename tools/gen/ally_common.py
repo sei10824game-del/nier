@@ -99,6 +99,17 @@ def ally_king_of_facade():
     band(t, 16, 16, 8, 12, 4, 0, 2, (214, 176, 80)); band(t, 16, 16, 8, 12, 4, 10, 11, (214, 176, 80)); t.box(100, 16, 4, 6, 1, (214, 176, 80))
     return t
 
+def ally_fyra():
+    t = _hum(61, (200, 170, 130), (240, 238, 232), (240, 238, 232), (210, 190, 150), (30, 28, 34), (110, 124, 140), (240, 238, 232), (214, 176, 80), long_=True)
+    band(t, 16, 16, 8, 12, 4, 0, 1, (214, 176, 80)); band(t, 16, 16, 8, 12, 4, 10, 11, (214, 176, 80)); return t
+def ally_yonah():
+    return _hum(62, (244, 220, 200), (236, 230, 220), (200, 200, 210), (120, 90, 70), (96, 66, 50), (80, 70, 60), (244, 220, 200), (200, 190, 170), long_=True)
+def ally_tyrann():
+    t = _hum(63, (232, 208, 196), (28, 24, 40), (240, 240, 244), (24, 20, 36), (30, 26, 44), (230, 60, 90), (24, 20, 40), (120, 70, 190), long_=True)
+    band(t, 24, 32, 3, 12, 3, 2, 12, (230, 230, 236)); return t
+def ally_halua():
+    return _hum(64, (240, 216, 196), (150, 190, 170), (150, 190, 170), (210, 190, 170), (130, 100, 76), (90, 110, 100), (240, 216, 196), (190, 220, 200))
+
 def ally_emil_replicant():
     return _hum(44, (240, 214, 190), (110, 70, 150), (90, 56, 124), (60, 40, 80), (120, 84, 60), (60, 40, 60), (230, 230, 236), (210, 170, 90), blind=(14, 12, 18))
 
@@ -280,7 +291,7 @@ def ally_pod_153(): return pod_unit((70, 72, 80), (36, 38, 44), (120, 200, 255))
 def build(name):
     globals()[name]().save(os.path.join(OUT, name + '.png'))
 
-ALL = ['ally_king_of_facade', 'ally_shadowlord_brother', 'ally_shadowlord_father', 'ally_grimoire_weiss', 'ally_grimoire_noir', 'ally_grimoire_rubrum', 'ally_nier_brother', 'ally_nier_father', 'ally_kaine', 'ally_emil_replicant', 'ally_yorha_soldier', 'ally_yorha_8b', 'ally_yorha_22b', 'ally_yorha_64b', 'ally_yorha_heavy', 'ally_yorha_2e', 'ally_commander', 'ally_operator_6o', 'ally_operator_21o', 'ally_resistance_soldier',
+ALL = ['ally_fyra', 'ally_yonah', 'ally_tyrann', 'ally_halua', 'ally_king_of_facade', 'ally_shadowlord_brother', 'ally_shadowlord_father', 'ally_grimoire_weiss', 'ally_grimoire_noir', 'ally_grimoire_rubrum', 'ally_nier_brother', 'ally_nier_father', 'ally_kaine', 'ally_emil_replicant', 'ally_yorha_soldier', 'ally_yorha_8b', 'ally_yorha_22b', 'ally_yorha_64b', 'ally_yorha_heavy', 'ally_yorha_2e', 'ally_commander', 'ally_operator_6o', 'ally_operator_21o', 'ally_resistance_soldier',
        'ally_anemone', 'ally_jackass', 'ally_pascal', 'ally_devola', 'ally_popola', 'ally_emil', 'ally_emil_hacked', 'ally_pod', 'ally_pod_153']
 if __name__ == '__main__':
     os.makedirs(OUT, exist_ok=True)

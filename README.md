@@ -1,7 +1,7 @@
 # NieR:Automata Units (Minecraft 1.20.1 / Forge 47.3.0)
 
 All combat units of NieR:Automata as entities with skill-driven attacks, keyframed multi-bone animations and form changes.
-Units: NieR Replicant (Nier brother/father, Kaine, Emil, Shades, Wolf, Scorpion), YoRHa 2B / 9S / A2 (+ 2B Copy, 8B, 22B, 64B), YoRHa soldiers, 2E, Commander, Operators, Resistance, Anemone, Jackass, Pascal, Devola/Popola, Emil (+Hacked), Pod,
+Units: NieR Replicant (Nier brother/father, Kaine, Emil, Fyra, Yonah, Tyrann, Halua, Shades, Wolf, Scorpion), YoRHa 2B / 9S / A2 (+ 2B Copy, 8B, 22B, 64B), YoRHa soldiers, 2E, Commander, Operators, Resistance, Anemone, Jackass, Pascal, Devola/Popola, Emil (+Hacked), Pod,
 8 bosses (Adam, Eve, Engels, Marx, Hegel, Grun, Simone, Red Girls), 63 machine lifeform variants.
 
 Hostility: Machines attack players, androids and all non-NieR mobs; Androids attack Machines and non-NieR mobs; all other mobs attack NieR units.
