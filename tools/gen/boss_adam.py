@@ -19,4 +19,6 @@ for u, v in ((0, 16), (0, 32)):                              # legs: black trous
 t.box(16, 34, 8, 10, 1, COAT)    # coat tail
 t.box(56, 0, 1, 16, 2, (200, 205, 215)); t.rect(58, 2, 1, 16, (240, 60, 70))   # blade with red edge
 t.box(34, 48, 4, 1, 2, GOLD)                                 # guard
+t.face_detail(SKIN, RED, eyes=((9, 11), (13, 11)))
+for r in ((24, 8, 8, 8), (0, 8, 8, 4), (16, 8, 8, 4), (8, 0, 8, 8)): t.strands(*r, CROWN)
 t.save(OUT)

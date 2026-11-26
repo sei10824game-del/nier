@@ -28,6 +28,8 @@ def paint(rage):
     for u in (0, 20):                                               # trousers + boots
         t.box(u, 52, 5, 12, 5, DARK); t.rect(u, 62, 20, 4, (12, 10, 12)); t.rect(u, 58, 20, 1, PLATE)
     t.box(0, 80, 24, 1, 1, STEEL); t.box(64, 0, 1, 1, 24, STEEL)    # steel pipes
+    t.face_detail(SKIN, GLOW, eyes=((9, 11), (13, 11)))
+    for r in ((24, 8, 8, 8), (0, 8, 8, 4), (16, 8, 8, 4), (8, 0, 8, 8)): t.strands(*r, (196, 196, 208))
     return t
 
 paint(False).save(D + 'boss_eve.png')
