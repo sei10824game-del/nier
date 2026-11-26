@@ -24,6 +24,8 @@ def paint(hot):
         t.box(24, v, 4, 12, 12, STEEL)
         t.face(24, v, 4, 12, 12, 'right', 5, 5, 2, 2, DARK); t.face(24, v, 4, 12, 12, 'left', 5, 5, 2, 2, DARK)
         for i in range(0, 12, 3): t.face(24, v, 4, 12, 12, 'right', i, 0, 1, 12, HEAT if hot else DARK)
+    for ex in (65, 69):
+        t.rect(ex, 9, 2, 1, (20, 18, 18)); t.rect(ex, 11, 2, 1, (40, 20, 20)); t.rect(ex, 10, 2, 1, (255, 50, 50)); t.rect(ex, 10, 1, 1, (255, 210, 180))
     t.box(56, 32, 5, 2, 3, (70, 66, 62)); t.box(56, 40, 5, 3, 2, (70, 66, 62))
     t.box(72, 50, 18, 2, 2, SALMON); t.rect(72, 54, 40, 2, SALD); t.box(72, 72, 18, 2, 2, SALMON); t.rect(72, 76, 40, 2, SALD)   # crane booms
     for u in (0, 32):                                                 # legs: gray-green + red truss edges
