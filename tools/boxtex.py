@@ -37,13 +37,32 @@ class Tex:
                 if j == y + h - 1: f *= 0.86
                 if i in (x, x + w - 1): f *= 0.9
                 self.px[i, j] = _c((r, g, b, a), f)
+    def _detail(self, x, y, w, h):
+        """Pixel-level surface detail on one face: corner rivets, panel seam, scratches, grime streaks."""
+        if w < 6 or h < 6: return
+        W, H = self.img.width, self.img.height
+        def put(i, j, f):
+            if 0 <= i < W and 0 <= j < H and self.px[i, j][3]: self.px[i, j] = _c(self.px[i, j], f)
+        if w >= 8 and h >= 8:
+            for (i, j) in ((x + 1, y + 1), (x + w - 2, y + 1), (x + 1, y + h - 2), (x + w - 2, y + h - 2)):
+                put(i, j, 1.25); put(i + 1, j + 1, 0.78)                      # rivet: highlight + shadow
+        if w >= 10:
+            for j in range(y + 1, y + h - 1): put(x + w // 2, j, 0.88)        # panel seam
+            if h >= 10:
+                for i in range(x + 1, x + w - 1): put(i, y + h // 2, 0.9)
+        for _ in range(max(1, (w * h) // 40)):                                  # scratches
+            i = x + self.rnd.randrange(w); j = y + self.rnd.randrange(h); n = self.rnd.randrange(2, 5)
+            for k in range(n): put(i + k, j + k // 2, 1.18)
+        for _ in range(max(1, w // 5)):                                         # grime streaks from the top edge
+            i = x + self.rnd.randrange(w); n = self.rnd.randrange(2, max(3, h // 2))
+            for k in range(n): put(i, y + k, 0.84 + 0.01 * k)
     def box(self, u, v, w, h, d, base, top=None, bottom=None, front=None, back=None, side=None, shade=0.12, noise=5):
         top = top or _c(base, 1 + shade); bottom = bottom or _c(base, 1 - shade * 2)
         front = front or base; back = back or _c(base, 1 - shade * .5); side = side or _c(base, 1 - shade)
         self.rect(u + d, v, w, d, top, noise); self.rect(u + d + w, v, w, d, bottom, noise)
         self.rect(u, v + d, d, h, side, noise); self.rect(u + d, v + d, w, h, front, noise)
         self.rect(u + d + w, v + d, d, h, side, noise); self.rect(u + 2 * d + w, v + d, w, h, back, noise)
-        for fx, fy, fw, fh in ((u, v + d, d, h), (u + d, v + d, w, h), (u + d + w, v + d, d, h), (u + 2 * d + w, v + d, w, h)): self._bevel(fx, fy, fw, fh)
+        for fx, fy, fw, fh in ((u, v + d, d, h), (u + d, v + d, w, h), (u + d + w, v + d, d, h), (u + 2 * d + w, v + d, w, h)): (self._bevel(fx, fy, fw, fh), self._detail(fx, fy, fw, fh))
     def face(self, u, v, w, h, d, which, x, y, w2, h2, color):
         ox, oy = {'top': (u + d, v), 'bottom': (u + d + w, v), 'right': (u, v + d), 'front': (u + d, v + d),
                   'left': (u + d + w, v + d), 'back': (u + 2 * d + w, v + d)}[which]
