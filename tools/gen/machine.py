@@ -11,7 +11,8 @@ ROOT = os.path.join(os.path.dirname(__file__), '..', '..')
 RES = os.path.join(ROOT, 'src/main/resources/assets/nierautomata')
 
 # part = (name, parent, pivot, rot, [box = (x,y,z,w,h,d, mat, [deco=(face,x,y,w,h,mat)])])
-EYE1 = lambda w, y=2: [('front', 1, y, 3, 3, 'white'), ('front', 2, y + 1, 1, 1, 'eye'), ('front', w - 4, y, 3, 3, 'white'), ('front', w - 3, y + 1, 1, 1, 'eye')]
+EYE1 = lambda w, y=2: [('front', 1, y - 1, 3, 1, 'dark'), ('front', 1, y, 3, 3, 'white'), ('front', 2, y + 1, 1, 1, 'eye'), ('front', 1, y + 3, 3, 1, 'dark'), ('front', 3, y, 1, 1, 'steel'),
+                       ('front', w - 4, y - 1, 3, 1, 'dark'), ('front', w - 4, y, 3, 3, 'white'), ('front', w - 3, y + 1, 1, 1, 'eye'), ('front', w - 4, y + 3, 3, 1, 'dark'), ('front', w - 2, y, 1, 1, 'steel')]
 def P(name, parent, pivot, boxes, rot=(0, 0, 0)): return (name, parent, pivot, rot, boxes)
 def B(x, y, z, w, h, d, mat, *deco): return (x, y, z, w, h, d, mat, list(deco))
 EYES2 = lambda w, y=3, s=2, inset=1: [('front', inset, y, s, s, 'eye'), ('front', w - inset - s, y, s, s, 'eye')]
