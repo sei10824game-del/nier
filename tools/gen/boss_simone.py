@@ -23,4 +23,6 @@ t.box(92, 0, 8, 3, 2, GOLD)                                       # crown
 for u in (80, 88): t.box(u, 16, 2, 16, 2, STEEL); t.rect(u, 18, 8, 2, GOLD); t.rect(u, 30, 8, 4, IVORY)   # long arms, ivory gloves
 t.box(0, 62, 12, 16, 1, (240, 200, 220), noise=4)                 # fan plates
 for x in range(0, 12, 2): t.face(0, 62, 12, 16, 1, 'front', x, 0, 1, 16, GOLD); t.face(0, 62, 12, 16, 1, 'back', x, 0, 1, 16, ROSE)
+t.rect(75, 7, 4, 4, (40, 34, 30)); t.rect(76, 8, 2, 2, (214, 160, 60)); t.rect(76, 8, 1, 1, (255, 240, 200))   # lens socket + glint
+t.strands(46, 191, 14, 14, RED)
 t.save(OUT)
