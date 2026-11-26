@@ -67,4 +67,26 @@ class Tex:
         ox, oy = {'top': (u + d, v), 'bottom': (u + d + w, v), 'right': (u, v + d), 'front': (u + d, v + d),
                   'left': (u + d + w, v + d), 'back': (u + 2 * d + w, v + d)}[which]
         self.rect(ox + x, oy + y, w2, h2, color)
+    def strands(self, x, y, w, h, color):
+        """Hair strand lines: alternating lighter/darker vertical streaks plus a few flyaway pixels."""
+        for i in range(x, x + w):
+            f = 1.12 if (i - x) % 3 == 0 else (0.86 if (i - x) % 3 == 2 else 1.0)
+            for j in range(y, y + h):
+                if 0 <= i < self.img.width and 0 <= j < self.img.height and self.px[i, j][3]:
+                    g = f * (0.94 if (j - y + i) % 5 == 0 else 1.0)
+                    self.px[i, j] = _c(self.px[i, j], g)
+    def face_detail(self, skin, eye, ox=8, oy=8, eyes=((9, 12), (13, 12))):
+        """Eyebrows, 2x2 eyes with highlight, nose shadow, lips, blush and jaw shade on the head front face at (ox,oy)."""
+        def S(f): return tuple(int(c * f) for c in skin[:3])
+        dark = tuple(int(c * 0.35) for c in eye[:3])
+        for (x, y) in eyes:
+            self.rect(x, y - 1, 2, 1, S(0.55))                    # brow
+            self.rect(x, y, 2, 1, (240, 240, 244))                 # eye white
+            self.rect(x, y + 1, 2, 1, S(0.9))                      # lower lid
+            self.rect(x + 1, y, 1, 1, eye); self.rect(x + 1, y, 1, 1, dark)   # iris
+            self.rect(x, y, 1, 1, (250, 250, 252))                 # highlight side
+        self.rect(ox + 3, oy + 5, 1, 1, S(0.82)); self.rect(ox + 4, oy + 5, 1, 1, S(0.9))   # nose
+        self.rect(ox + 3, oy + 6, 2, 1, (int(skin[0] * 0.9), int(skin[1] * 0.66), int(skin[2] * 0.68)))   # lips
+        self.rect(ox + 1, oy + 5, 1, 1, S(0.93)); self.rect(ox + 6, oy + 5, 1, 1, S(0.93))               # blush
+        self.rect(ox, oy + 7, 8, 1, S(0.88))                                                               # jaw shade
     def save(self, path): self.img.save(path)

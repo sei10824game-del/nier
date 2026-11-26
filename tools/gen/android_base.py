@@ -15,6 +15,8 @@ def body(t, p):
     t.rect(8, 8, 8, 2, p['hair'], noise=6)                 # fringe
     t.rect(8, 10, 1, 3, p['hair']); t.rect(15, 10, 1, 3, p['hair'])
     t.rect(10, 11, 1, 1, p['eye']); t.rect(13, 11, 1, 1, p['eye'])
+    t.face_detail(SKIN, p['eye'], eyes=((9, 11), (13, 11)))
+    t.strands(24, 8, 8, 8, p['hair']); t.strands(0, 8, 8, 4, p['hair']); t.strands(16, 8, 8, 4, p['hair']); t.strands(8, 0, 8, 8, p['hair'])
     t.rect(11, 14, 2, 1, (200, 150, 140))                  # mouth
     # torso
     t.box(32, 0, 8, 12, 4, p['suit'], noise=4)

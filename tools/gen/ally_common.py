@@ -17,6 +17,8 @@ def humanoid(t, skin, suit, legs, boots, hair, eye, gloves=None, trim=None):
     t.face(0, 0, 8, 8, 8, 'front', 0, 0, 8, 2, hair)
     t.face(0, 0, 8, 8, 8, 'front', 1, 4, 2, 1, eye); t.face(0, 0, 8, 8, 8, 'front', 5, 4, 2, 1, eye)
     t.face(0, 0, 8, 8, 8, 'front', 3, 6, 2, 1, tuple(int(c * .8) for c in skin))
+    t.face_detail(skin, eye)
+    t.strands(24, 8, 8, 8, hair); t.strands(0, 8, 8, 4, hair); t.strands(16, 8, 8, 4, hair); t.strands(8, 0, 8, 8, hair)
     t.box(16, 16, 8, 12, 4, suit)                                            # torso
     if trim:
         t.face(16, 16, 8, 12, 4, 'front', 3, 0, 2, 12, trim); band(t, 16, 16, 8, 12, 4, 10, 11, trim)
